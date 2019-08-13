@@ -9,7 +9,7 @@ The Contributor License Agreement (CLA) protects you and SAS by ensuring that yo
 contributed code in this conference repository.  If you're an author or presenter for SAS Global Forum 2020, then it is
 likely that this permission has been addressed in an existing agreement.
 
-Presenters at SAS Global Forum will have already completed a marketing release agreement for their papers and presentations.  
+Presenters at SAS Global Forum will have already completed a marketing release agreement for their papers and presentations.
 **If you're an author/presenter for SAS Global Forum 2020**, you *do not* need to complete
 an additional contributor agreement.
 
@@ -29,7 +29,7 @@ To proceed, complete the fields in the agreement, sign it, and send a PDF versio
 We use standard Git and GitHub mechanisms for accepting contributions to this
 project.  That means that you will:
 
-1. Fork this project to your own GitHub account, or clone it to a local repository.        (Don't know what we mean by "fork" and "clone"? Check the 
+1. Fork this project to your own GitHub account, or clone it to a local repository.        (Don't know what we mean by "fork" and "clone"? Check the
    [GitHub glossary](https://help.github.com/articles/github-glossary/) to learn the lingo.)
 
 2. If necessary, create a new subfolder for your code and other assets.  (We have already created folders and template README.md files for all accepted, contributed papers.) Please name the folder according to the same naming conventions that you used when you submitted your final paper.  That is:
@@ -46,11 +46,11 @@ project.  That means that you will:
 
 Consult [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more information on using pull requests.
 
-## What types of files should you include?
+## Types of files you should include
 
 DO contribute these types of files to support your presentation
 
-* A README.md file in the top level folder for your contribution.  The README.md 
+* A README.md file in the top level folder for your contribution.  The README.md
   should document the other content that you've contributed, and provide a direct
   link to the PDF for your paper in the SAS Global Forum proceedings.  Optionally
   include contact information so that interested readers know how to ask you questions
@@ -64,7 +64,7 @@ DO contribute these types of files to support your presentation
   Enterprise Miner (\*.xml)
 * Presentation materials, such as a PDF version of your presentation slides.
 
-## What you should NOT include
+## Files you should NOT include
 
 DO NOT include any of the following:
 
