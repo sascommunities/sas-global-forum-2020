@@ -3,7 +3,7 @@
 We'd love to accept your contributions to this project. There are
 just a few small guidelines you need to follow.
 
-## Complete the Contributor License Agreement
+## Complete the Contributor License Agreement (non-authors only)
 
 The Contributor License Agreement (CLA) protects you and SAS by ensuring that you grant permission to host your
 contributed code in this conference repository.  If you're an author or presenter for SAS Global Forum 2020, then it is
@@ -32,7 +32,7 @@ project.  That means that you will:
 1. Fork this project to your own GitHub account, or clone it to a local repository.        (Don't know what we mean by "fork" and "clone"? Check the
    [GitHub glossary](https://help.github.com/articles/github-glossary/) to learn the lingo.)
 
-2. If necessary, create a new subfolder for your code and other assets.  (We have already created folders and template README.md files for all accepted, contributed papers.) Please name the folder according to the same naming conventions that you used when you submitted your final paper.  That is:
+2. If necessary, create a new subfolder in the [/papers](papers/) folder for your code and other assets.  (We have already created folders and template README.md files for all accepted, contributed papers.) Please name the folder according to the same naming conventions that you used when you submitted your final paper.  That is:
 
         sessionNumber-YEAR-surname
 
@@ -43,6 +43,8 @@ project.  That means that you will:
 3. Use a pull request to submit your new content.  One of the project owners will
    review the change and merge it with the rest of the project.  Reviewers will check only that you have followed the recommended structure (adding/changing content
    in the folder for your paper).  For these contributions,the reviewer is not checking for quality or completeness of the content.  As the paper author, we assume that you know what your readers need.
+   
+**Do not change or remove** other content that isn't related to your paper.  Although your copy of the repository contains all content, only the changes you add will be merged as part of the pull request.   
 
 Consult [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more information on using pull requests.
 
