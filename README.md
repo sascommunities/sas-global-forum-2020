@@ -6,4 +6,5 @@ After the conference, you can find the directory of the published proceedings fr
 
 ## Contributing code for your own paper
 
-Are you a SAS Global Forum presenter?  If so, we welcome you to contribute any code or other useful material that might be of interest to those who read your paper.  See the [contribution guidelines and steps here](CONTRIBUTING.md).
+Are you a SAS Global Forum presenter?  If so, we welcome you to contribute any code or other useful material that might be of interest to those who read your paper.  See the [contribution guidelines and steps here](CONTRIBUTING.md). 
+ 
