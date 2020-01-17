@@ -48,6 +48,8 @@ project.  That means that you will:
 
 Consult [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more information on using pull requests.
 
+If you're new to GitHub and would like to see a walkthrough of a pull request, we recorded a short video (11 min) and [shared in the SAS Global Forum group on SAS Support Communities](https://communities.sas.com/t5/SAS-Global-Forum-2020/SAS-Global-Forum-2020-on-GitHub/gpm-p/614782).
+
 ## Types of files you should include
 
 DO contribute these types of files to support your presentation
