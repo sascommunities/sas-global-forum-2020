@@ -10,7 +10,7 @@ This paper is available for downlad at:
 
 Download the "DelGobbo_Excel_2020_HOW.zip" file and follow the instructions in the "ReadMe.txt" file available in the ZIP archive.
 
-If you do not want to use the ZIP archive then you can access the individual files in the **Files** folder.
+If you do not want to use the ZIP archive then you can access the individual files in the [**Files**](./Files) folder.
 
 ## Contact Information
 
