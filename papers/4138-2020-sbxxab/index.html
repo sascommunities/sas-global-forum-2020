@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Data Entry</title>
+</head>
+
+<body class="container">
+    <hr>
+    <div id="question">
+        <div class="row">
+            Welcome to the SAS Data Entry application!
+        </div>
+        <div class="row">
+            Click on the Start button to launch the quiz.
+        </div>
+    </div>  
+    <form id="quizForm" action="http://va85.gel.sas.com/SASJobExecution/" target="_SASResults">
+        <input type="hidden" name="_program" value="/gelcontent/Jobs/SGF/DataEntry">
+        <input type="hidden" name="_action" value="execute">
+        <input type="hidden" name="_output_type" value="json">
+        <input type="hidden" name="id" value="0">
+        <details id="hintSection" class="row d-none">
+            <summary class="btn btn-info">Hint!</summary>
+            <br>
+            <p>Other users answered :</p>
+            <ul id="hintInfo"></ul>
+        </details>
+        <hr>
+        <button id='submitBtn' type="submit" class="row btn btn-primary">Start</button>
+    </form>
+    <div id="summary"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="libs/jquery-3.4.1.min.js"></script>
+    <script src="libs/popper-1.16.0.min.js"></script>
+    <script src="libs/bootstrap-4.4.1.min.js"></script>
+    <!-- SAS provided sas-visualanalytics-thirdpartyvisualizations -->
+    <script src="libs/util/contentUtil.js"></script>
+    <script src="libs/util/messagingUtil.js"></script>
+    <!-- Custom javascript files -->
+    <script src="src/main.js"></script>
+</body>
+
+</html>
