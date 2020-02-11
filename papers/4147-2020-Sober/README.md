@@ -53,56 +53,59 @@
 - To reduce the size of CAS tables consider converting CHARACTER data types into VARCHAR data type using PROC CASUTIL IMPORTOPTIONS VARCHARCONVERSION= statement
 - **A good programing habit**
 
-**11. How.to.Parallel.Load.and.Compress.a.CAS.Table.sas**
+**11. How.to.Load.All.Datasets.from.a.CASLIB.sas**
+- CAS Enabled
+
+**12. How.to.Parallel.Load.and.Compress.a.CAS.Table.sas**
 - CAS Enabled
 - [How to Parallel Load and Compress a CAS Table](https://blogs.sas.com/content/sgf/2019/10/17/how-to-parallel-load-and-compress-a-sas-cloud-analytic-services-cas-table/)
  
-**12. Load.SAS7BDAT.To.CAS.Table.sas**
+**13. Load.SAS7BDAT.To.CAS.Table.sas**
 - CAS Enabled
 - Best practice to parallel load a SAS7BDAT data set into a CAS table
 
-**13. Load.SASHDAT.To.CAS.Table.sas**
+**14. Load.SASHDAT.To.CAS.Table.sas**
 - CAS Enabled
 - Best practice to parallel load a SASHDAT table into a CAS table
 
-**14. ODS.Save.CAS.Table.To.CSV.File.sas**
+**15. ODS.Save.CAS.Table.To.CSV.File.sas**
 - CAS Enabled
 - Leveraging the Output Delivery System to generate a CSV file from a CAS table 
 
-**15. One.Level.Names.Managed.By.CAS.sas** 
+**16. One.Level.Names.Managed.By.CAS.sas** 
 - CAS Enabled
 - [How to reference CAS tables using a one-level name](https://blogs.sas.com/content/sgf/2018/06/21/how-to-reference-cas-tables-using-a-one-level-name/)
 
-**16. SAS.Viya.3.4.or.Lower.Descending.Numeric.BY.Emulation.sas** 
+**17. SAS.Viya.3.4.or.Lower.Descending.Numeric.BY.Emulation.sas** 
 - CAS Enabled 
 - SAS Viya 3.4 or Lower
 - [How to Emulate DATA Step DESCENDING BY Statements in SAS Cloud Analytic Services (CAS)](https://blogs.sas.com/content/sgf/2019/10/10/how-to-emulate-data-step-descending-by-statements-in-sas-cloud-analytic-services-cas/)
 - **Note: SAS Viya 3.5 or higher supports DESCENDING on a DATA Step BY statement with the caveat that DESCENDING is not not supported on the first variable of the BY statement**
 - - Note: if there is a DESCENDING on the first variable of the BY statement the DATA Step will run in SPRE
 
-**17. SAS.Viya.3.4.or.Lower.Emulate.PROC.SORT.NODUPKEY.sas**
+**18. SAS.Viya.3.4.or.Lower.Emulate.PROC.SORT.NODUPKEY.sas**
 - CAS Enabled
 - SAS Viya 3.4 or Lower
 - DATA Step emulation of PROC SORT NODUPKEY is accomplished by using FIRST. (dot) processing
 
-**18. SAS.Viya.3.5.PROC.SORT.NODUPKEY.NOUNIKEY.sas**
+**19. SAS.Viya.3.5.PROC.SORT.NODUPKEY.NOUNIKEY.sas**
 - CAS Enabled 
 - Requires SAS Viya 3.5+ 
 - PROC SORT NODUPKEY and NOUNIKEY on CAS Table Examples 
 
-**19. Save.CAS.Table.To.SAS7BDAT.sas**
+**20. Save.CAS.Table.To.SAS7BDAT.sas**
 - CAS Enabled
 - Best practice to save a CAS table as a SAS7BDAT table  
 
-**20. Save.CAS.Table.To.SASHDAT.sas**
+**21. Save.CAS.Table.To.SASHDAT.sas**
 - CAS Enabled
 - Best practice to save a CAS table as a SASHDAT table 
 
-**21. Set.The.Active.CASLIB.sas**
+**22. Set.The.Active.CASLIB.sas**
 - CAS Enabled
 - When loading data into CAS you need to change to the active CASLIB prior to accessing that CAS table
 
-**22. Terminate.CAS.Session.sas**
+**23. Terminate.CAS.Session.sas**
 - CAS Enabled
 - How to terminate your CAS session 
 - If you forget to do this do not worry; all cas session have a default time-out setting which is hit after a period of non activity
