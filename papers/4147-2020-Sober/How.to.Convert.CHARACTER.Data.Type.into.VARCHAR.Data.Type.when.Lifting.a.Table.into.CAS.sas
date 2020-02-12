@@ -35,3 +35,10 @@ proc casutil;
                load casdata="table_with_char.sas7bdat" incaslib="sas7bdat" outcaslib="casuser"
                casout="table_with_varchar" importoptions=(filetype="basesas" varcharconversion=16) replace;
 run;
+
+proc cas;
+   sessionProp.setSessOpt /
+   caslib="casuser";
+run;
+   table.columninfo / table="table_with_varchar";
+quit;

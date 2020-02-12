@@ -7,4 +7,6 @@ After the conference, you can find the directory of the published proceedings fr
 ## Contributing code for your own paper
 
 Are you a SAS Global Forum presenter?  If so, we welcome you to contribute any code or other useful material that might be of interest to those who read your paper.  See the [contribution guidelines and steps here](CONTRIBUTING.md). 
+
+If you're new to GitHub and would like to see a walkthrough of a pull request, we recorded a short video (11 min) and [shared in the SAS Global Forum group on SAS Support Communities](https://communities.sas.com/t5/SAS-Global-Forum-2020/SAS-Global-Forum-2020-on-GitHub/gpm-p/614782).
  

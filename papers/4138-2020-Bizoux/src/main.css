@@ -1,0 +1,11 @@
+.valid {
+    display: block;
+    background-color: lightgreen;
+    width: 400px;
+}
+
+.invalid {
+    display: block;
+    background-color: red;
+    width: 400px;
+}
