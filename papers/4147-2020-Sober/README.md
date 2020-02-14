@@ -16,7 +16,7 @@
 - CAS enabled.
 - Example of using DATA step to partition and order a CAS table.
 - - Benefit: When a BY statement matches the partition and ordering, the data is immediately ready for processing by each thread. 
-- - Note: **If the BY statement does not match the partition and ordering, then there is a cost that is, the BY is done on the fly** to group the data correctly on each thread.
+- - Note: **If the BY statement does not match the partition and ordering, then there is a cost (that is, the BY is done on the fly)** to group the data correctly on each thread.
 
 **3. Delete.CAS.Table.sas**
 - CAS enabled.
@@ -103,10 +103,10 @@
 
 **22. Set.The.Active.CASLIB.sas**
 - CAS enabled.
-- When loading data into CAS you need to change to the active CASLIB prior to accessing tables in that CASLIB.
+- When loading data into CAS the source caslib is the active caslib. In order to access tables in the target caslib, you need to set the target caslib as the active caslib. 
 
 **23. Terminate.CAS.Session.sas**
 - CAS enabled.
 - How to terminate your CAS session.
-- If you forget to do this do not worry, all cas sessions have a default time-out setting which is hit after a period of non activity.
+- If you forget to do this do not worry. All CAS sessions have a default time-out setting which is hit after a period of nonactivity.
 - **A good programming habit.**
