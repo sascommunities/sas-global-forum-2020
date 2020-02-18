@@ -70,7 +70,8 @@
    |		CKPTLIST	List of snapshots recorded by ACTION=CAPTURE
    |        MACROVARS   The values of macro variables at the time of the snapshot
    |        OPTIONS     The values of all options at the time of the snapshot
-   |        DATASETS    The structure of the tables and views in the LIBS at the time of the snapshot
+   |        DATASETS    The high-level information of the tables in the LIBS at the time of the snapshot
+   |        COLUMNS     The column information of the tables in the LIBS at the time of the snapshot
    |
    | FUTURE: This relies on specific PROC SQL dictionary tables.   This macro could be enhanced
    |         to support more of the information available from the dictionary tables, such as GOPTIONS.
@@ -173,14 +174,14 @@
 	%* I am sure there are better ways to do this, but this works  * ;
     %*************************************************************** ;
     %macro _buildInClauseList(string=%str());
-        %let _count = 0;
-        %let _word=%qscan(&string,1);
+        %let _count = 1;
+        %let _word=%qscan(&string,&_count);
         %do %while(%str(X&_word)X ne XX );
             %let _count=%eval(&_count+1);
             %let _word=%qscan(&string,&_count);
         %end;
 
-        %if &_count gt 0 %then %do _loop = 1 %to &_count;
+        %if &_count gt 0 %then %do _loop = 1 %to %eval(&_count-1);
 			%let _word = %qscan(&string,&_loop);
             "&_word"
             %if %eval(&_loop+1) lt &_count %then %do;
@@ -301,6 +302,23 @@
 					( %_buildInClauseList(string=&_libs) )
 				%end;
 				order by libname, memname ;
+				
+			%************************************ ;
+			%* Capture the Data Set Column info * ;
+			%************************************ ;
+			create table &snaplib..COLUMNS(&_genClause label='Column Snapshots') as
+				select libname, memname, name, type, label, format, informat, sortedby
+				from dictionary.columns			
+				where memtype eq 'DATA' 
+				%if &_libs eq %str(_NONE_) or &_libs eq %str() %then %do;
+				    %* cheezy way to emulate obs=0 ;
+					and memtype ne 'DATA'
+				%end;					
+				%else %if &_libs ne %str(_ALL_) %then %do;
+					and libname in
+					( %_buildInClauseList(string=&_libs) )
+				%end;
+				order by libname, memname, name ;				
 		quit;
 		%put **** Snapshot &_name Capture Completed ****;
 		%goto exit;
@@ -382,7 +400,7 @@
 		%end;
 
 		%*********************************************** ;
-		%* Get the generation number for base and comp * ;  %* TODO make this case-insenstive?;
+		%* Get the generation number for base and comp * ;  
 		%*********************************************** ;
 		%let _baseData = %str();
 		%let _compData = %str();
@@ -436,14 +454,14 @@
 		%* this could happen if libs=_NONE_ was specified for the base= or comp= snapshot    * ;
 		%************************************************************************************* ;
 		data _null_;
-			if 0 then set SNAPLIB.options(gennum= 1) nobs=nobsb;
-			if 0 then set snaplib.options(gennum=2)  nobs=nobsc;
+			if 0 then set &snaplib..datasets(gennum=&_baseData) nobs=nobsb;
+			if 0 then set &snaplib..datasets(gennum=&_compData) nobs=nobsc;
 			call symputx('_baseobs',nobsb);
 			call symputx('_compobs',nobsc);
         run;
 
-        %if &_baseobs eq 0 %then %put **** BASE dataset snapshot is empty;
-		%if &_compobs eq 0 %then %put **** COMPARE dataset snapshot is empty;
+        %if &_baseobs eq 0 %then %put **** BASE dataset and column snapshot is empty;
+		%if &_compobs eq 0 %then %put **** COMPARE dataset and column snapshot is empty;
 		%if &_baseobs gt 0 and &_compobs gt 0 %then %do;
 			title "DATASET comparison for snapshots &_base and &_comp";
 			proc compare base=&snaplib..datasets(gennum=&_baseData)
@@ -452,6 +470,15 @@
 			run;
 			%if &sysinfo eq 0 %then %put --  No DATASET differences found. ;
 			%else %put --  DATASET differences found.  See PROC COMPARE output;
+
+			title "COLUMN comparison for snapshots &_base and &_comp";
+			proc compare base=&snaplib..columns(gennum=&_baseData)
+				compare=&snaplib..columns(gennum=&_compData) ;
+				id libname memname name;
+			run;
+			%if &sysinfo eq 0 %then %put --  No COLUMN differences found. ;
+			%else %put --  COLUMN differences found.  See PROC COMPARE output;
+
 		%end;
 		
 		%put ******** Snapshot Comparison Completed ********;
