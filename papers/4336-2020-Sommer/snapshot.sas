@@ -295,7 +295,7 @@
 				where memtype eq 'DATA' 
 				%if &_libs eq %str(_NONE_) or &_libs eq %str() %then %do;
 				    %* cheezy way to emulate obs=0 ;
-					and memtype ne 'DATA'
+					and 0
 				%end;					
 				%else %if &_libs ne %str(_ALL_) %then %do;
 					and libname in
@@ -312,7 +312,7 @@
 				where memtype eq 'DATA' 
 				%if &_libs eq %str(_NONE_) or &_libs eq %str() %then %do;
 				    %* cheezy way to emulate obs=0 ;
-					and memtype ne 'DATA'
+					and 0
 				%end;					
 				%else %if &_libs ne %str(_ALL_) %then %do;
 					and libname in
