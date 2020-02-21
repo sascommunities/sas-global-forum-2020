@@ -16,7 +16,7 @@ run;
 
 proc format;
   value $ zodiacSymbol
-    'Scorpio' = "(*ESC*){unicode '264F'x}"
+    'Scorpio' = "(*ESC*){unicode '264F'x}"  /* NOTE: unicode expects U16BE */
     'Virgo' =   "(*ESC*){unicode '264D'x}"
     'Gemini' =  "(*ESC*){unicode '264A'x}"
     'Sagittarius' = "(*ESC*){unicode '2650'x}"
