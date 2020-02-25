@@ -14,4 +14,4 @@ Find the full paper online with the [SAS Global Forum proceedings](https://www.s
 
 ## Support contact(s)
 
-Contact the author with questions, feedback, and lavish praise.                                                                                                                                                                                                                                                                                                                                                                                                                                  
+[Contact the author](https://www.linkedin.com/in/andybouts/) with questions, feedback, and lavish praise.                                                                                                                                                                                                                                                                                                                                                                                                                                  
