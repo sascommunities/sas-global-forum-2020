@@ -1,1 +1,12 @@
-# Raising the Bar! Developing world-class reports with SAS Visual Analytics                                   This is a placeholder for source code and other supporting materials.  Authors are invited to add their materials and overwrite this README! See [the contributor guidelines](../../CONTRIBUTING.md) for details. ## Additional informationFind the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).## Support contact(s)Contact the author with questions, feedback, and lavish praise.                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# Raising the Bar! Developing world-class reports with SAS Visual Analytics                                   
+
+BarChartD3.html is the D3 graph that uses hard coded data. This will work outside of SAS Visual Analytics.
+BarChartD3VA.html has been modified to work with the Data-Driven Content object in SAS Visual Analytics. This should be saved on your SAS Viya server in the folder /var/www/html.
+
+## Additional information
+
+Find the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).
+
+## Support contact(s)
+
+Contact the author with questions, feedback, and lavish praise.                                                                                                                                                                                                                                                                                                                                                                                                                                  
