@@ -5,111 +5,127 @@
 /* screen and makes up a fake list of dealerships that have the car in stock	*/
 /* as well as a dynamic link to a loan calculator.								*/	
 /********************************************************************************/
+/* Set global Font */
 
-%let font_value = Calibri; /* Set univeral font value */
+%let font_name = Calibri;
    
-%let INFO_URL=?_program=%2FUsers%2Fsasdemo%2FSGF%20Examples%2FCustom%20App%20Step%203&_action%nrstr(&MakeAndModel=);
+   %let LOAN_URL=?_program=%2FUsers%2Fsasdemo%2FSGF%20Examples%2FCustom%20App%20Step%204%nrstr(&LoanAMT=);
+*  Set the ODS escape character;
 
 ods escapechar='^';
 
-%Global CarType MaxPrice MinMPG Cyl;
+%Global MakeAndModel;
 
-Data work.MyCars (keep = MakeModel MSRP MPG Engine Info rate ) ;
+Data work.MyCar ;
 set SASHELP.CARS (rename = (Cylinders = Cylinder Horsepower=Horses));
-length MakeModel MakeModel_URL Description $100;
-length Info varchar(1024);	
-where Type = "&CarType";
-	MakeModel_URL = trim(left(Make)) || " " || trim(left(Model));
-	MakeModel=tranwrd(MakeModel_URL, "auto", "Auto");
-	MakeModel=tranwrd(MakeModel, "manual", "Manual");
-	MakeModel=tranwrd(MakeModel, "convertible", "Convertible");
-	MakeModel=tranwrd(MakeModel, "hatch", "Hatch");
-	MakeModel=tranwrd(MakeModel, "coupe", "Coupe");
-	MakeModel=tranwrd(MakeModel, "2dr", "2DR");
-	MakeModel=tranwrd(MakeModel, "4dr", "4DR");
-	MakeModel=tranwrd(MakeModel, "5dr", "5DR");
-	MakeModel=tranwrd(MakeModel, "4dr", "4DR");
-	MPGnum = (MPG_City+MPG_Highway)/2;
-	MPG= put(MPGNum,$2.);
-	MSRP = MSRP * 1.25;
-	Cylinders = put(Cylinder,$1.);
-	Horsepower = put(Horses,$3.);
-	Description = trim(left(Horsepower)) || " Horsepower " || trim(left(EngineSize)) || " Liter " || Cylinders || " Cylinder";
-	Engine = trim(left(Description));
-	Info = "<a href='http://sasserver.demo.sas.com/SASJobExecution/"||"&INFO_URL"||urlencode(strip(MakeModel_URL))||"'>Find This Car</a>";
+length MakeModel Description CarURL $120;
+MakeModel = trim(left(Make)) || " " || trim(left(Model));
+MPGnum = (MPG_City+MPG_Highway)/2;
+MPG= put(MPGNum,$2.);
+Cylinders = put(Cylinder,$1.);
+Horsepower = put(Horses,$3.);
+Description = trim(left(Horsepower)) || " Horsepower " || trim(left(EngineSize)) || " Liter " || Cylinders || " Cylinder";
+Engine = trim(left(Description));
 
+run;
+
+
+
+Data work.MyOffers (keep = Make CarURL Loan TotalCost MakeModel StickerPrice SalesTax TitleTax PlateTransferTax RegistrationTax Dealership Phone) ;
+set work.MyCar ;
+	where MakeModel = "&MakeAndModel";
+length MakeModel Description CarURL Dealership $120;
+length Loan varchar(1024);
+MakeModel = trim(left(Make)) || " " || trim(left(Model));
+MSRP = MSRP * 1.25; /* Adjusting for inflation */
+
+do i = 1 to 10;
+   x = rand("uniform", 1,500);  /* Creating Random upcharge for dealerships so prices vary slightly */
+   StickerPrice = MSRP + (x*3); /* Applying Random upcharge for dealerships so prices vary slightly */
+   if i = 1 then do;
+   	Dealership = "Rosenthal " || Make; /* Add Dealership */
+   end;
+      if i = 2 then do;
+   	Dealership = "East Valley " || Make;
+   end;
+      if i = 3 then do;
+   	Dealership = "Turnage " || Make;
+   end;
+         if i = 4 then do;
+   	Dealership = "South Shore Autos";
+   end;
+         if i = 5 then do;
+   	Dealership = Trim(left(Make)) || " Of West Valley";
+   end;
+         if i = 6 then do;
+   	Dealership = "Triangle " || Make;
+   end;
+      if i = 7 then do;
+   	Dealership = "Brenneman " || Make;
+   end;
+         if i = 8 then do;
+   	Dealership = "Express Luxury Automobiles";
+   end;
+         if i = 9 then do;
+   	Dealership = "Four Corners " ||Trim(left(Make)) || "/Tesla/Ferrari";
+   end;
+            if i = 10 then do;
+   	Dealership = "County " ||Trim(left(Make)) || " & Motocycles";
+   end;
+    x=  (1111 + floor((1+9999-1111)*rand("uniform"))); /* Create random last 4 digits for phone number */
+	   Phone="1-866-555-"||trim(left(x)); /* Create phone number */ 
+	SalesTax = StickerPrice * 0.06;
+	TitleTax = 50;
+	PlateTransferTax = 10;
+	RegistrationTax = (128+180)/2;
+	TotalCost = SalesTax + TitleTax + PlateTransferTax + RegistrationTax + StickerPrice;
+	format SalesTax TitleTax PlateTransferTax RegistrationTax StickerPrice TotalCost DOLLAR8.;
+	label MakeModel = "Make & Model";
+	label StickerPrice = "Sticker Price";
+	label Phone = "Phone Number";
+	label TotalCost = "Total Cost Of Ownership";
 	
-		rate = rand("Integer", 1, 5);  /* requires SAS 9.4M4 or later */
-label MakeModel = "Make & Model";
-label Info = "Local Dealerships";
+	Loan = "<a href='http://sasserver.demo.sas.com/SASJobExecution/"||"&LOAN_URL"||urlencode(strip(TotalCost))||"'>Calculate</a>";
 output;
-run;
-
-Data work.MyCars;
-	set work.MyCars;
-	where MSRP < &MaxPrice;
-run;
-
-
-proc sort data = work.MyCars;
-	by  MSRP;
-run;
-
-
-
-
-
-Data work.MyCars;
-	set work.MyCars;
-	length Rating $100.;
-			if rate = 1 then do;
-	rating = "<font face=&font_name color=#5C5C5C>&#9733;</font>";
-	end;
-		if rate = 2 then do;
-	rating = "<font face=&font_name color=#5C5C5C>&#9733;&#9733;</font>";
-	end;
-		if  rate = 3 then do;
-	rating = "<font face=&font_name color=#5C5C5C>&#9733;&#9733;&#9733;</font>";
-
-	end;
-		if  rate = 4 then do;
-	rating = "<font face=&font_name color=#5C5C5C>&#9733;&#9733;&#9733;&#9733;</font>";
-
-	end;
-		if rate = 5 then do;
-	rating = "<font face=&font_name color=#5C5C5C>&#9733;&#9733;&#9733;&#9733;&#9733;</font>";
-
-	end;
-
-
-
+label Loan = "Monthly Payment";
+end;
 
 run;
 
+proc sort data = work.MyOffers ;
+	by  TotalCost;
+run;
 
-%macro get_table_size(inset,macvar);
- data _null_;
-  set &inset NOBS=size;
-  call symput("&macvar",size);
- stop;
- run;
-%mend;
+%global LoanAmt LoanYears InterestRate MonthlyPayment NumPayments DisplayImageURL Loan;
 
-%let reccount=;
-%get_table_size(work.MyCars,reccount);
-%put &reccount;
+%macro GetMacros;
+%let dsid=%sysfunc(open(work.MyOffers,i)); /* first, open the table */
+%if (&dsid = 0) %then /* If it doesn't open, abort */
+  %put %sysfunc(sysmsg());
+%else %do; /* Pull Date */
+   %let num_obs=%sysfunc(attrn(&dsid,nlobs)); /* Get number of obs */
+   %put work.nuisance_complaints Table Has &num_obs Obervations;
+   %do i=1 %to &num_obs; /* Loop One By One Thru Code to Pull Each Obs */ 
+      %let rc=%sysfunc(fetchobs(&dsid,&i)); /* Open the Obs requested at this time */
+     
+%let DisplayImageURL=%sysfunc(getvarc(&dsid,%sysfunc(varnum(&dsid,CarURL)))); /* Read each var into memory as macros */
+     
+%let CarMake=%sysfunc(getvarc(&dsid,%sysfunc(varnum(&dsid,Make)))); /* Read each var into memory as macros */
 
-
-%Global MakeModel MSRP EngineSize Cylinders Horsepower MPG;
-
-*ods html file=_webout;
+%end;
+%Put The make is &carmake;
+%put The URL IS &DisplayImageURL;
+%end; /* Pull Date */
+%let rc=%sysfunc(close(&dsid));
+%mend GetMacros; /* close macro */
+%GetMacros; /* execute macro */
+%put &DisplayImageURL;
+%Global MakeModel MSRP EngineSize Cylinders Horsepower MPG Loan;
 
 options nodate nonumber;
 
-title 'Cars That Meet Your Search Criteria';
+title "Local Dealerships With The &MakeAndModel In Stock";
 
-proc print data=work.mycars noobs label;
-var MakeModel MSRP Engine MPG Rating Info; 
+proc print data = work.myoffers noobs label;
+var Dealership Phone StickerPrice SalesTax TitleTax PlateTransferTax RegistrationTax TotalCost Loan;     
 run;
-
-*ods html close;
