@@ -1,1 +1,15 @@
-# Read Before You Read -- Reading, Rewriting & Re-Reading Difficult Delimited Data in a Data Step             This is a placeholder for source code and other supporting materials.  Authors are invited to add their materials and overwrite this README! See [the contributor guidelines](../../CONTRIBUTING.md) for details. ## Additional informationFind the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).## Support contact(s)Contact the author with questions, feedback, and lavish praise.                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# Read Before You Read -- Reading, Rewriting & Re-Reading Difficult Delimited Data in a Data Step             
+
+Full code from the paper that gives an example of problematic data and how to read it in error-free.  Provided in 2 separate programs:
+- __unquoted_delimiters.sas__ : an unquoted character field contains the delimiter character
+- __missing_delimiter.sas__ : a delimiter is missing from some records
+
+
+## Additional information
+
+Find the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).
+
+## Support contact(s)
+
+Contact the author with questions, feedback, and lavish praise:                                                       
+michael.chu@td.com
