@@ -2,9 +2,8 @@
 
 ## Files
 
-1. AuxiliaryInfoPaper.pdf : PDF file of the paper.
-2. AuxiliaryInfoPresentation.pdf : PDF file of slides for the presentation.
-3. AuxiliaryInfo_sample.sas : All SAS code from the paper.
+1. AuxiliaryInfoPresentation.pdf : PDF file of slides for the presentation.
+2. AuxiliaryInfo_sample.sas : All SAS code from the paper.
 
 ## Additional information
 Find the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).
