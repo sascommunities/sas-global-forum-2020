@@ -1,1 +1,11 @@
-# Simple and efficient bootstrap validation of predictive models using SAS/STAT                               This is a placeholder for source code and other supporting materials.  Authors are invited to add their materials and overwrite this README! See [the contributor guidelines](../../CONTRIBUTING.md) for details. ## Additional informationFind the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).## Support contact(s)Contact the author with questions, feedback, and lavish praise.                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# Simple and Efficient Bootstrap Validation of Predictive Models Using SAS/STAT Software                             
+
+The full conference paper and executable versions of its running example can be found at https://github.com/saspy-bffs/sgf-2020-bootstrap-validation in both Jupyter Notebook and .sas format.
+
+## Additional information
+
+The full paper can also be found in the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).
+
+## Authors
+* [ilankham](https://github.com/ilankham)
+* [mtslaugh](https://github.com/mtslaugh)
