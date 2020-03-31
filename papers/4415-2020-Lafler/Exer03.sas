@@ -1,0 +1,12 @@
+data hash_search(keep=Origin Type Make Model MSRP) ;
+  if 0 then set SASHELP.CARS ;
+  Origin = 'USA' ;
+  if _n_ = 1  then do ;
+     declare Hash HCars (dataset:'SASHELP.CARS') ;
+     HCars.DefineKey ('ORIGIN') ;
+     HCars.DefineData ('Type','Make','Model','MSRP') ;
+     HCars.DefineDone () ;
+  end ;
+  if HCars.find() = 0 then output ;
+  stop ;
+run ;

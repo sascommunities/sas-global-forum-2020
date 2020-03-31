@@ -1,0 +1,10 @@
+4171-2020: Make Beautiful Vertically Scrolling Dashboards in SAS® Visual Analytics
+
+To load these reports into Visual Analytics, perform the following steps:
+
+1. Log into Visual Analytics
+2. Enter the Report Editor
+3. Press Ctrl+Alt+B
+4. Paste the XML code for your version of Visual Analytics into the popup box
+5. Click "Load"
+6. Use the report templates as guides to create vertically scrolling dashboards

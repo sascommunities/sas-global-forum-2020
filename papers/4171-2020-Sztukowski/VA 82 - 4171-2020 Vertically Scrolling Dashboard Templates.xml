@@ -1,0 +1,2079 @@
+<?xml version="1.0" encoding="UTF-8"?><SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.1.0" label="4171-2020: Vertically Scrolling Dashboard Templates for VA 8.2" createdLocale="en" createdVersion="4.1.0.20170913_export" dateCreated="2020-03-02T22:32:44Z" dateModified="2020-03-16T21:51:18Z" createdApplication="SAS Visual Analytics 8.2" lastModifiedApplication="SAS Visual Analytics 8.2" nextUniqueNameIndex="488">
+    <DataDefinitions>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd22">
+            <DataDefinition type="relational" name="dd23">
+                <RelationalQuery detail="false"/>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="dropdown" maxRowsBehavior="truncate" name="dd24"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd50">
+            <DataDefinition type="relational" name="dd51">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="truncate" name="dd52"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd64">
+            <DataDefinition type="procedural" name="dd65">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="timeSeries" maxRowsBehavior="noData" name="dd66"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd72">
+            <DataDefinition type="relational" name="dd73">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="truncate" name="dd74"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd89">
+            <DataDefinition type="procedural" name="dd90">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="timeSeries" maxRowsBehavior="noData" name="dd91"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd128">
+            <DataDefinition type="relational" name="dd129">
+                <RelationalQuery detail="false"/>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="list" maxRowsBehavior="truncate" name="dd130"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd134">
+            <DataDefinition type="relational" name="dd135">
+                <RelationalQuery detail="false"/>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="list" maxRowsBehavior="truncate" name="dd136"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd140">
+            <DataDefinition type="relational" name="dd141">
+                <RelationalQuery detail="false"/>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="list" maxRowsBehavior="truncate" name="dd142"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd194">
+            <DataDefinition type="relational" name="dd195">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="truncate" name="dd193"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd205">
+            <DataDefinition type="procedural" name="dd206">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="timeSeries" maxRowsBehavior="noData" name="dd204"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd296">
+            <DataDefinition type="relational" name="dd297">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="truncate" name="dd298"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd304">
+            <DataDefinition type="relational" name="dd305">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" name="dd306"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd312">
+            <DataDefinition type="relational" name="dd313">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" name="dd314"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd318">
+            <DataDefinition type="relational" name="dd319">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" name="dd320"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd324">
+            <DataDefinition type="procedural" name="dd325">
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="timeSeries" maxRowsBehavior="noData" name="dd326"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd349">
+            <DataDefinition type="relational" name="dd350">
+                <RelationalQuery detail="false"/>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="dropdown" maxRowsBehavior="truncate" name="dd351"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+    </DataDefinitions>
+    <VisualElements>
+        <Text name="ve11" label="Text 1" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph1"><Span>The Simple Template</Span></P>
+        </Text>
+        <Text name="ve16" label="Text 2" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph15"><Span class="span1">Compatibility and Recommended Settings</Span></P>
+            <P class="paragraph16"><Span> </Span></P>
+            <P><Span class="span2">Min. Resolution</Span><Span>: 1366x768</Span></P>
+            <P><Span class="span3">Phone Friendly</Span><Span>: Yes</Span></P>
+            <P><Span class="span4">Tablet Friendly</Span><Span>: Yes</Span></P>
+            <P><Span class="span23">Recommended graph height settings</Span><Span>: Default, or optionally adjusted</Span></P>
+            <P><Span class="span31">Recommended graph width settings</Span><Span>: Default, or optionally adjusted</Span></P>
+        </Text>
+        <Prompt ref="pr25" name="ve21" label="Drop-Down List 1" selectionDisabled="true" applyDynamicBrushes="promptsOnly">
+            <EditorProperties>
+                <Property key="autoChartCategory">CONTROL</Property>
+            </EditorProperties>
+            <Title><P><Span>Page Control</Span></P></Title>
+            <ComboBox/>
+        </Prompt>
+        <Text name="ve31" label="Text 1 (1)" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph18"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
+        </Text>
+        <Text name="ve43" label="Text 3" selectionDisabled="true" applyDynamicBrushes="no">
+            <P><Span>Buffer boxes, found directly below this text, are placed under section headers to help give more space to objects below. A buffer box is created by adding a single character to a default text box and changing its color to the background color.</Span></P>
+        </Text>
+        <Graph graphType="bar" supplementalVisuals="ve53" resultDefinitions="dd52" name="ve49" data="dd50" label="Bar Chart 1" applyDynamicBrushes="yes">
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.category.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix" data="dd52"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix" includeMissingClass="true" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeOverlay2D>
+            <BarChartParm name="BarChart" tipListPolicy="replace" _stmt="barchart" groupDisplay="cluster" orient="horizontal" stat="none" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP"/>
+            <XAxisOpts name="categoryAxis">
+                <DiscreteOpts sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </XAxisOpts>
+            <YAxisOpts reverse="true">
+                <DiscreteOpts tickValueFitPolicy="staggertruncatedrop" sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>BarChart</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd52" name="ve53" data="dd50" applyDynamicBrushes="yes"/>
+        <Graph graphType="timeSeries" supplementalVisuals="ve68" resultDefinitions="dd66" name="ve63" data="dd64" label="Time Series Plot 1" applyDynamicBrushes="yes">
+            <EditorProperties>
+                <Property key="timeSeriesBinOption">formatBin</Property>
+                <Property key="timeSeriesFixedBinCardinality">300</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.timeAxis.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="TIME" description="TIME_VAR" required="true" assignedType="time" type="time"/>
+            <DynVar name="RESPONSE" description="RESPONSE_VAR" required="true" assignedType="numeric" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_2" data="dd66"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_2" includeMissingClass="true">
+        <LayoutPrototypeOverlay2D>
+            <TimeSeriesPlot name="TimeSeriesPlot" tipListPolicy="replace" _stmt="timeseriesplot" vertexLabelThinPolicy="localextrema" fadeType="auto" tip="TIP" group="GROUP" time="TIME" responseVars="RESPONSE"/>
+            <XAxisOpts name="categoryAxis">
+                <TimeOpts splitTickValue="false" tickValueFormat="DATA"/>
+            </XAxisOpts>
+            <YAxisOpts>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>TimeSeriesPlot</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd66" name="ve68" data="dd64" applyDynamicBrushes="yes"/>
+        <Graph graphType="bar" supplementalVisuals="ve75" resultDefinitions="dd74" name="ve71" data="dd72" label="Bar Chart 2" applyDynamicBrushes="yes">
+            <EditorProperties>
+                <Property key="specifyHeightSelected">true</Property>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.category.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_6" data="dd74"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_6" includeMissingClass="true" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeOverlay2D>
+            <BarChartParm name="BarChart" tipListPolicy="replace" _stmt="barchart" groupDisplay="cluster" orient="horizontal" stat="none" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP"/>
+            <XAxisOpts name="categoryAxis">
+                <DiscreteOpts sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </XAxisOpts>
+            <YAxisOpts reverse="true">
+                <DiscreteOpts tickValueFitPolicy="staggertruncatedrop" sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>BarChart</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd74" name="ve75" data="dd72" applyDynamicBrushes="yes"/>
+        <VisualContainer name="ve77" label="Layout Container 1" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <VisualContainer name="ve79" label="Container 1" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <Title><P class="paragraph7"><Span>Width = 20%</Span></P></Title>
+        </VisualContainer>
+        <VisualContainer name="ve81" label="Layout Container 2" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Graph graphType="timeSeries" supplementalVisuals="ve93" resultDefinitions="dd91" name="ve88" data="dd89" label="Time Series Plot 2" applyDynamicBrushes="yes">
+            <EditorProperties>
+                <Property key="timeSeriesBinOption">formatBin</Property>
+                <Property key="timeSeriesFixedBinCardinality">300</Property>
+                <Property key="specifyHeightSelected">true</Property>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.timeAxis.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="TIME" description="TIME_VAR" required="true" assignedType="time" type="time"/>
+            <DynVar name="RESPONSE" description="RESPONSE_VAR" required="true" assignedType="numeric" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_28" data="dd91"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_28" includeMissingClass="true">
+        <LayoutPrototypeOverlay2D>
+            <TimeSeriesPlot name="TimeSeriesPlot" tipListPolicy="replace" _stmt="timeseriesplot" vertexLabelThinPolicy="localextrema" fadeType="auto" tip="TIP" group="GROUP" time="TIME" responseVars="RESPONSE"/>
+            <XAxisOpts name="categoryAxis">
+                <TimeOpts splitTickValue="false" tickValueFormat="DATA"/>
+            </XAxisOpts>
+            <YAxisOpts>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>TimeSeriesPlot</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd91" name="ve93" data="dd89" applyDynamicBrushes="yes"/>
+        <Text name="ve95" label="Text 5" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph3"><Span>Section Header</Span></P>
+        </Text>
+        <Text name="ve100" label="Text 6" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph2"><Span>The Side Filter Template</Span></P>
+        </Text>
+        <VisualContainer name="ve107" label="Container 2" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Text name="ve109" label="Text 7" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+                <Property key="specifyHeightSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph24"><Span class="span6">Compatibility and Recommended Settings</Span></P>
+            <P><Span> </Span></P>
+            <P><Span class="span7">Min. Resolution</Span><Span>: 1920x1080</Span></P>
+            <P><Span class="span8">Phone Friendly</Span><Span>: No</Span></P>
+            <P><Span class="span9">Tablet Friendly</Span><Span>: Test on your device first</Span></P>
+            <P><Span class="span26">Recommended graph height settings</Span><Span>: 90%;</Span></P>
+            <P><Span>"Extend height if available" checked</Span></P>
+            <P><Span>"Shrink height if necessary" unchecked</Span></P>
+            <P><Span class="span27">Recommended graph width settings</Span><Span>: 78%;</Span></P>
+            <P><Span>"Extend width if available" unchecked</Span></P>
+            <P><Span>"Shrink width if necessary" checked</Span></P>
+        </Text>
+        <Text name="ve114" label="Text 8" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph25"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
+            <P class="paragraph26"><Span>This header is inside a Standard Container with 16 padding.</Span></P>
+        </Text>
+        <VisualContainer name="ve125" label="Container 4" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Prompt ref="pr131" name="ve127" label="List 3" applyDynamicBrushes="promptsOnly">
+            <EditorProperties>
+                <Property key="autoChartCategory">CONTROL</Property>
+            </EditorProperties>
+            <Title><P class="paragraph4"><Span>List 3</Span></P></Title>
+            <CheckBoxList/>
+        </Prompt>
+        <Prompt ref="pr137" name="ve133" label="List 2" applyDynamicBrushes="promptsOnly">
+            <EditorProperties>
+                <Property key="autoChartCategory">CONTROL</Property>
+            </EditorProperties>
+            <Title><P class="paragraph5"><Span>List 2</Span></P></Title>
+            <CheckBoxList/>
+        </Prompt>
+        <Prompt ref="pr143" name="ve139" label="List 1" applyDynamicBrushes="promptsOnly">
+            <EditorProperties>
+                <Property key="autoChartCategory">CONTROL</Property>
+            </EditorProperties>
+            <Title><P class="paragraph6"><Span>List 1</Span></P></Title>
+            <CheckBoxList/>
+        </Prompt>
+        <Text name="ve177" label="Text 6 (1)" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph8"><Span>The Journal Template</Span></P>
+        </Text>
+        <Text name="ve184" label="Text 7 (1)" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph11"><Span class="span21">Introduction</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>The Journal template adds buffer space to the left-and-right hand side of the screen. A text box with a white character is set to a 10.5% width on the left side of the screen. All other objects are set to a width of 80%, giving 9.5% white space to the right side of the screen. The text box on the left causes all graphs to shrink. As a result, object height must be manually set, and Shrink height if necessary must be unchecked.</Span></P>
+        </Text>
+        <Text name="ve189" label="Text 8 (1)" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph10"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
+        </Text>
+        <Graph graphType="bar" supplementalVisuals="ve196" resultDefinitions="dd193" name="ve197" data="dd194" label="Bar Chart 2 (1)" applyDynamicBrushes="yes">
+            <EditorProperties>
+                <Property key="specifyHeightSelected">true</Property>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.category.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_6" data="dd193"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_6" includeMissingClass="true" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeOverlay2D>
+            <BarChartParm name="BarChart" tipListPolicy="replace" _stmt="barchart" groupDisplay="cluster" orient="horizontal" stat="none" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP"/>
+            <XAxisOpts name="categoryAxis">
+                <DiscreteOpts sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </XAxisOpts>
+            <YAxisOpts reverse="true">
+                <DiscreteOpts tickValueFitPolicy="staggertruncatedrop" sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>BarChart</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd193" name="ve196" data="dd194" applyDynamicBrushes="yes"/>
+        <Graph graphType="timeSeries" supplementalVisuals="ve207" resultDefinitions="dd204" name="ve208" data="dd205" label="Time Series Plot 2 (1)" applyDynamicBrushes="yes">
+            <EditorProperties>
+                <Property key="timeSeriesBinOption">formatBin</Property>
+                <Property key="timeSeriesFixedBinCardinality">300</Property>
+                <Property key="specifyHeightSelected">true</Property>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.timeAxis.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="TIME" description="TIME_VAR" required="true" assignedType="time" type="time"/>
+            <DynVar name="RESPONSE" description="RESPONSE_VAR" required="true" assignedType="numeric" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_28" data="dd204"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_28" includeMissingClass="true">
+        <LayoutPrototypeOverlay2D>
+            <TimeSeriesPlot name="TimeSeriesPlot" tipListPolicy="replace" _stmt="timeseriesplot" vertexLabelThinPolicy="localextrema" fadeType="auto" tip="TIP" group="GROUP" time="TIME" responseVars="RESPONSE"/>
+            <XAxisOpts name="categoryAxis">
+                <TimeOpts splitTickValue="false" tickValueFormat="DATA"/>
+            </XAxisOpts>
+            <YAxisOpts>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>TimeSeriesPlot</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd204" name="ve207" data="dd205" applyDynamicBrushes="yes"/>
+        <Text name="ve213" label="Text 5 (1)" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph3"><Span>Section Header</Span></P>
+        </Text>
+        <Text name="ve248" label="Text 4" selectionDisabled="true" applyDynamicBrushes="no">
+            <P><Span class="span5">.</Span></P>
+        </Text>
+        <Text name="ve254" label="Text 9" selectionDisabled="true" applyDynamicBrushes="no">
+            <P><Span class="span10">.</Span></P>
+        </Text>
+        <Text name="ve260" label="Text 10" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P><Span class="span11">.</Span></P>
+        </Text>
+        <VisualContainer name="ve265" label="Layout Container 3" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <VisualContainer name="ve267" label="Layout Container 4" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Text name="ve269" label="Text 11" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P><Span class="span12">.</Span></P>
+        </Text>
+        <Text name="ve274" label="Text 12" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P><Span class="span13">.</Span></P>
+        </Text>
+        <Text name="ve279" label="Text 13" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P><Span class="span19">.</Span></P>
+        </Text>
+        <Text name="ve286" label="Text 14" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph9"><Span>Dynamic Text that scrolls with the report can be used here</Span></P>
+        </Text>
+        <VisualContainer name="ve291" label="Container 5" selectionDisabled="true"/>
+        <VisualContainer name="ve293" label="Container 6" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Graph graphType="bar" supplementalVisuals="ve299" resultDefinitions="dd298" name="ve295" data="dd296" label="Bar Chart 3" applyDynamicBrushes="yes">
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.category.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_36" data="dd298"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_36" includeMissingClass="true" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeOverlay2D>
+            <BarChartParm name="BarChart" tipListPolicy="replace" _stmt="barchart" groupDisplay="cluster" orient="vertical" stat="none" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP"/>
+            <XAxisOpts reverse="false">
+                <DiscreteOpts tickValueFitPolicy="staggertruncatedrop" sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </XAxisOpts>
+            <YAxisOpts name="categoryAxis">
+                <DiscreteOpts sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>BarChart</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd298" name="ve299" data="dd296" applyDynamicBrushes="yes"/>
+        <VisualContainer name="ve301" label="Layout Container 5" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Graph graphType="keyValue" supplementalVisuals="ve307" resultDefinitions="dd306" name="ve303" data="dd304" label="Key Value 1" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="KEY_VALUE_SORT_DIRECTION">descending</Property>
+            </EditorProperties>
+<![CDATA[<StatGraph border="false" opaque="false" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" hAlign="center" justify="left" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE"/>
+    </LayoutRegion>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd306" name="ve307" data="dd304" applyDynamicBrushes="yes"/>
+        <VisualContainer name="ve309" label="Layout Container 6" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Graph graphType="keyValue" supplementalVisuals="ve315" resultDefinitions="dd314" name="ve311" data="dd312" label="Key Value 2" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="KEY_VALUE_SORT_DIRECTION">descending</Property>
+            </EditorProperties>
+<![CDATA[<StatGraph border="false" opaque="false" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" hAlign="center" justify="left" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE"/>
+    </LayoutRegion>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd314" name="ve315" data="dd312" applyDynamicBrushes="yes"/>
+        <Graph graphType="keyValue" supplementalVisuals="ve321" resultDefinitions="dd320" name="ve317" data="dd318" label="Key Value 3" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="KEY_VALUE_SORT_DIRECTION">descending</Property>
+            </EditorProperties>
+<![CDATA[<StatGraph border="false" opaque="false" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" type="numeric"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" hAlign="center" justify="left" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE"/>
+    </LayoutRegion>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd320" name="ve321" data="dd318" applyDynamicBrushes="yes"/>
+        <Graph graphType="timeSeries" supplementalVisuals="ve328" resultDefinitions="dd326" name="ve323" data="dd324" label="Time Series Plot 3" applyDynamicBrushes="yes">
+            <EditorProperties>
+                <Property key="timeSeriesBinOption">formatBin</Property>
+                <Property key="timeSeriesFixedBinCardinality">300</Property>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.measure.txt"/><Substitution key="bird.autotitle.timeAxis.txt"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" attrPriority="color" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="TIME" description="TIME_VAR" required="true" assignedType="time" type="time"/>
+            <DynVar name="RESPONSE" description="RESPONSE_VAR" required="true" assignedType="numeric" type="numeric" multiplesAllowed="true"/>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_42" data="dd326"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_42" includeMissingClass="true">
+        <LayoutPrototypeOverlay2D>
+            <TimeSeriesPlot name="TimeSeriesPlot" tipListPolicy="replace" _stmt="timeseriesplot" vertexLabelThinPolicy="localextrema" fadeType="auto" tip="TIP" group="GROUP" time="TIME" responseVars="RESPONSE"/>
+            <XAxisOpts name="categoryAxis">
+                <TimeOpts splitTickValue="false" tickValueFormat="DATA"/>
+            </XAxisOpts>
+            <YAxisOpts>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>TimeSeriesPlot</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="dataWidth" resultDefinitions="dd326" name="ve328" data="dd324" applyDynamicBrushes="yes"/>
+        <Text name="ve330" label="Text 15" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P><Span class="span20">.</Span></P>
+        </Text>
+        <Text name="ve339" label="Text 16" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyHeightSelected">true</Property>
+            </EditorProperties>
+            <P><Span>The Static Title template places a header at the top of the report that does not move. This is helpful for creating dynamic text that indicates which filters are selected, such as a location, product, or other single-selection filter.</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>This object and all other objects are enclosed in a standard scrolling container.</Span></P>
+        </Text>
+        <Prompt ref="pr352" name="ve348" label="Drop-Down List 2" selectionDisabled="true" applyDynamicBrushes="promptsOnly">
+            <EditorProperties>
+                <Property key="autoChartCategory">CONTROL</Property>
+            </EditorProperties>
+            <Title><P><Span>Page Control</Span></P></Title>
+            <ComboBox/>
+        </Prompt>
+        <VisualContainer name="ve121" label="Container 3" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <VisualContainer name="ve430" label="Layout Container 7" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Text name="ve432" label="Text 17" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph12"><Span class="span14">Compatibility and Recommended Settings</Span></P>
+            <P><Span> </Span></P>
+            <P><Span class="span15">Min. Resolution</Span><Span>: 1920x1080</Span></P>
+            <P><Span class="span16">Phone Friendly</Span><Span>: No</Span></P>
+            <P><Span class="span17">Tablet Friendly</Span><Span>: Test on your device first</Span></P>
+            <P><Span class="span18">Recommended graph height settings</Span><Span>: 90%</Span></P>
+            <P><Span>"Extend height if available" checked</Span></P>
+            <P><Span>"Shrink height if necessary" unchecked</Span></P>
+            <P><Span class="span22">Recommended graph width settings</Span><Span>: 80%;</Span></P>
+            <P><Span>"Extend width if available" unchecked</Span></P>
+            <P><Span>"Shrink width if necessary" checked</Span></P>
+        </Text>
+        <Text name="ve444" label="Text 18" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph13"><Span class="span28">For more information, see:</Span></P>
+            <P class="paragraph14"><Span>SAS Global Forum paper 4171-2020: Make Beautiful Vertically Scrolling Dashboards in SAS Visual Analytics</Span></P>
+        </Text>
+        <VisualContainer name="ve450" label="Layout Container 8" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Text name="ve452" label="Text 19" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph17"><Span class="span24">Introduction</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>The Simple Template uses default settings for all objects. Simply drag and drop new objects above, below, and next to each other to create a vertically scrolling dashboard. The default settings will help ensure that the dashboard maintains high compatibility across multiple devices and screen resolutions.</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>Widths and heights can be adjusted as needed. To increase scrolling space for desktop users, decrease the width of all objects by 2%.</Span></P>
+        </Text>
+        <Text name="ve458" label="Text 20" selectionDisabled="true" applyDynamicBrushes="no">
+            <P class="paragraph19"><Span class="span30"> For more information, see </Span></P>
+            <P class="paragraph20"><Span>SAS Global Forum paper 4171-2020: Make Beautiful Vertically Scrolling Dashboards in SAS Visual Analytics</Span></P>
+        </Text>
+        <VisualContainer name="ve464" label="Layout Container 9" selectionDisabled="true">
+            <EditorProperties>
+                <Property key="visualType">LAYOUT_CONTAINER</Property>
+            </EditorProperties>
+        </VisualContainer>
+        <Text name="ve466" label="Text 21" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph21"><Span class="span25">Introduction</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>The Side Filter template capitalizes on horizontal screen space, moving page controls from the top of the page to the side using a scrolling container with a width of 20%. The container to the left forces all objects to shrink. As a result, object height must be manually set, and Shrink height if necessary must be unchecked.</Span></P>
+        </Text>
+        <Text name="ve471" label="Text 22" selectionDisabled="true" applyDynamicBrushes="no">
+            <EditorProperties>
+                <Property key="specifyWidthSelected">true</Property>
+            </EditorProperties>
+            <P class="paragraph22"><Span class="span29">For more information, see </Span></P>
+            <P class="paragraph23"><Span>SAS Global Forum paper 4171-2020: Make Beautiful Vertically Scrolling Dashboards in SAS Visual Analytics</Span></P>
+        </Text>
+        <VisualContainer name="ve476" label="Container 7" selectionDisabled="true"/>
+    </VisualElements>
+    <PromptDefinitions>
+        <PromptDefinition data="dd22" resultDefinitions="dd24" name="pr25">
+            <StringConstraint/>
+        </PromptDefinition>
+        <PromptDefinition data="dd128" resultDefinitions="dd130" name="pr131">
+            <StringConstraint/>
+        </PromptDefinition>
+        <PromptDefinition data="dd134" resultDefinitions="dd136" name="pr137">
+            <StringConstraint/>
+        </PromptDefinition>
+        <PromptDefinition data="dd140" resultDefinitions="dd142" name="pr143">
+            <DefaultValue>
+                <String/>
+            </DefaultValue>
+            <StringConstraint/>
+        </PromptDefinition>
+        <PromptDefinition data="dd349" resultDefinitions="dd351" name="pr352">
+            <StringConstraint/>
+        </PromptDefinition>
+    </PromptDefinitions>
+    <View>
+        <Section showSelectionControl="false" name="vi6" label="Template 1: Simple">
+            <Header>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="horizontal" overflow="scroll">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Visual ref="ve21" name="vi20">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="fixed"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                </MediaContainer>
+            </Header>
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="scroll">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Visual ref="ve11" name="vi10">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Container ref="ve450" name="vi449">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                        <ResponsiveLayout orientation="vertical" overflow="grow"/>
+                        <Visual ref="ve452" name="vi451">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" flexibility="flexible"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="flexible"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                        <Visual ref="ve16" name="vi15">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" flexibility="flexible"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="flexible"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                    </Container>
+                    <Visual ref="ve458" name="vi457">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Visual ref="ve31" name="vi32">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Visual ref="ve43" name="vi42">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Visual ref="ve248" name="vi247">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Visual ref="ve49" name="vi48">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Visual ref="ve254" name="vi253">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                    <Visual ref="ve63" name="vi62">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                </MediaContainer>
+            </Body>
+        </Section>
+        <Section name="vi7" label="Template 2: Side Filters">
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="fit">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Container ref="ve77" name="vi76">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                        <ResponsiveLayout orientation="vertical" overflow="grow"/>
+                        <Container ref="ve79" name="vi78">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" value="20%" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="growable"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                            <ResponsiveLayout orientation="vertical" overflow="fit">
+                                <Weights mediaTarget="mt5" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt4" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt3" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                            </ResponsiveLayout>
+                            <Visual ref="ve139" name="vi138">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="33.3%" flexibility="shrinkable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve133" name="vi132">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="33.3%" flexibility="shrinkable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve127" name="vi126">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="33.3%" flexibility="shrinkable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                        </Container>
+                        <Container ref="ve81" name="vi80">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                            <ResponsiveLayout orientation="vertical" overflow="grow">
+                                <Weights mediaTarget="mt5" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt4" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt3" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                            </ResponsiveLayout>
+                            <Container ref="ve107" name="vi106">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                                <ResponsiveLayout orientation="vertical" overflow="grow">
+                                    <Weights mediaTarget="mt5" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                    <Weights mediaTarget="mt4" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                    <Weights mediaTarget="mt3" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                </ResponsiveLayout>
+                                <Visual ref="ve100" name="vi99">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" flexibility="flexible"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="fixed"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                            </Container>
+                            <Container ref="ve464" name="vi463">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                                <ResponsiveLayout orientation="vertical" overflow="grow"/>
+                                <Visual ref="ve466" name="vi465">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" value="39%" flexibility="shrinkable"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="flexible"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                                <Visual ref="ve109" name="vi108">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" value="39%" flexibility="shrinkable"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" value="45%" flexibility="growable"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                            </Container>
+                            <Visual ref="ve471" name="vi470">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Container ref="ve121" name="vi120">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                                <ResponsiveLayout orientation="vertical" overflow="grow">
+                                    <Weights mediaTarget="mt5" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                    <Weights mediaTarget="mt4" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                    <Weights mediaTarget="mt3" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                </ResponsiveLayout>
+                                <Visual ref="ve114" name="vi113">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" flexibility="flexible"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="fixed"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                            </Container>
+                            <Visual ref="ve71" name="vi70">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="90%" flexibility="growable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve260" name="vi259">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve88" name="vi87">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="90%" flexibility="growable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Container ref="ve125" name="vi124">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="78%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                                <ResponsiveLayout orientation="vertical" overflow="grow">
+                                    <Weights mediaTarget="mt5" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                    <Weights mediaTarget="mt4" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                    <Weights mediaTarget="mt3" unit="percent">
+                                        <Weight value="100%"/>
+                                    </Weights>
+                                </ResponsiveLayout>
+                                <Visual ref="ve95" name="vi94">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" flexibility="flexible"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="fixed"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                            </Container>
+                        </Container>
+                    </Container>
+                </MediaContainer>
+            </Body>
+        </Section>
+        <Section showSelectionControl="false" name="vi221" label="Template 3: Journal">
+            <Header>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="horizontal" overflow="scroll">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Visual ref="ve348" name="vi347">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="fixed"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="fixed"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                </MediaContainer>
+            </Header>
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="fit">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Container ref="ve265" name="vi264">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                        <ResponsiveLayout orientation="vertical" overflow="grow"/>
+                        <Visual ref="ve269" name="vi268">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" value="10.5%" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="growable"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                        <Container ref="ve267" name="vi266">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                            <ResponsiveLayout orientation="vertical" overflow="grow">
+                                <Weights mediaTarget="mt5" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt4" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt3" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                            </ResponsiveLayout>
+                            <Visual ref="ve177" name="vi178">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Container ref="ve430" name="vi429">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                                <ResponsiveLayout orientation="vertical" overflow="grow"/>
+                                <Visual ref="ve184" name="vi185">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" value="40%" flexibility="shrinkable"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="fixed"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                                <Visual ref="ve432" name="vi431">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" value="40%" flexibility="shrinkable"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="fixed"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                            </Container>
+                            <Visual ref="ve444" name="vi443">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve189" name="vi190">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve274" name="vi273">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve197" name="vi198">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="90%" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve279" name="vi278">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve208" name="vi209">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" value="90%" flexibility="growable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                            <Visual ref="ve213" name="vi214">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" value="80%" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="fixed"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                            </Visual>
+                        </Container>
+                    </Container>
+                </MediaContainer>
+            </Body>
+        </Section>
+        <Section name="vi9" label="Bonus Template: Static Title">
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="fit">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Container ref="ve476" name="vi475">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                        <ResponsiveLayout orientation="vertical" overflow="grow">
+                            <Weights mediaTarget="mt5" unit="percent">
+                                <Weight value="100%"/>
+                            </Weights>
+                            <Weights mediaTarget="mt4" unit="percent">
+                                <Weight value="100%"/>
+                            </Weights>
+                            <Weights mediaTarget="mt3" unit="percent">
+                                <Weight value="100%"/>
+                            </Weights>
+                        </ResponsiveLayout>
+                        <Visual ref="ve286" name="vi285">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" flexibility="flexible"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="fixed"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                    </Container>
+                    <Container ref="ve291" name="vi290">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                        <ResponsiveLayout orientation="vertical" overflow="scroll">
+                            <Weights mediaTarget="mt5" unit="percent">
+                                <Weight value="100%"/>
+                            </Weights>
+                            <Weights mediaTarget="mt4" unit="percent">
+                                <Weight value="100%"/>
+                            </Weights>
+                            <Weights mediaTarget="mt3" unit="percent">
+                                <Weight value="100%"/>
+                            </Weights>
+                        </ResponsiveLayout>
+                        <Visual ref="ve339" name="vi338">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" flexibility="flexible"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" value="30%" flexibility="fixed"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                        <Container ref="ve293" name="vi292">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" value="98%" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="flexible"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                            <ResponsiveLayout orientation="vertical" overflow="fit">
+                                <Weights mediaTarget="mt5" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt4" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                                <Weights mediaTarget="mt3" unit="percent">
+                                    <Weight value="100%"/>
+                                </Weights>
+                            </ResponsiveLayout>
+                            <Container ref="ve301" name="vi300">
+                                <ResponsiveConstraint>
+                                    <WidthConstraint>
+                                        <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </WidthConstraint>
+                                    <HeightConstraint>
+                                        <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                                    </HeightConstraint>
+                                </ResponsiveConstraint>
+                                <ResponsiveLayout orientation="vertical" overflow="grow"/>
+                                <Container ref="ve309" name="vi308">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" flexibility="shrinkable"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="shrinkable"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                    <ResponsiveLayout orientation="vertical" overflow="grow">
+                                        <Weights mediaTarget="mt5" unit="percent">
+                                            <Weight value="100%"/>
+                                        </Weights>
+                                        <Weights mediaTarget="mt4" unit="percent">
+                                            <Weight value="100%"/>
+                                        </Weights>
+                                        <Weights mediaTarget="mt3" unit="percent">
+                                            <Weight value="100%"/>
+                                        </Weights>
+                                    </ResponsiveLayout>
+                                    <Visual ref="ve303" name="vi302">
+                                        <ResponsiveConstraint>
+                                            <WidthConstraint>
+                                                <Width mediaTarget="mt3" value="32.44%" flexibility="shrinkable"/>
+                                            </WidthConstraint>
+                                            <HeightConstraint>
+                                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                                            </HeightConstraint>
+                                        </ResponsiveConstraint>
+                                    </Visual>
+                                    <Visual ref="ve311" name="vi310">
+                                        <ResponsiveConstraint>
+                                            <WidthConstraint>
+                                                <Width mediaTarget="mt3" value="32.44%" flexibility="shrinkable"/>
+                                            </WidthConstraint>
+                                            <HeightConstraint>
+                                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                                            </HeightConstraint>
+                                        </ResponsiveConstraint>
+                                    </Visual>
+                                    <Visual ref="ve317" name="vi316">
+                                        <ResponsiveConstraint>
+                                            <WidthConstraint>
+                                                <Width mediaTarget="mt3" value="32.44%" flexibility="shrinkable"/>
+                                            </WidthConstraint>
+                                            <HeightConstraint>
+                                                <Height mediaTarget="mt3" flexibility="flexible"/>
+                                            </HeightConstraint>
+                                        </ResponsiveConstraint>
+                                    </Visual>
+                                </Container>
+                                <Visual ref="ve295" name="vi294">
+                                    <ResponsiveConstraint>
+                                        <WidthConstraint>
+                                            <Width mediaTarget="mt3" value="67.63%" flexibility="shrinkable"/>
+                                        </WidthConstraint>
+                                        <HeightConstraint>
+                                            <Height mediaTarget="mt3" flexibility="flexible"/>
+                                        </HeightConstraint>
+                                    </ResponsiveConstraint>
+                                </Visual>
+                            </Container>
+                        </Container>
+                        <Visual ref="ve330" name="vi329">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" value="98%" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="fixed"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                        <Visual ref="ve323" name="vi322">
+                            <ResponsiveConstraint>
+                                <WidthConstraint>
+                                    <Width mediaTarget="mt3" value="98%" flexibility="shrinkable"/>
+                                </WidthConstraint>
+                                <HeightConstraint>
+                                    <Height mediaTarget="mt3" flexibility="flexible"/>
+                                </HeightConstraint>
+                            </ResponsiveConstraint>
+                        </Visual>
+                    </Container>
+                </MediaContainer>
+            </Body>
+        </Section>
+    </View>
+    <Interactions>
+        <Interaction name="ia26" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve11"/>
+        </Interaction>
+        <Interaction name="ia27" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve16"/>
+        </Interaction>
+        <Interaction name="ia33" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve31"/>
+        </Interaction>
+        <Interaction name="ia47" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve43"/>
+        </Interaction>
+        <Interaction name="ia54" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve49"/>
+        </Interaction>
+        <Interaction name="ia69" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve63"/>
+        </Interaction>
+        <Interaction name="ia252" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve248"/>
+        </Interaction>
+        <Interaction name="ia258" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve254"/>
+        </Interaction>
+        <Interaction name="ia353" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve269"/>
+        </Interaction>
+        <Interaction name="ia354" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve177"/>
+        </Interaction>
+        <Interaction name="ia355" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve184"/>
+        </Interaction>
+        <Interaction name="ia356" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve189"/>
+        </Interaction>
+        <Interaction name="ia357" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve274"/>
+        </Interaction>
+        <Interaction name="ia358" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve197"/>
+        </Interaction>
+        <Interaction name="ia359" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve279"/>
+        </Interaction>
+        <Interaction name="ia360" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve208"/>
+        </Interaction>
+        <Interaction name="ia361" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve213"/>
+        </Interaction>
+        <Interaction name="ia436" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve432"/>
+        </Interaction>
+        <Interaction name="ia448" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve348"/>
+            <InteractionElementReference purpose="target" ref="ve444"/>
+        </Interaction>
+        <Interaction name="ia456" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve452"/>
+        </Interaction>
+        <Interaction name="ia462" type="filter" derived="true">
+            <InteractionElementReference purpose="source" ref="ve21"/>
+            <InteractionElementReference purpose="target" ref="ve458"/>
+        </Interaction>
+    </Interactions>
+    <MediaSchemes>
+        <MediaScheme name="ms1">
+            <BaseStylesheetResource theme="marine"/>
+            <Stylesheet>
+<![CDATA[
+#ve133 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve121 .ReportElementContainer {
+  padding: 16px;
+}
+#ve100 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve432 .span22 {
+  font-weight: bold;
+}
+#ve466 .paragraph21 {
+  text-align: center;
+}
+#ve286 .paragraph9 {
+  text-align: center;
+}
+#ve189 .paragraph10 {
+  text-align: center;
+}
+#ve109 .paragraph24 {
+  text-align: center;
+}
+#ve184 .span21 {
+  font-weight: bold;
+}
+#ve79 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve432 .span18 {
+  font-weight: bold;
+}
+#ve323 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve189 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve127 .paragraph4 {
+  text-align: center;
+}
+#ve139 .paragraph6 {
+  text-align: center;
+}
+#ve458 .paragraph20 {
+  text-align: center;
+}
+#ve16 .paragraph16 {
+  text-align: center;
+}
+#ve444 .span28 {
+  font-weight: bold;
+}
+#ve248 .span5 {
+  color: #ffffff;
+}
+#ve16 .paragraph15 {
+  text-align: center;
+}
+#ve139 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve184 .paragraph11 {
+  text-align: center;
+}
+#ve458 .span30 {
+  font-weight: bold;
+}
+#ve177 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve458 .paragraph19 {
+  text-align: center;
+}
+#ve339 .Container {
+  border-color: #FFFFFF;
+  border-width: 10px;
+}
+#ve100 .paragraph2 {
+  text-align: center;
+}
+#ve107 .ReportElementContainer {
+  padding: 16px;
+}
+#ve452 .paragraph17 {
+  text-align: center;
+}
+#ve177 .paragraph8 {
+  text-align: center;
+}
+#ve63 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve133 .paragraph5 {
+  text-align: center;
+}
+#ve476 .ReportElementContainer {
+  padding: 16px;
+}
+#ve286 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve11 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve432 .paragraph12 {
+  text-align: center;
+}
+#ve31 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve16 .span23 {
+  font-weight: bold;
+}
+#ve125 .ReportElementContainer {
+  padding: 16px;
+}
+#ve269 .span12 {
+  color: #ffffff;
+}
+#ve16 .span4 {
+  font-weight: bold;
+}
+#ve16 .span3 {
+  font-weight: bold;
+}
+#ve471 .paragraph22 {
+  text-align: center;
+}
+#ve471 .paragraph23 {
+  text-align: center;
+}
+#ve279 .span19 {
+  color: #ffffff;
+}
+#ve114 .paragraph25 {
+  text-align: center;
+}
+#ve16 .span2 {
+  font-weight: bold;
+}
+#ve127 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve114 .paragraph26 {
+  text-align: center;
+}
+#ve16 .span1 {
+  font-weight: bold;
+}
+#ve254 .span10 {
+  color: #ffffff;
+}
+#ve213 .paragraph3 {
+  text-align: center;
+}
+#ve444 .paragraph14 {
+  text-align: center;
+}
+#ve213 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve444 .paragraph13 {
+  text-align: center;
+}
+#ve95 .paragraph3 {
+  text-align: center;
+}
+#ve49 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+#ve95 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve79 .paragraph7 {
+  text-align: center;
+}
+#ve432 .span16 {
+  font-weight: bold;
+}
+#ve109 .span8 {
+  font-weight: bold;
+}
+#ve432 .span17 {
+  font-weight: bold;
+}
+#ve109 .span9 {
+  font-weight: bold;
+}
+#ve432 .span14 {
+  font-weight: bold;
+}
+#ve432 .span15 {
+  font-weight: bold;
+}
+#ve11 .paragraph1 {
+  text-align: center;
+}
+#ve471 .span29 {
+  font-weight: bold;
+}
+#ve109 .span6 {
+  font-weight: bold;
+}
+#ve109 .span27 {
+  font-weight: bold;
+}
+#ve109 .span7 {
+  font-weight: bold;
+}
+#ve109 .span26 {
+  font-weight: bold;
+}
+#ve114 .Container {
+  transparency: 0.75;
+  background-color: #B0B7C2;
+}
+#ve31 .paragraph18 {
+  text-align: center;
+}
+#ve16 .span31 {
+  font-weight: bold;
+}
+#ve452 .span24 {
+  font-weight: bold;
+}
+#ve466 .span25 {
+  font-weight: bold;
+}
+#ve260 .span11 {
+  color: #ffffff;
+}
+#ve274 .span13 {
+  color: #ffffff;
+}
+#ve330 .span20 {
+  color: #ffffff;
+}
+#ve293 .Container {
+  border-color: #D5D5D5;
+  border-width: 1px;
+}
+]]>
+            </Stylesheet>
+        </MediaScheme>
+    </MediaSchemes>
+    <MediaTargets>
+        <MediaTarget windowSize="default" scheme="ms1" name="mt2"/>
+        <MediaTarget windowSize="small" scheme="ms1" name="mt3"/>
+        <MediaTarget windowSize="medium" scheme="ms1" name="mt4"/>
+        <MediaTarget windowSize="large" scheme="ms1" name="mt5"/>
+    </MediaTargets>
+    <Properties>
+        <Property key="lastSection">vi7</Property>
+    </Properties>
+    <History>
+        <Versions>
+            <Version key="4.1.0" lastDate="2020-03-02T22:32:44Z"/>
+        </Versions>
+    </History>
+    <SASReportState>
+        <View/>
+    </SASReportState>
+</SASReport>
