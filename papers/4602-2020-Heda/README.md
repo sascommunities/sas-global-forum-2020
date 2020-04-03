@@ -31,10 +31,7 @@ The overall end to end process can be seen below.
 
 <img src="images/overview_end_to_end_process.jpg" >
 
-Once this process is complete, the output will be a real-time dashboard presenting time-series data (both input and analytic outputs) and escalated alerts requiring further actions. An example of this can be seen in the video below.
-
-![](./images/SGF_Aircraft_Engine.mp4)
-
+Once this process is complete, the output will be a real-time dashboard presenting time-series data (both input and analytic outputs) and escalated alerts requiring further actions. An example of this can be seen in the video found [here](images/SGF_Aircraft_Engine.mp4).
 
 ## Background of Problem Statement
 This example comes from the 2008 Prognostic Health Management (PHM) data challenge competition. The data set contains simulated results of Turbofan engine degradation across multiple engines. There are 4 data sets with various train/test trajectories included. A given data set may have 1 or more failure modes present and 1 or more operation modes present.
@@ -44,7 +41,7 @@ This challenge has been analyzed previously using SAS and Stability Monitoring m
 - The first 90 cycles are used within SAS Viya for creating a stability monitoring model
 - Cycles 150 through 494 are streamed to ESP that contains the stability monitoring model. 
 
-Both the training data set for creating the stability monitoring model and the ESP data set to stream and score can be found in the Data folder in this Gitlab repository. Note that the data set online does not have column names associated with it. This is obtained using the publication **Damage Propagation Modeling for Aircraft Engines**, Table 2.
+The training and test data sets can be obtained at the link below for the PHM 2008 Turbofan Dataset Challenge. Note that the data set does not have column names associated with it. This is obtained using the publication **Damage Propagation Modeling for Aircraft Engines**, Table 2.
 
 | **Reference**                                                |
 | ------------------------------------------------------------ |
@@ -59,11 +56,10 @@ Both the training data set for creating the stability monitoring model and the E
 | Software                    | Version       |
 | --------------------------- | ------------- |
 | SAS Viya                    | v3.5 19w47    |
-| SAS Event Stream Processing | 6.2 Build 684 |
+| SAS Event Stream Processing | 6.2           |
 | Linux Version               | CentOS 7      |
 | Docker Engine - Community   | 19.03.5       |
 | Postgres Database           | 12.1          |
-| Postgres Client Tools       | 10.11         |
 | Grafana                     | 6.5.2         |
 
 
@@ -74,18 +70,16 @@ This demo repository assumes the following:
 
 - You have SAS Viya and Event Stream Processing Installed
 - Docker is installed and available. If not, please search online how to do so. For Linux and obtaining the Community Version, please use the following [link](https://docs.docker.com/install/linux/docker-ce/centos/).
-  - On our host, docker is available. To use it, it is recommend you <u>sudo -s</u> to become a root user when following the steps below.
 
 ## Setup and execution of demo
 
 ### SAS Viya - Creating Stability Monitoring Model
 
-`stabilityMonitoring.ipynb` - This notebook shows an end to end demonstration of using stable data to build models that help with monitoring stability. The notebook is self documented so starting there would be beneficial. The notebook can either be run against Enterprise Viya deployment or it can be run on containerized CAS. The artifacts can then be moved to the Enterprise Model Manager for governance/auditing/tracking & to enable seamless integration with ESP.
+`stabilityMonitoring.ipynb` - This notebook shows an end to end demonstration of using stable data to build models that help with monitoring stability. The notebook is self documented so starting there would be beneficial. The notebook can either be run against Enterprise Viya deployment or it can be run on containerized CAS. The artifacts can then be moved to the SAS Model Manager for governance/auditing/tracking & to enable seamless integration with ESP.
 
-The key thing to remember is that you can build multiple projects within the Stablity Monitoring Calibration action and for each project, multiple models can be calibrated with appropriate inputs (including input transformations). The resulting models are stored in an ASTORE which can then be deployed to be scored in batch or real time. What happens then is that the new data (which would presumably contain both stable and unstable signals) is scored using the ASTORE which creates the predictions, UCL & LCL for those predictions. Tresholds and tolerances can then be set to drive alerts and carry out corrective actions as a follow up.
+The key thing to remember is that you can build multiple projects within the Stablity Monitoring Calibration action and for each project, multiple models can be calibrated with appropriate inputs (including input transformations). The resulting models are stored in an ASTORE which can then be deployed to be scored in batch or real time. What happens then is that the new data (which would presumably contain both stable and unstable signals) is scored using the ASTORE which creates the predictions, UCL & LCL for those predictions. Thresholds and tolerances can then be set to drive alerts and carry out corrective actions as a follow up.
 
-Along the way we would use Model Manager to exercise governance and enable real time deployment.
-
+The next section will focus of what to do with the model now that it is in SAS Model Manager.
 
 ### SAS Viya - Model Manager
 
@@ -109,7 +103,7 @@ Below are the steps needed to update the model options and to set the model as t
 
 <img src="images/mm_2_model_view.jpg" >
 
-3. Once you clicked on the model, you will be able to see all of the associated files present for this model. The **dmcas_packagescorecode.sas** needs to be modified. This is needed because the stability monitoring ASTORE file contains multiple models and we need to specify which one we want to use. To do so, we will add *setOptions* to the score code. For this case, the options should set the ProjectId = 1, ModelId = 2.
+3. Once you clicked on the model, you will be able to see all of the associated files present for this model. The **dmcas_packagescorecode.sas** needs to be modified. This is needed because the stability monitoring ASTORE file contains multiple models and we need to specify which one we want to use. To do so, we will add *setOptions* to the score code. For this case, the options should set the ProjectId = 1, ModelId = 2 as the ARIMA model was determined to be the best model.
 
 <img src="images/mm_3_model_detail_view.jpg" >
 
@@ -224,7 +218,7 @@ Below are the steps needing to be followed to set up the [Grafana using Docker](
 
 4. In Grafana, log into the service
 
-   1. Initially, the username/password will be <u>admin/admin</u>. Afterwards you can change it to what you want. I have used <u>esp62sas</u>
+   1. Initially, the username/password will be <u>admin/admin</u>. Afterwards you can change the password to what you want.
 
 5. Set up Data Source
 
@@ -234,7 +228,7 @@ Below are the steps needing to be followed to set up the [Grafana using Docker](
 
       | Parameter        | Value|
       | ---------------- | ---------------------------------|
-      | Host             | Hostname and Portnumber of Postgres Database<br /><br />For the Hostname, use the IP address of the Linux machine. You can obtain this using <u>ifconfig</u> command and use the **eth0** device. This must be the IP address and cannot be sasserver.demo.sas.com |
+      | Host             | Hostname and Portnumber of Postgres Database|
       | Database         | postgres					         |
       | user             | postgres                          |
       | password         | docker                            |
@@ -245,24 +239,21 @@ Below are the steps needing to be followed to set up the [Grafana using Docker](
 
 6. Set up the Dashboard
 
-   1. On the left side menu, click on the + sign (Create), then Import. Upload the JSON file `Grafana_Dashboard.json`
+   1. On the left side menu, click on the + sign (Create), then Import. Upload the JSON file `Grafana_Dashboard.json` that is within this Github repository
 
 ### SAS Event Stream Processing
 
-The ESP Model used for this demo is ESP_StabilityMonitoringModel.xml. Note at this time, the ESP Model is designed to read the stability monitoring model as an ASTORE file. This will be modified shortly to read from SAS Model Manager. Note that this assumes the execution is done within SAS ESP Studio and not standalone on the ESP Engine itself.
+The ESP Model used for this demo is ESP_StabilityMonitoringModel_ModelManager.xml. For this use-case, the input streaming data into the ESP model is a CSV file. You will need to create this from the data set downloaded initially. Note that this assumes the execution is done within SAS ESP Studio and not standalone on the ESP Engine itself.
 
 #### Initialization
 
 Before executing this ESP Model, the following changes are needed:
 
-1. Files Relocation - move all of the ESP files required into one common directory where the ESP Engine can access this
-   1. Time-Series CSV data set for scoring - `score_ESP_FD003_Engine24.csv`
-   2. (Optional) - Model ASTORE file (if not using model manager) - `model.astore`
-2. Change the ESP Project User-Defined Properties **PROJ_DIR** to the directory where `score_ESP_FD003_Engine24.csv` file is located. 
-3. In the ESP Project, modify the window *scoreSMModel* and its Handler to point to the champion model in SAS Model Manager
-4. Set up ESP to connect to the Postgres Database using [DataDirect Drivers](https://go.documentation.sas.com/?cdcId=espcdc&cdcVersion=6.2&docsetId=espca&docsetTarget=p0kqcqs0y2r24yn1c94ick5yudkh.htm&locale=en#n0feccmkew8aeyn16zullvc547nd). (Note: this [blog post](http://sww.sas.com/blogs/wp/gate/32161/esp-6-1-database-connector-and-adapter-update/franir/2019/09/16) is helpful for additional insight)
-   1. Edit the `odbc.ini` file from this Gitlab repository. 
-      1. Change all locations where SAS ESP is used to the demo setup.
+1. Input Data Source - creation of CSV file for data set to score. After this, update the Source Window *engine24_fd003* File/Socket connection to point to this CSV file.
+2. In the ESP Project, modify the window *scoreSMModel* and its Handler to point to the champion model in SAS Model Manager
+3. Set up ESP to connect to the Postgres Database using [DataDirect Drivers](https://go.documentation.sas.com/?cdcId=espcdc&cdcVersion=6.2&docsetId=espca&docsetTarget=p0kqcqs0y2r24yn1c94ick5yudkh.htm&locale=en#n0feccmkew8aeyn16zullvc547nd).
+   1. Edit the `odbc.ini` file from this Github repository. 
+      1. Change all locations where SAS ESP is used to the demo setup. If using a standard SAS Viya installation, there should be no need to change the location.
       2. Under the DSN name **SGFESP**, change the <u>HostName</u> and <u>PortNumber</u> to running Postgres database. 
    2. Move the odbc.ini file to a location to where ESP will be able to access it
    3. Create a new Environment Variable called **ODBCINI**. This Environment Variable will point to the location of the `odbc.ini` file.
