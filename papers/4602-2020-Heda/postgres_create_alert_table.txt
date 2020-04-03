@@ -1,0 +1,14 @@
+ CREATE TABLE public.sgf_alert_database
+(
+    IDAlert INT,
+    index INT,
+    DateTime TIMESTAMP,
+    EngineID INT,
+    Fuel_Actual REAL,
+    Fuel_Pred REAL,
+    Fuel_UCL_Threshold REAL,
+    output_event REAL
+);
+
+ALTER TABLE public.sgf_alert_database
+    OWNER to postgres;

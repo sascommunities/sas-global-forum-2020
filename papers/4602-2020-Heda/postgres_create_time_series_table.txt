@@ -1,0 +1,42 @@
+ CREATE TABLE public.sgf_time_series_database
+(
+	index INT,
+	DateTime TIMESTAMP,
+	Engine_Number INT,
+	Cycle_Number INT,
+	Operation_Mode_1 REAL,
+	Operation_Mode_2 REAL,
+	Operation_Mode_3 REAL,
+	Total_temperature_at_fan_inlet REAL,
+	Total_temperature_at_LPC_outlet REAL,
+	Total_temperature_at_HPC_outlet REAL,
+	Total_temperature_at_LPT_outlet REAL,
+	Pressure_at_fan_inlet REAL,
+	Total_pressure_in_bypassduct REAL,
+	Total_pressure_at_HPC_outlet REAL,
+	Physical_fan_speed REAL,
+	Physical_core_speed REAL,
+	Engine_Pressure_ratio REAL,
+	Static_pressure_at_HPC_outlet REAL,
+	Ratio_of_fuel_flow_to_Ps30 REAL,
+	Corrected_fan_speed REAL,
+	Corrected_core_speed REAL,
+	Bypass_ratio REAL,
+	Burner_fuelair_ratio REAL,
+	Bleed_enthalpy REAL,
+	Demanded_fan_speed REAL,
+	Demanded_corrected_fan_speed REAL,
+	HPT_coolant_bleed REAL,
+	LPT_coolant_bleed REAL,
+	TimeID REAL,
+	Actual REAL,
+	Pred REAL,
+	LCL REAL,
+	UCL REAL,
+	Error REAL,
+	upper_alert REAL,
+	persistence_index INT
+);
+
+ALTER TABLE public.sgf_time_series_database
+    OWNER to postgres;
