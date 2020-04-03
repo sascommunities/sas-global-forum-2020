@@ -1,0 +1,404 @@
+<project name="ESP_StabilityMonitoringModel_ASTORE" threads="3" pubsub="auto" heartbeat-interval="1" index="pi_EMPTY">
+  <metadata>
+    <meta id="studioUploadedBy">sasdemo</meta>
+    <meta id="studioUploaded">1578663839169</meta>
+    <meta id="studioModifiedBy">sasdemo</meta>
+    <meta id="studioModified">1578668658610</meta>
+    <meta id="layout">{"cq1":{"ModelReader1":{"x":230,"y":35},"addCurrentDateTime":{"x":-80,"y":440},"determineAlarmCondition":{"x":-80,"y":300},"determineAlertsEscalate":{"x":-80,"y":690},"engine24_fd003":{"x":-80,"y":35},"escalatedAlerts":{"x":-80,"y":825},"patternAlertDetection":{"x":-80,"y":570},"score_SMModel":{"x":-80,"y":165}}}</meta>
+    <meta id="mm_linked_module1">de5ceffa-0179-4947-a0bd-29745897c434,653996c6-8662-4a94-8f37-cf54446186f8,ds2MultiType</meta>
+    <meta id="mm_astore_module1_0">_B93E1DF631344B4AB07A713BB,file:///models/astores/viya/_B93E1DF631344B4AB07A713BB.astore</meta>
+  </metadata>
+  <properties>
+    <property name="PROJ_DIR"><![CDATA[/home/sasdemo/stabilityMonitoring]]></property>
+    <property name="ALERT_PERSISTENCE"><![CDATA[10]]></property>
+    <property name="ALERT_LATCHING"><![CDATA[20]]></property>
+    <property name="ARIMA_START_INDEX"><![CDATA[17]]></property>
+  </properties>
+  <mas-modules>
+    <mas-module module="eventEscalation" language="ds2" func-names="escalate_alerts">
+      <code><![CDATA[ds2_options sas;
+package test_package;
+dcl double initial_alert_time;
+dcl package masstate st();
+
+method escalate_alerts(bigint IDAlert, bigint index, bigint DateTime, bigint EngineID, double Fuel_Actual, double Fuel_Pred, double Fuel_UCL_Threshold, in_out double output_event);
+
+/*******************INITIALIZE VARIABLES *******************************/
+
+output_event = -1;
+latch_time = -1;
+
+/**********************CHECK OF HASH OBJECT ARRAY****************************/
+
+key = 'LATCHING_MODULE'; /*** NOTE - Add additional strings to key to ensure uniqueness across DS2 Modules ***/
+
+if (st.containsKey(key) = 0) then do;
+	/* Vector is not shared yet.  Set up vector for the first time */
+	initial_alert_time = 0;
+	
+	rc = st.createVector(key,1);
+	rc = st.setDouble(key,0,initial_alert_time);
+	rc = st.put(key);
+end;
+
+/**********************ANALYZE CURRENT DATA POINT WITH HISTORY****************************/
+
+/* Get vector and sequence value */
+rc = st.get(key);
+initial_alert_time = st.getDouble(key,0);
+
+/**********DETERMINE if event should escalate alert **********************/
+
+if index > initial_alert_time then do; /*** Latch does not apply to alert ***/
+	output_event = 1;
+	initial_alert_time = index + @ALERT_LATCHING@;
+end;
+
+rc = st.setDouble(key,0,initial_alert_time);
+rc = st.replace(key);
+
+end;
+endpackage;]]></code>
+    </mas-module>
+    <mas-module module="module1" language="ds2" func-names="init,score" mas-store="de5ceffa-0179-4947-a0bd-29745897c434_champion_258a26b3-529e-408a-9a22-ac9281408b8b" mas-store-version="0.1">
+      <code-file><![CDATA[dmcas_packagescorecode.sas]]></code-file>
+      <module-members>
+        <module-member member="astore_0" type="astore" SHAkey="71DE5DC7DC6B1195FB12EDBAE18F9D1E4F88AA5B">
+          <code-file><![CDATA[_B93E1DF631344B4AB07A713BB]]></code-file>
+        </module-member>
+      </module-members>
+    </mas-module>
+  </mas-modules>
+  <contqueries>
+    <contquery name="cq1">
+      <windows>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" autogen-key="true" name="engine24_fd003">
+          <schema>
+            <fields>
+              <field name="index" type="int64" key="true"/>
+              <field name="engine_number" type="int64"/>
+              <field name="cycle_number" type="int64"/>
+              <field name="operation_mode_1" type="double"/>
+              <field name="operation_mode_2" type="double"/>
+              <field name="operation_mode_3" type="double"/>
+              <field name="total_temperature_at_fan_inlet" type="double"/>
+              <field name="total_temperature_at_lpc_outlet" type="double"/>
+              <field name="total_temperature_at_hpc_outlet" type="double"/>
+              <field name="total_temperature_at_lpt_outlet" type="double"/>
+              <field name="pressure_at_fan_inlet" type="double"/>
+              <field name="total_pressure_in_bypassduct" type="double"/>
+              <field name="total_pressure_at_hpc_outlet" type="double"/>
+              <field name="physical_fan_speed" type="double"/>
+              <field name="physical_core_speed" type="double"/>
+              <field name="engine_pressure_ratio" type="double"/>
+              <field name="static_pressure_at_hpc_outlet" type="double"/>
+              <field name="ratio_of_fuel_flow_to_ps30" type="double"/>
+              <field name="corrected_fan_speed" type="double"/>
+              <field name="corrected_core_speed" type="double"/>
+              <field name="bypass_ratio" type="double"/>
+              <field name="burner_fuelair_ratio" type="double"/>
+              <field name="bleed_enthalpy" type="double"/>
+              <field name="demanded_fan_speed" type="double"/>
+              <field name="demanded_corrected_fan_speed" type="double"/>
+              <field name="hpt_coolant_bleed" type="double"/>
+              <field name="lpt_coolant_bleed" type="double"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="fs" name="read_engine_data">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="rate"><![CDATA[5]]></property>
+                <property name="header"><![CDATA[1]]></property>
+                <property name="noautogenfield"><![CDATA[true]]></property>
+                <property name="addcsvopcode"><![CDATA[true]]></property>
+                <property name="addcsvflags"><![CDATA[normal]]></property>
+                <property name="repeatcount"><![CDATA[5]]></property>
+                <property name="fsname"><![CDATA[@PROJ_DIR@/score_ESP_FD003_Engine24.csv]]></property>
+                <property name="fstype"><![CDATA[csv]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-compute pubsub="true" index="pi_EMPTY" name="determineAlarmCondition">
+          <schema>
+            <fields>
+              <field name="index" type="int64" key="true"/>
+              <field name="Engine_Number" type="int64"/>
+              <field name="Cycle_Number" type="int64"/>
+              <field name="Operation_Mode_1" type="double"/>
+              <field name="Operation_Mode_2" type="double"/>
+              <field name="Operation_Mode_3" type="double"/>
+              <field name="Total_temperature_at_fan_inlet" type="double"/>
+              <field name="Total_temperature_at_LPC_outlet" type="double"/>
+              <field name="Total_temperature_at_HPC_outlet" type="double"/>
+              <field name="Total_temperature_at_LPT_outlet" type="double"/>
+              <field name="Pressure_at_fan_inlet" type="double"/>
+              <field name="Total_pressure_in_bypassduct" type="double"/>
+              <field name="Total_pressure_at_HPC_outlet" type="double"/>
+              <field name="Physical_fan_speed" type="double"/>
+              <field name="Physical_core_speed" type="double"/>
+              <field name="Engine_Pressure_ratio" type="double"/>
+              <field name="Static_pressure_at_HPC_outlet" type="double"/>
+              <field name="Ratio_of_fuel_flow_to_Ps30" type="double"/>
+              <field name="Corrected_fan_speed" type="double"/>
+              <field name="Corrected_core_speed" type="double"/>
+              <field name="Bypass_ratio" type="double"/>
+              <field name="Burner_fuelair_ratio" type="double"/>
+              <field name="Bleed_enthalpy" type="double"/>
+              <field name="Demanded_fan_speed" type="double"/>
+              <field name="Demanded_corrected_fan_speed" type="double"/>
+              <field name="HPT_coolant_bleed" type="double"/>
+              <field name="LPT_coolant_bleed" type="double"/>
+              <field name="TimeID" type="double"/>
+              <field name="Actual" type="double"/>
+              <field name="Pred" type="double"/>
+              <field name="LCL" type="double"/>
+              <field name="UCL" type="double"/>
+              <field name="Error" type="double"/>
+              <field name="upper_alert" type="double"/>
+              <field name="persistence_index" type="int64"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[engine_number]]></field-expr>
+            <field-expr><![CDATA[cycle_number]]></field-expr>
+            <field-expr><![CDATA[operation_mode_1]]></field-expr>
+            <field-expr><![CDATA[operation_mode_2]]></field-expr>
+            <field-expr><![CDATA[operation_mode_3]]></field-expr>
+            <field-expr><![CDATA[total_temperature_at_fan_inlet]]></field-expr>
+            <field-expr><![CDATA[total_temperature_at_lpc_outlet]]></field-expr>
+            <field-expr><![CDATA[total_temperature_at_hpc_outlet]]></field-expr>
+            <field-expr><![CDATA[total_temperature_at_lpt_outlet]]></field-expr>
+            <field-expr><![CDATA[pressure_at_fan_inlet]]></field-expr>
+            <field-expr><![CDATA[total_pressure_in_bypassduct]]></field-expr>
+            <field-expr><![CDATA[total_pressure_at_hpc_outlet]]></field-expr>
+            <field-expr><![CDATA[physical_fan_speed]]></field-expr>
+            <field-expr><![CDATA[physical_core_speed]]></field-expr>
+            <field-expr><![CDATA[engine_pressure_ratio]]></field-expr>
+            <field-expr><![CDATA[static_pressure_at_hpc_outlet]]></field-expr>
+            <field-expr><![CDATA[ratio_of_fuel_flow_to_ps30]]></field-expr>
+            <field-expr><![CDATA[corrected_fan_speed]]></field-expr>
+            <field-expr><![CDATA[corrected_core_speed]]></field-expr>
+            <field-expr><![CDATA[bypass_ratio]]></field-expr>
+            <field-expr><![CDATA[burner_fuelair_ratio]]></field-expr>
+            <field-expr><![CDATA[bleed_enthalpy]]></field-expr>
+            <field-expr><![CDATA[demanded_fan_speed]]></field-expr>
+            <field-expr><![CDATA[demanded_corrected_fan_speed]]></field-expr>
+            <field-expr><![CDATA[hpt_coolant_bleed]]></field-expr>
+            <field-expr><![CDATA[lpt_coolant_bleed]]></field-expr>
+            <field-expr><![CDATA[TimeID]]></field-expr>
+            <field-expr><![CDATA[Actual]]></field-expr>
+            <field-expr><![CDATA[Pred]]></field-expr>
+            <field-expr><![CDATA[LCL]]></field-expr>
+            <field-expr><![CDATA[UCL]]></field-expr>
+            <field-expr><![CDATA[Error]]></field-expr>
+            <field-expr><![CDATA[if (Actual > UCL and index > @ARIMA_START_INDEX@) then return 1 else return 0]]></field-expr>
+            <field-expr><![CDATA[index + @ALERT_PERSISTENCE@]]></field-expr>
+          </output>
+        </window-compute>
+        <window-functional pubsub="true" name="addCurrentDateTime">
+          <schema>
+            <fields>
+              <field name="index" type="int64" key="true"/>
+              <field name="DateTime" type="stamp"/>
+              <field name="Engine_Number" type="int64"/>
+              <field name="Cycle_Number" type="int64"/>
+              <field name="Operation_Mode_1" type="double"/>
+              <field name="Operation_Mode_2" type="double"/>
+              <field name="Operation_Mode_3" type="double"/>
+              <field name="Total_temperature_at_fan_inlet" type="double"/>
+              <field name="Total_temperature_at_LPC_outlet" type="double"/>
+              <field name="Total_temperature_at_HPC_outlet" type="double"/>
+              <field name="Total_temperature_at_LPT_outlet" type="double"/>
+              <field name="Pressure_at_fan_inlet" type="double"/>
+              <field name="Total_pressure_in_bypassduct" type="double"/>
+              <field name="Total_pressure_at_HPC_outlet" type="double"/>
+              <field name="Physical_fan_speed" type="double"/>
+              <field name="Physical_core_speed" type="double"/>
+              <field name="Engine_Pressure_ratio" type="double"/>
+              <field name="Static_pressure_at_HPC_outlet" type="double"/>
+              <field name="Ratio_of_fuel_flow_to_Ps30" type="double"/>
+              <field name="Corrected_fan_speed" type="double"/>
+              <field name="Corrected_core_speed" type="double"/>
+              <field name="Bypass_ratio" type="double"/>
+              <field name="Burner_fuelair_ratio" type="double"/>
+              <field name="Bleed_enthalpy" type="double"/>
+              <field name="Demanded_fan_speed" type="double"/>
+              <field name="Demanded_corrected_fan_speed" type="double"/>
+              <field name="HPT_coolant_bleed" type="double"/>
+              <field name="LPT_coolant_bleed" type="double"/>
+              <field name="TimeID" type="double"/>
+              <field name="Actual" type="double"/>
+              <field name="Pred" type="double"/>
+              <field name="LCL" type="double"/>
+              <field name="UCL" type="double"/>
+              <field name="Error" type="double"/>
+              <field name="upper_alert" type="double"/>
+              <field name="persistence_index" type="int64"/>
+            </fields>
+          </schema>
+          <function-context>
+            <functions>
+              <function name="DateTime"><![CDATA[systemMicro()]]></function>
+            </functions>
+          </function-context>
+          <connectors>
+            <connector class="db" name="outputTimeSeries">
+              <properties>
+                <property name="type"><![CDATA[sub]]></property>
+                <property name="snapshot"><![CDATA[false]]></property>
+                <property name="connectstring"><![CDATA[DSN=SGFESP;UID=postgres;PWD=docker]]></property>
+                <property name="desttablename"><![CDATA[sgf_time_series_database]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-functional>
+        <window-pattern name="patternAlertDetection">
+          <schema>
+            <fields>
+              <field name="IDAlert" type="int64" key="true"/>
+              <field name="index" type="int64"/>
+              <field name="DateTime" type="stamp"/>
+              <field name="EngineID" type="int64"/>
+              <field name="Fuel_Actual" type="double"/>
+              <field name="Fuel_Pred" type="double"/>
+              <field name="Fuel_UCL_Threshold" type="double"/>
+            </fields>
+          </schema>
+          <patterns>
+            <pattern name="high_alert">
+              <events>
+                <event name="initial_event" source="addCurrentDateTime"><![CDATA[upper_alert>0.5 and p==persistence_index]]></event>
+                <event name="event_complete" source="addCurrentDateTime"><![CDATA[p<index]]></event>
+                <event name="no_event" source="addCurrentDateTime"><![CDATA[upper_alert < 0.5]]></event>
+              </events>
+              <logic><![CDATA[fby(initial_event , and(notoccur(no_event), event_complete))]]></logic>
+              <output>
+                <field-selection name="index" node="event_complete"/>
+                <field-selection name="DateTime" node="event_complete"/>
+                <field-selection name="Engine_Number" node="event_complete"/>
+                <field-selection name="Actual" node="event_complete"/>
+                <field-selection name="Pred" node="event_complete"/>
+                <field-selection name="UCL" node="event_complete"/>
+              </output>
+            </pattern>
+          </patterns>
+        </window-pattern>
+        <window-calculate pubsub="true" produces-only-inserts="true" name="determineAlertsEscalate" algorithm="MAS">
+          <schema>
+            <fields>
+              <field name="IDAlert" type="int64" key="true"/>
+              <field name="index" type="int64"/>
+              <field name="DateTime" type="stamp"/>
+              <field name="EngineID" type="int64"/>
+              <field name="Fuel_Actual" type="double"/>
+              <field name="Fuel_Pred" type="double"/>
+              <field name="Fuel_UCL_Threshold" type="double"/>
+              <field name="output_event" type="double"/>
+            </fields>
+          </schema>
+          <mas-map>
+            <window-map module="eventEscalation" function="escalate_alerts" revision="0" source="patternAlertDetection"/>
+          </mas-map>
+        </window-calculate>
+        <window-filter pubsub="true" name="escalatedAlerts">
+          <expression><![CDATA[output_event > 0.5]]></expression>
+          <connectors>
+            <connector class="db" name="outputAlerts">
+              <properties>
+                <property name="type"><![CDATA[sub]]></property>
+                <property name="snapshot"><![CDATA[false]]></property>
+                <property name="connectstring"><![CDATA[DSN=SGFESP;UID=postgres;PWD=docker]]></property>
+                <property name="desttablename"><![CDATA[sgf_alert_database]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-filter>
+        <window-model-reader name="ModelReader1" pubsub="true" model-type="astore">
+          <parameters>
+            <properties>
+              <property name="reference"><![CDATA[/home/sasdemo/stabilityMonitoring/model.astore]]></property>
+              <property name="ProjectId"><![CDATA[1]]></property>
+              <property name="ModelId"><![CDATA[2]]></property>
+            </properties>
+          </parameters>
+        </window-model-reader>
+        <window-score name="score_SMModel" pubsub="true">
+          <schema>
+            <fields>
+              <field name="index" type="int64" key="true"/>
+              <field name="engine_number" type="int64"/>
+              <field name="cycle_number" type="int64"/>
+              <field name="operation_mode_1" type="double"/>
+              <field name="operation_mode_2" type="double"/>
+              <field name="operation_mode_3" type="double"/>
+              <field name="total_temperature_at_fan_inlet" type="double"/>
+              <field name="total_temperature_at_lpc_outlet" type="double"/>
+              <field name="total_temperature_at_hpc_outlet" type="double"/>
+              <field name="total_temperature_at_lpt_outlet" type="double"/>
+              <field name="pressure_at_fan_inlet" type="double"/>
+              <field name="total_pressure_in_bypassduct" type="double"/>
+              <field name="total_pressure_at_hpc_outlet" type="double"/>
+              <field name="physical_fan_speed" type="double"/>
+              <field name="physical_core_speed" type="double"/>
+              <field name="engine_pressure_ratio" type="double"/>
+              <field name="static_pressure_at_hpc_outlet" type="double"/>
+              <field name="ratio_of_fuel_flow_to_ps30" type="double"/>
+              <field name="corrected_fan_speed" type="double"/>
+              <field name="corrected_core_speed" type="double"/>
+              <field name="bypass_ratio" type="double"/>
+              <field name="burner_fuelair_ratio" type="double"/>
+              <field name="bleed_enthalpy" type="double"/>
+              <field name="demanded_fan_speed" type="double"/>
+              <field name="demanded_corrected_fan_speed" type="double"/>
+              <field name="hpt_coolant_bleed" type="double"/>
+              <field name="lpt_coolant_bleed" type="double"/>
+              <field name="TimeID" type="double"/>
+              <field name="Actual" type="double"/>
+              <field name="Pred" type="double"/>
+              <field name="LCL" type="double"/>
+              <field name="UCL" type="double"/>
+              <field name="Error" type="double"/>
+            </fields>
+          </schema>
+          <models>
+            <offline model-type="astore">
+              <input-map>
+                <properties>
+                  <property name="cycle_number"><![CDATA[cycle_number]]></property>
+                  <property name="ratio_of_fuel_flow_to_ps30"><![CDATA[ratio_of_fuel_flow_to_ps30]]></property>
+                  <property name="pressure_at_fan_inlet"><![CDATA[pressure_at_fan_inlet]]></property>
+                  <property name="total_pressure_in_bypassduct"><![CDATA[total_pressure_in_bypassduct]]></property>
+                  <property name="corrected_core_speed"><![CDATA[corrected_core_speed]]></property>
+                  <property name="bleed_enthalpy"><![CDATA[bleed_enthalpy]]></property>
+                  <property name="hpt_coolant_bleed"><![CDATA[hpt_coolant_bleed]]></property>
+                  <property name="lpt_coolant_bleed"><![CDATA[lpt_coolant_bleed]]></property>
+                </properties>
+              </input-map>
+              <output-map>
+                <properties>
+                  <property name="TimeID"><![CDATA[TimeID]]></property>
+                  <property name="Actual"><![CDATA[Actual]]></property>
+                  <property name="Pred"><![CDATA[Pred]]></property>
+                  <property name="LCL"><![CDATA[LCL]]></property>
+                  <property name="UCL"><![CDATA[UCL]]></property>
+                  <property name="Error"><![CDATA[Error]]></property>
+                </properties>
+              </output-map>
+            </offline>
+          </models>
+        </window-score>
+      </windows>
+      <edges>
+        <edge source="determineAlarmCondition" target="addCurrentDateTime"/>
+        <edge source="addCurrentDateTime" target="patternAlertDetection"/>
+        <edge source="patternAlertDetection" target="determineAlertsEscalate" role="data"/>
+        <edge source="determineAlertsEscalate" target="escalatedAlerts"/>
+        <edge source="engine24_fd003" target="score_SMModel" role="data"/>
+        <edge source="ModelReader1" target="score_SMModel" role="model"/>
+        <edge source="score_SMModel" target="determineAlarmCondition"/>
+      </edges>
+    </contquery>
+  </contqueries>
+</project>
