@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Task schemaVersion="7.2">
+    <Registration>
+        <Name>Hidden Markov Models</Name>
+        <Description>The Hidden Markov Models task analyzes the time series or panel data by using a statistical Markov model to infer hidden states through a Markov process.</Description>
+        <GUID>6e00e4d7-b043-492c-97ec-1b5af0d73c31</GUID>
+        <Procedures>HMM</Procedures>
+        <Version>5.2</Version>
+        <Links>
+            <Link href="http://documentation.sas.com/?softwareId=STUDIOBASIC&amp;softwareVersion=5.2&amp;softwareContextId=tasks&amp;requestor=inapp">SAS Studio Task Reference Guide</Link>
+            <Link href=""> </Link>
+            <Link href=""> </Link>
+            <Link href="http://documentation.sas.com/?softwareId=ANVIYA&amp;softwareVersion=5.2_8.5&amp;softwareContextId=proc_hmm&amp;requestor=inapp">The HMM Procedure</Link>
+            <Link href=""> </Link>
+            <Link href=""> </Link>
+            <Link href="http://documentation.sas.com/?softwareId=PGMVIYA&amp;softwareVersion=5.2_3.5&amp;softwareContextId=proc_cas&amp;requestor=inapp">The CAS Procedure</Link>
+            <Link href=""> </Link>
+            <Link href=""> </Link>
+            <Link href="http://support.sas.com/training/tutorial/viya/index.html">SAS Tutorials</Link>
+        </Links>
+    </Registration>
+
+    <Metadata>
+        <DataSources>
+            <DataSource libraryEngineInclude="CAS" name="dataset" where="true">
+                <Roles>
+                    <Role exclude="independVariable,crossSectionalId,timeID" minVars="1" name="dependVariable" type="N">Dependent variables:</Role>
+                    <Role exclude="dependVariable,crossSectionalId,timeID" maxVars="0" minVars="0" name="independVariable" order="true" type="N">Independent variables:</Role>
+                    <Role exclude="crossSectionalId,dependVariable,independVariable" maxVars="1" minVars="1" name="timeID" type="N">Time ID:</Role>
+                    <Role exclude="timeID,dependVariable,independVariable" maxVars="1" minVars="0" name="crossSectionalId" type="N">Cross-sectional ID:</Role>
+                </Roles>
+            </DataSource>
+            <DataSource indent="1" libraryEngineInclude="CAS" name="initParamData">
+            </DataSource>
+        </DataSources>
+
+        <Options>
+            <Option inputType="string" name="dataTab">DATA</Option>
+            <Option inputType="string" name="dataGroup">DATA</Option>
+            <Option inputType="string" name="rolesGroup">ROLES</Option>
+            <!-- Should I include scoring model in the task? This would disable all model related options. -->
+            <Option defaultValue="0" inputType="checkbox" name="inModel">Use a saved scoring model</Option>
+
+            <!-- Model Tab -->
+            <Option inputType="string" name="modelTab">MODEL</Option>
+            <Option inputType="string" name="modelGroup">MODEL</Option>
+            <Option defaultValue="gaussian" inputType="combobox" name="modelTypeCombo">Model type:</Option>
+            <Option inputType="string" name="modelTypeGaussian" returnValue="gaussian">Gaussian (default)</Option>
+            <Option inputType="string" name="modelTypeGaussianMix" returnValue="gaussianmixture">Gaussian mixture</Option>
+            <Option inputType="string" name="modelTypeReg" returnValue="reg">Regime-switching regression</Option>
+            <Option inputType="string" name="modelTypeAutoReg" returnValue="ar">Regime-switching autoregression</Option>
+            <Option decimalPlaces="0" defaultValue="2" inputType="numstepper" invalidMessage="Enter a positive integer." minValue="1" name="nState" promptMessage="Enter a positive integer." rangeMessage="Enter a positive integer.">Number of hidden states (default: 2):</Option>
+            <Option decimalPlaces="0" defaultValue="1" inputType="numstepper" invalidMessage="Enter a positive integer." minValue="1" name="nComponent" promptMessage="Enter a positive integer." rangeMessage="Enter a positive integer.">Number of components in a state (default: 1):</Option>
+            <Option name="armean" inputType="checkbox">Use mean-adjusted form</Option>
+            <Option inputType="string" name="regressorsGroup">Regressors</Option>
+            <Option defaultValue="1" inputType="checkbox" name="intercept">Include intercept in model</Option>
+            <Option defaultValue="0" inputType="checkbox" name="addSeasonal">Add seasonal dummies as regressors</Option>
+            <Option decimalPlaces="0" defaultValue="2" indent="1" inputType="numstepper" invalidMessage="Enter an integer greater than 1." minValue="2" missingMessage="Enter an integer greater than 1." name="nSeason" rangeMessage="Enter an integer greater than 1." required="true">Number of seasonal periods (default: 2):</Option>
+            <Option defaultValue="0" indent="1" inputType="checkbox" name="centerSeasonal">Center seasonal dummies</Option>
+            <Option defaultValue="0" inputType="checkbox" name="addTrend">Add time trends as regressors</Option>
+            <Option defaultValue="1" indent="1" inputType="radio" name="linearTrend" variable="radioTrend">Add a linear time trend (default)</Option>
+            <Option indent="1" inputType="radio" name="quadTrend" variable="radioTrend">Add linear and quadratic time trends</Option>
+            <Option defaultValue="0" inputType="checkbox" name="noCurrentX">Include only the lagged values of the independent variables</Option>
+            <Option defaultValue="0" inputType="checkbox" name="addXLag">Add lags of the independent variables</Option>
+            <Option decimalPlaces="0" defaultValue="1" indent="1" inputType="numstepper" invalidMessage="Enter an integer greater than or equal to 1." minValue="1" missingMessage="Enter an integer greater than or equal to 1." name="xLag" rangeMessage="Enter an integer greater than or equal to 1." required="true">Number of lags (default: 1):</Option>
+            <Option defaultValue="1" inputType="checkbox" name="addYLag">Add lags of the dependent variables</Option>
+            <Option decimalPlaces="0" defaultValue="1" indent="1" inputType="numstepper" invalidMessage="Enter an integer greater than or equal to 1." minValue="1" missingMessage="Enter an integer greater than or equal to 1." name="yLag" rangeMessage="Enter an integer greater than or equal to 1." required="true">Number of lags (default: 1):</Option>
+            <Option name="stateIndependentGroup" inputType="string">State independent parameters</Option>
+            <Option name="stateIndependentIspv" inputType="checkbox" defaultValue="0" indent="0">Initial state probability vector</Option>
+            <Option name="stateIndependentTpm" inputType="checkbox" defaultValue="0" indent="0">Transition probabilities</Option>           
+            <Option name="stateIndependentGMGroup" inputType="string" indent="0">Gaussian models</Option>
+            <Option name="stateIndependentSigma" inputType="checkbox" defaultValue="0" indent="0">Covariance</Option>
+            <Option name="stateIndependentMu" inputType="checkbox" defaultValue="0" indent="0">Mean</Option>
+            <Option name="stateIndependentMcp" inputType="checkbox" defaultValue="0" indent="0">Mixture component probabilities</Option>
+            <Option name="stateIndependentRSGroup" inputType="string" indent="0">Regime-switching models</Option>
+            <Option name="stateIndependentAr" inputType="checkbox" defaultValue="0" indent="0">Autoregressive</Option>
+            <Option name="stateIndependentCov" inputType="checkbox" defaultValue="0" indent="0">Covariance of innovations</Option>
+            <Option name="stateIndependentXl" inputType="checkbox" defaultValue="0" indent="0">Exogenous variables</Option>          
+            <Option name="stateIndependentConst" inputType="checkbox" defaultValue="0" indent="0">Intercept</Option>
+            <Option name="stateIndependentLtrend" inputType="checkbox" defaultValue="0" indent="0">Linear trend</Option>
+            <Option name="stateIndependentQtrend" inputType="checkbox" defaultValue="0" indent="0">Quadratic trend</Option>
+            <Option name="stateIndependentSdummy" inputType="checkbox" defaultValue="0" indent="0">Seasonal dummies</Option>
+
+            <Option inputType="string" name="optionsTab">OPTIONS</Option>
+            <Option inputType="string" name="methodsGroup">METHODS</Option>
+            <Option inputType="string" name="estimateMethod">Parameter estimation method:</Option>
+            <Option defaultValue="1" indent="1" inputType="radio" name="maxLikelihood" variable="radioEstMethod">Maximum likelihood (default)</Option>
+            <Option indent="1" inputType="radio" name="maxPosteriori" variable="radioEstMethod">Maximum a posteriori (MAP)</Option>
+            <Option name="estimateISPV" inputType="checkbox" defaultValue="0">Nonstationary Markov chain</Option>
+            
+            <!-- Nonlinear Optimization methods -->
+            <Option inputType="string" name="optimizationGroup">Nonlinear Optimization</Option>
+            <Option inputType="string" name="optimizationMethod">Algorithm:</Option>
+            <Option defaultValue="1" indent="1" inputType="radio" name="activeSet" variable="radioOptMethod">Active set (default)</Option>
+            <Option indent="1" inputType="radio" name="intPoint" variable="radioOptMethod">Interior point</Option>
+            <Option defaultValue="0" inputType="checkbox" name="multiStart">Enable multistart mode</Option>
+            <Option decimalPlaces="0" defaultValue="128" hintMessage="128" inputType="numbertext" invalidMessage="Enter an integer that is greater than 0 for the maximum number of iterations." minValue="1" name="maxiter" promptMessage="Enter an integer that is greater than 0 for the maximum number of iterations." rangeMessage="Enter an integer that is greater than 0 for the maximum number of iterations.">Maximum number of iterations:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="useRandomSeed">Random number seed</Option>
+            <Option decimalPlaces="0" indent="1" inputType="numbertext" invalidMessage="Enter an integer greater than 0 and less than 2147483648." maxValue="2147483647" minValue="1" missingMessage="Enter an integer greater than 0 and less than 2147483648." name="randomSeed" rangeMessage="Enter an integer greater than 0 and less than 2147483648." required="true">Random seed:</Option>
+            <!-- Initial parameter values -->
+            <Option inputType="string" name="initialGroup">INITIAL VALUES</Option>
+            <Option defaultValue="0" inputType="checkbox" name="initParam">Set the initial values to the parameter estimates of a matched model</Option>
+            <Option indent="1" inputType="string" name="paramDataNote">Note: If a matched model can be found in the data set below, the initial parameter values are set to the parameter estimates of the matched model. Otherwise, default initial values are being used.</Option>
+            
+            <!-- Forecasting settings -->
+            <Option indent="1" inputType="string" name="forecastSettingsGroup">Forecast Settings</Option>
+            <Option decimalPlaces="0" defaultValue="1" increment="1" inputType="numstepper" invalidMessage="Enter an integer greater than or equal to 0 and less than 32768." maxValue="32767" minValue="0" name="forecastPeriods" promptMessage="Enter an integer greater than or equal to 0 and less than 32768." rangeMessage="Enter an integer greater than or equal to 0 and less than 32768.">Number of periods to forecast (default: 1):</Option>
+            <Option defaultValue="forecastConfLevelDefaultChoice" inputType="combobox" name="forecastConfLevelCombo">Forecast confidence level:</Option>
+            <Option inputType="string" name="forecastConfLevelDefaultChoice">95% (default)</Option>
+            <Option inputType="string" name="forecastConfLevel99Choice">99%</Option>
+            <Option inputType="string" name="forecastConfLevel90Choice">90%</Option>
+            <Option inputType="string" name="forecastConfLevelCustomChoice">Use custom value</Option>
+            <Option defaultValue="95" indent="1" inputType="numbertext" invalidMessage="Enter a number greater than 0 and less than 100." maxValue="99.99999999999999" minValue="0.000000000000000000000001" missingMessage="Enter a number greater than 0 and less than 100." name="forecastConfLevel" rangeMessage="Enter a number greater than 0 and less than 100." required="true">Custom confidence level (%):</Option>
+            <Option defaultValue="0" inputType="checkbox" name="forecastOnline">Perform forecasting after each observation</Option>
+            <Option decimalPlaces="0" defaultValue="0" increment="1" inputType="numstepper" invalidMessage="Enter an integer greater than or equal to 0 and less than 32768." maxValue="32767" minValue="0" name="forecastHoldback" promptMessage="Enter an integer greater than or equal to 0 and less than 32768." rangeMessage="Enter an integer greater than or equal to 0 and less than 32768.">Number of periods to hold back (default: 0):</Option>
+
+            <!-- Code generation options -->
+            <Option inputType="string" name="codeGenerationGroup">CODE GENERATION</Option>
+            <Option defaultValue="1" inputType="radio" name="procHMM" variable="proc">Use HMM procedure</Option>
+            <Option inputType="radio" name="procCas" variable="proc">Use CAS procedure</Option>
+
+            <!-- Output Tab -->
+            <Option inputType="string" name="outputTab">OUTPUT</Option>
+            <Option inputType="string" name="outputGroup">OUTPUT DATA</Option>
+            <Option inputType="string" name="casOutputLibrefNote">The following tables must use a CAS engine libref.</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputModel">Create scoring model</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputModelName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option name="outputAstore" inputType="checkbox" defaultValue="0">Create analytic store model</Option>
+            <Option name="outputAstoreName" inputType="outputdata" libraryEngineInclude="cas" required="true" unique="true" indent="1">Specify a CAS table:</Option>
+
+
+            <Option defaultValue="0" inputType="checkbox" name="outputEstimate">Create parameter estimates</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputEstimateName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputCov">Create the covariance matrix of parameter estimates</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputCovName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" indent="1" inputType="checkbox" name="outputCovNoEst">Exclude parameter estimates</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputStat">Create fit statistics</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputStatName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputForecast">Create forecasting results</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputForecastName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputDecode">Create decoding results</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputDecodeName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputEvaluate">Create evaluation results</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputEvaluateName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputFilter">Create filtering results</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputFilterName" required="true" unique="true">Specify a CAS table:</Option>
+            <Option defaultValue="0" inputType="checkbox" name="outputSmooth">Create smoothing results</Option>
+            <Option indent="1" inputType="outputdata" libraryEngineInclude="cas" name="outputSmoothName" required="true" unique="true">Specify a CAS table:</Option>
+        </Options>
+    </Metadata>
+
+    <UI>
+        <Container option="dataTab">
+            <Group open="true" option="dataGroup">
+                <DataItem data="dataset"/>
+            </Group>
+            <Group open="true" option="rolesGroup">
+                <RoleItem role="dependVariable"/>
+                <RoleItem role="timeID"/>
+                <RoleItem role="crossSectionalId"/>
+            </Group>
+        </Container>
+
+        <Container option="modelTab">
+            <Group open="true" option="modelGroup">
+                <OptionChoice option="modelTypeCombo">
+                    <OptionItem option="modelTypeGaussian"/>
+                    <OptionItem option="modelTypeGaussianMix"/>
+                    <OptionItem option="modelTypeReg"/>
+                    <OptionItem option="modelTypeAutoReg"/>
+                </OptionChoice>
+                <OptionItem option="nState"/>
+                <OptionItem option="armean"/>
+                <OptionItem option="nComponent"/>
+                <OptionItem option="estimateISPV"/>
+                <Group open="true" option="regressorsGroup">
+                    <RoleItem role="independVariable"/>
+                    <OptionItem option="addYLag"/>
+                    <OptionItem option="yLag"/>
+                    <OptionItem option="intercept"/>
+                    <OptionItem option="addSeasonal"/>
+                    <OptionItem option="nSeason"/>
+                    <OptionItem option="centerSeasonal"/>
+                    <OptionItem option="addTrend"/>
+                    <OptionItem option="linearTrend"/>
+                    <OptionItem option="quadTrend"/>
+                    <OptionItem option="addXLag"/>
+                    <OptionItem option="xLag"/>
+                    <OptionItem option="noCurrentX"/>
+                </Group>   
+                <Group option="stateIndependentGroup" open="false">            
+                    <OptionItem option="stateIndependentIspv"/>
+                    <OptionItem option="stateIndependentTpm"/>
+                    <Group option="stateIndependentGMGroup" open="true">
+                        <OptionItem option="stateIndependentMu"/>
+                        <OptionItem option="stateIndependentSigma"/>                        
+                        <OptionItem option="stateIndependentMcp"/>
+                    </Group>
+                    <Group option="stateIndependentRSGroup" open="true">
+                        <OptionItem option="stateIndependentXl"/>
+                        <OptionItem option="stateIndependentConst"/>
+                        <OptionItem option="stateIndependentAr"/>
+                        <OptionItem option="stateIndependentCov"/>
+                        <OptionItem option="stateIndependentSdummy"/>                        
+                        <OptionItem option="stateIndependentLtrend"/>
+                        <OptionItem option="stateIndependentQtrend"/>
+                    </Group>
+                </Group> 
+            </Group>
+        </Container>
+
+        <Container option="optionsTab">
+            <Group open="true" option="methodsGroup">
+                <OptionItem option="estimateMethod"/>
+                <OptionItem option="maxLikelihood"/>
+                <OptionItem option="maxPosteriori"/>
+
+                <OptionItem option="useRandomSeed"/>
+                <OptionItem option="randomSeed"/>
+                <Group open="false" option="optimizationGroup">
+                    <OptionItem option="optimizationMethod"/>
+                    <OptionItem option="activeSet"/>
+                    <OptionItem option="intPoint"/>
+                    <OptionItem option="multiStart"/>
+                    <OptionItem option="maxiter"/>
+                </Group>
+            </Group>
+            <Group open="true" option="initialGroup">
+                <OptionItem option="initParam"/>
+                <OptionItem option="paramDataNote"/>
+                <DataItem data="initParamData"/>
+            </Group>
+            <Group open="true" option="codeGenerationGroup">
+                <OptionItem option="procHMM"/>
+                <OptionItem option="procCas"/>
+            </Group>
+        </Container>
+
+        <Container option="outputTab">
+            <Group open="true" option="outputGroup">
+                <OptionItem option="casOutputLibrefNote"/>
+                <OptionItem option="outputModel"/>
+                <OptionItem option="outputModelName"/>
+                <OptionItem option="outputAstore"/>
+                <OptionItem option="outputAstoreName"/>
+                <OptionItem option="outputEstimate"/>
+                <OptionItem option="outputEstimateName"/>
+                <OptionItem option="outputCov"/>
+                <OptionItem option="outputCovName"/>
+                <OptionItem option="outputCovNoEst"/>
+                <OptionItem option="outputStat"/>
+                <OptionItem option="outputStatName"/>
+                <OptionItem option="outputForecast"/>
+                <OptionItem option="outputForecastName"/>
+                <Group open="true" option="forecastSettingsGroup">
+                    <OptionItem option="forecastPeriods"/>
+                    <OptionChoice option="forecastConfLevelCombo">
+                        <OptionItem option="forecastConfLevel90Choice"/>
+                        <OptionItem option="forecastConfLevelDefaultChoice"/>
+                        <OptionItem option="forecastConfLevel99Choice"/>
+                        <OptionItem option="forecastConfLevelCustomChoice"/>
+                    </OptionChoice>
+                    <OptionItem option="forecastConfLevel"/>
+                    <OptionItem option="forecastOnline"/>
+                    <OptionItem option="forecastHoldback"/>
+                </Group>
+                <OptionItem option="outputDecode"/>
+                <OptionItem option="outputDecodeName"/>
+                <OptionItem option="outputEvaluate"/>
+                <OptionItem option="outputEvaluateName"/>
+                <OptionItem option="outputFilter"/>
+                <OptionItem option="outputFilterName"/>
+                <OptionItem option="outputSmooth"/>
+                <OptionItem option="outputSmoothName"/>
+            </Group>
+        </Container>
+    </UI>
+    
+    <Dependencies>
+        <Dependency condition="($modelTypeCombo=='gaussianmixture')">
+            <Target action="show" conditionResult="true" option="nComponent"/>
+            <Target action="hide" conditionResult="false" option="nComponent"/>
+        </Dependency>
+        <Dependency condition="($modelTypeCombo=='reg' || $modelTypeCombo=='ar')">
+            <Target action="show" conditionResult="true" option="regressorsGroup"/>
+            <Target action="hide" conditionResult="false" option="regressorsGroup"/>
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo=='reg' || $modelTypeCombo=='ar') &amp;&amp; $intercept=='1')">
+            <Target action="enable" conditionResult="true" option="addSeasonal"/>
+            <Target action="disable" conditionResult="false" option="addSeasonal"/>
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo=='reg' || $modelTypeCombo=='ar') &amp;&amp; $intercept=='1' &amp;&amp; $addSeasonal=='1')">
+            <Target action="show" conditionResult="true" option="nSeason"/>
+            <Target action="hide" conditionResult="false" option="nSeason"/>
+            <Target action="show" conditionResult="true" option="centerSeasonal"/>
+            <Target action="hide" conditionResult="false" option="centerSeasonal"/>
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo=='reg' || $modelTypeCombo=='ar') &amp;&amp; $addTrend=='1')">
+            <Target action="show" conditionResult="true" option="radioTrend"/>
+            <Target action="hide" conditionResult="false" option="radioTrend"/>
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo=='reg' || $modelTypeCombo=='ar') &amp;&amp; $independVariable.size()&gt;0)">
+            <Target action="enable" conditionResult="true" option="addXLag"/>
+            <Target action="disable" conditionResult="false" option="addXLag"/>
+            <Target action="enable" conditionResult="true" option="noCurrentX"/>
+            <Target action="disable" conditionResult="false" option="noCurrentX"/>
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo=='reg' || $modelTypeCombo=='ar') &amp;&amp; $addXLag=='1')">
+            <Target action="show" conditionResult="true" option="xLag"/>
+            <Target action="hide" conditionResult="false" option="xLag"/>
+        </Dependency>
+        <Dependency condition="($modelTypeCombo=='ar')">
+            <Target action="show" conditionResult="true" option="addYLag"/>
+            <Target action="hide" conditionResult="false" option="addYLag"/>
+            <Target option="armean" conditionResult="true" action="show"/>
+            <Target option="armean" conditionResult="false" action="hide"/>
+        </Dependency>
+        <Dependency condition="($modelTypeCombo=='ar' &amp;&amp; $addYLag=='1')">
+            <Target action="show" conditionResult="true" option="yLag"/>
+            <Target action="hide" conditionResult="false" option="yLag"/>
+        </Dependency>
+ 
+        <Dependency condition="($estimateISPV == '1')">
+            <Target option="stateIndependentIspv" conditionResult="true" action="show"/>
+            <Target option="stateIndependentIspv" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'gaussian' || $modelTypeCombo == 'gaussianmixture')">
+            <Target option="stateIndependentGMGroup" conditionResult="true" action="show"/>
+            <Target option="stateIndependentGMGroup" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'gaussian' || $modelTypeCombo == 'gaussianmixture')">
+            <Target option="stateIndependentGMGroup" conditionResult="true" action="show"/>
+            <Target option="stateIndependentGMGroup" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'gaussianmixture')">
+            <Target option="stateIndependentMcp" conditionResult="true" action="show"/>
+            <Target option="stateIndependentMcp" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar')">
+            <Target option="stateIndependentRSGroup" conditionResult="true" action="show"/>
+            <Target option="stateIndependentRSGroup" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'ar' &amp;&amp;
+                                $addYLag == '1')">
+            <Target option="stateIndependentAr" conditionResult="true" action="show"/>
+            <Target option="stateIndependentAr" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $intercept == '1')">
+            <Target option="stateIndependentConst" conditionResult="true" action="show"/>
+            <Target option="stateIndependentConst" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $independVariable.size() &gt; 0)">
+            <Target option="stateIndependentXl" conditionResult="true" action="show"/>
+            <Target option="stateIndependentXl" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $intercept == '1' &amp;&amp; $addSeasonal == '1')">
+            <Target option="stateIndependentSdummy" conditionResult="true" action="show"/>
+            <Target option="stateIndependentSdummy" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $addTrend == '1')">
+            <Target option="stateIndependentLtrend" conditionResult="true" action="show"/>
+            <Target option="stateIndependentLtrend" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $addTrend == '1' &amp;&amp; $radioTrend == 'quadTrend')">
+            <Target option="stateIndependentQtrend" conditionResult="true" action="show"/>
+            <Target option="stateIndependentQtrend" conditionResult="false" action="hide"/>           
+        </Dependency>
+
+
+
+        <Dependency condition="($useRandomSeed=='1')">
+            <Target action="show" conditionResult="true" option="randomSeed"/>
+            <Target action="hide" conditionResult="false" option="randomSeed"/>
+        </Dependency>
+        <Dependency condition="($initParam=='1')">
+            <Target action="show" conditionResult="true" option="paramDataNote"/>
+            <Target action="hide" conditionResult="false" option="paramDataNote"/>
+            <Target action="show" conditionResult="true" option="initParamData"/>
+            <Target action="hide" conditionResult="false" option="initParamData"/>
+        </Dependency>
+        <Dependency condition="($outputModel=='1')">
+            <Target action="enable" conditionResult="true" option="outputModelName"/>
+            <Target action="disable" conditionResult="false" option="outputModelName"/>
+        </Dependency>
+        <Dependency condition="($outputAstore == '1')">
+            <Target option="outputAstoreName" conditionResult="true" action="enable"/>
+            <Target option="outputAstoreName" conditionResult="false" action="disable"/>
+        </Dependency>
+        <Dependency condition="($outputEstimate=='1')">
+            <Target action="enable" conditionResult="true" option="outputEstimateName"/>
+            <Target action="disable" conditionResult="false" option="outputEstimateName"/>
+        </Dependency>
+        <Dependency condition="($outputCov=='1')">
+            <Target action="enable" conditionResult="true" option="outputCovName"/>
+            <Target action="disable" conditionResult="false" option="outputCovName"/>
+            <Target action="show" conditionResult="true" option="outputCovNoEst"/>
+            <Target action="hide" conditionResult="false" option="outputCovNoEst"/>
+        </Dependency>
+        <Dependency condition="($outputStat=='1')">
+            <Target action="enable" conditionResult="true" option="outputStatName"/>
+            <Target action="disable" conditionResult="false" option="outputStatName"/>
+        </Dependency>
+        <Dependency condition="($outputForecast=='1')">
+            <Target action="enable" conditionResult="true" option="outputForecastName"/>
+            <Target action="disable" conditionResult="false" option="outputForecastName"/>
+        </Dependency>
+        <Dependency condition="($outputForecast=='1')">
+            <Target action="show" conditionResult="true" option="forecastSettingsGroup"/>
+            <Target action="hide" conditionResult="false" option="forecastSettingsGroup"/>
+        </Dependency>
+        <Dependency condition="($outputForecast=='1' &amp;&amp; $forecastConfLevelCombo=='forecastConfLevelCustomChoice')">
+            <Target action="show" conditionResult="true" option="forecastConfLevel"/>
+            <Target action="hide" conditionResult="false" option="forecastConfLevel"/>
+        </Dependency>
+        <Dependency condition="($outputForecast=='1' &amp;&amp; $forecastOnline=='0')">
+            <Target action="show" conditionResult="true" option="forecastHoldback"/>
+            <Target action="hide" conditionResult="false" option="forecastHoldback"/>
+        </Dependency>
+        <Dependency condition="($outputDecode=='1')">
+            <Target action="enable" conditionResult="true" option="outputDecodeName"/>
+            <Target action="disable" conditionResult="false" option="outputDecodeName"/>
+        </Dependency>
+        <Dependency condition="($outputEvaluate=='1')">
+            <Target action="enable" conditionResult="true" option="outputEvaluateName"/>
+            <Target action="disable" conditionResult="false" option="outputEvaluateName"/>
+        </Dependency>
+        <Dependency condition="($outputFilter=='1')">
+            <Target action="enable" conditionResult="true" option="outputFilterName"/>
+            <Target action="disable" conditionResult="false" option="outputFilterName"/>
+        </Dependency>
+        <Dependency condition="($outputSmooth=='1')">
+            <Target action="enable" conditionResult="true" option="outputSmoothName"/>
+            <Target action="disable" conditionResult="false" option="outputSmoothName"/>
+        </Dependency>
+    </Dependencies>
+
+    <Requirements>
+    </Requirements>
+    
+    <CodeTemplate>
+        <![CDATA[
+ods noproctitle;
+ods graphics / imagemap=on;
+
+## Calculate alpha from confidence level
+#if($outputForecast=='1')
+#if($forecastConfLevelCombo=="forecastConfLevelDefaultChoice") #set($alpha=0.05) #elseif($forecastConfLevelCombo=="forecastConfLevel99Choice") #set($alpha=0.01) 
+    #elseif($forecastConfLevelCombo=="forecastConfLevel90Choice") #set($alpha=0.10) #else #set($alpha="%sysevalf((100-$forecastConfLevel)/100)") #end
+#end
+
+## Determine if state independent estimation was requested
+#if($stateIndependentIspv == '1' || $stateIndependentTpm == '1' || $stateIndependentSigma == '1' || $stateIndependentMu == '1' 
+         || $stateIndependentMcp == '1' || $stateIndependentAr == '1' || $stateIndependentCov == '1' || $stateIndependentXl == '1'
+         || $stateIndependentConst == '1' || $stateIndependentLtrend == '1' || $stateIndependentQtrend == '1' || $stateIndependentSdummy == '1')
+    #set($showStateIndependent = '1')
+#end
+
+############## proc HMM code ##############
+#if($proc == 'procHMM')
+proc hmm data=$dataset #if($dataset.getWhereClause()!="") (where=($dataset.getWhereClause())) #end
+    #if($useRandomSeed=='1') seed=$randomSeed #end #if($outputStat=='1') outstat=$outputStatName #end;
+    id time=#foreach($item in $timeID) $item #end #if($crossSectionalId.size()>=1) section=#foreach($item in $crossSectionalId) $item #end #end;
+    model #foreach($item in $dependVariable) $item #end #if($independVariable.size()>=1) =#foreach($item in $independVariable) $item #end #end
+    / 
+        type=$modelTypeCombo #if($nState!='2') nstate=$nState #end #if($modelTypeCombo == 'ar' && $armean =='1') armean=adjusted#end
+        method=#if($radioEstMethod=='maxLikelihood') ml #else map #end
+        #if($modelTypeCombo=='gaussianmixture' && $nComponent!='1') ncomponent=$nComponent#end #if($estimateISPV=='1') estispv #end
+        #if($intercept=='0') noint #end #if($addSeasonal=='1') nseason=$nSeason #if($centerSeasonal=='1') scenter#end #end
+        #if($addTrend=='1') trend=#if($radioTrend=='linearTrend') linear #else quad #end#end #if($noCurrentX=='1') nocurrentx #end
+        #if($addXLag=='1') xlag=$xLag#end #if($addYLag=='1') ylag=$yLag#end
+        #if($showStateIndependent == '1')
+            stateindependent=(
+                #if($stateIndependentIspv == '1') ispv#end 
+                #if($stateIndependentTpm == '1') tpm#end
+                #if($stateIndependentMu == '1') mu#end
+                #if($stateIndependentSigma == '1') sigma#end
+                #if($stateIndependentMcp == '1') mcp#end
+                #if($stateIndependentXl == '1') xl#end
+                #if($stateIndependentConst == '1') const#end
+                #if($stateIndependentAr == '1') ar#end
+                #if($stateIndependentCov == '1') cov#end
+                #if($stateIndependentSdummy == '1') sdummy#end                
+                #if($stateIndependentLtrend == '1') ltrend#end
+                #if($stateIndependentQtrend == '1') qtrend#end)                
+        #end;
+    #if($radioOptMethod!='activeSet' || $multiStart!='0' || ($maxiter!='128' && $maxiter!='')) optimize
+        #if($radioOptMethod!='activeSet') algorithm=interiorpoint #end #if($multiStart!='0') multistart=1 #end
+        #if($maxiter!='128' && $maxiter!='') maxiter=$maxiter #end;
+    #end
+    #if($outputModel=='1') score outmodel=$outputModelName;#end
+    #if($outputAstore=='1') store out=$outputAstoreName;#end
+    #if($outputEstimate=='1' || $outputCov=='1' || $initParam=='1') estimate 
+        #if($outputEstimate=='1') out=$outputEstimateName #end
+        #if($outputCov=='1') outcov#if($outputCovNoEst=='1')(noest)#end=$outputCovName #end
+        #if($initParam=='1') in=$initParamData#end;
+    #end
+    #if($outputForecast=='1') forecast out=$outputForecastName alpha=$alpha 
+        #if($forecastPeriods!='' && $forecastPeriods!='1') lead=$forecastPeriods #end #if($forecastOnline=='1') online #end
+        #if($forecastOnline=='0' && $forecastHoldback!='' && $forecastHoldback!='0') back=$forecastHoldback #end;
+    #end
+    #if($outputDecode=='1') decode out=$outputDecodeName;#end
+    #if($outputEvaluate=='1') evaluate out=$outputEvaluateName;#end
+    #if($outputFilter=='1') filter out=$outputFilterName;#end
+    #if($outputSmooth=='1') smooth out=$outputSmoothName;#end
+run;
+#end
+
+############## PROC CAS ##############
+#if($proc == 'procCas')
+
+#set($dataSASLib=$dataset.getLibrary())
+#set($dataSASTable=$dataset.get("table"))
+#set($inParamDataSASLib=$initParamData.getLibrary())
+#set($inParamDataSASTable=$initParamData.get("table"))
+
+## output data sets
+#set($modelDSSASLib=$outputModelName.getLibrary())  ## model data set CAS engine libref
+#set($modelDSSASTable=$outputModelName.get("table"))  ## model data set name
+#set($estimateDSSASLib=$outputEstimateName.getLibrary())  ## estimate data set CAS engine libref
+#set($estimateDSSASTable=$outputEstimateName.get("table"))  ## estimate data set name
+#set($covDSSASLib=$outputCovName.getLibrary())  ## covariance data set CAS engine libref
+#set($covDSSASTable=$outputCovName.get("table"))  ## covariance data set name
+#set($statDSSASLib=$outputStatName.getLibrary())  ## stat data set CAS engine libref
+#set($statDSSASTable=$outputStatName.get("table"))  ## stat data set name
+#set($forecastDSSASLib=$outputForecastName.getLibrary())  ## forecast data set CAS engine libref
+#set($forecastDSSASTable=$outputForecastName.get("table"))  ## forecast data set name
+#set($decodeDSSASLib=$outputDecodeName.getLibrary())  ## decode data set CAS engine libref
+#set($decodeDSSASTable=$outputDecodeName.get("table"))  ## decode data set name
+#set($evaluateDSSASLib=$outputEvaluateName.getLibrary())  ## evaluate data set CAS engine libref
+#set($evaluateDSSASTable=$outputEvaluateName.get("table"))  ## evaluate data set name
+#set($filterDSSASLib=$outputFilterName.getLibrary())  ## filter data set CAS engine libref
+#set($filterDSSASTable=$outputFilterName.get("table"))  ## filter data set name
+#set($smoothDSSASLib=$outputSmoothName.getLibrary())  ## smooth data set CAS engine libref
+#set($smoothDSSASTable=$outputSmoothName.get("table"))  ## smooth data set name
+
+
+## Organize stateIndepdent options into list
+#if($showStateIndependent == '1')
+    #set($stateIndependentList = [])
+    #if($stateIndependentIspv == '1')
+        #set($temp = $stateIndependentList.add("ispv")) 
+    #end
+    #if($stateIndependentTpm == '1')
+        #set($temp = $stateIndependentList.add("tpm")) 
+    #end
+    #if($stateIndependentMu == '1')
+        #set($temp = $stateIndependentList.add("mu")) 
+    #end
+    #if($stateIndependentSigma == '1')
+        #set($temp = $stateIndependentList.add("sigma")) 
+    #end
+    #if($stateIndependentMcp == '1')
+        #set($temp = $stateIndependentList.add("mcp")) 
+    #end
+    #if($stateIndependentXl == '1')
+        #set($temp = $stateIndependentList.add("xl")) 
+    #end
+    #if($stateIndependentConst == '1')
+        #set($temp = $stateIndependentList.add("const")) 
+    #end    
+    #if($stateIndependentAr == '1')
+        #set($temp = $stateIndependentList.add("ar")) 
+    #end
+    #if($stateIndependentCov == '1')
+        #set($temp = $stateIndependentList.add("cov")) 
+    #end
+    #if($stateIndependentSdummy == '1')
+        #set($temp = $stateIndependentList.add("sdummy")) 
+    #end
+    #if($stateIndependentLtrend == '1')
+        #set($temp = $stateIndependentList.add("ltrend")) 
+    #end
+    #if($stateIndependentQtrend == '1')
+        #set($temp = $stateIndependentList.add("qtrend")) 
+    #end
+#end
+
+proc cas; 
+    session %sysfunc(getlsessref($dataSASLib));
+    action hiddenMarkovModel.hmm / 
+        table={name="$dataSASTable" caslib="%sysfunc(getlcaslib($dataSASLib))" #if($dataset.getWhereClause()!="") where=$CTMUtil.doubleQuoteString($dataset.getWhereClause()) #end}
+        #if($useRandomSeed=='1') seed=$randomSeed #end
+        id={time=#foreach($item in $timeID) $CTMUtil.doubleQuoteString($item.get('value')) #end 
+            #if($crossSectionalId.size()>=1) section=#foreach($item in $crossSectionalId) $CTMUtil.doubleQuoteString($item.get('value')) #end #end}
+        model={#if($dependVariable.size()>0)
+            depvars={#foreach($item in $dependVariable) $CTMUtil.doubleQuoteString($item.get('value'))#if($foreach.count < $dependVariable.size()),#end#end}
+            #end
+            #if($independVariable.size()>0)
+                indepvars={#foreach($item in $independVariable) $CTMUtil.doubleQuoteString($item.get('value'))#if($foreach.count < $independVariable.size()),#end#end}
+            #end
+            type="$modelTypeCombo" #if($nState!='2') nstate=$nState #end 
+            #if($modelTypeCombo == 'ar' && $armean == '1') arMean="adjusted"#end
+            method=#if($radioEstMethod=='maxLikelihood')"ml" #else"map" #end
+            #if($modelTypeCombo=='gaussianmixture' && $nComponent!='1') ncomponent=$nComponent#end 
+            #if($estimateISPV=='1') estispv=true #end #if($intercept=='0') noint=true #end 
+            #if($addSeasonal=='1') nseason=$nSeason #if($centerSeasonal=='1') scenter=true#end #end
+            #if($addTrend=='1') trend=#if($radioTrend=='linearTrend')"linear" #else"quad" #end#end 
+            #if($noCurrentX=='1') nocurrentx=true #end
+            #if($addXLag=='1') xlag=$xLag#end #if($addYLag=='1') ylag=$yLag#end
+            #if($showStateIndependent == '1')
+                stateIndependent={#foreach($item in $stateIndependentList) $CTMUtil.doubleQuoteString($item)#if($foreach.hasNext),#end#end}#end} 
+    #if($radioOptMethod!='activeSet' || $multiStart!='0' || ($maxiter!='128' && $maxiter!=''))
+        optimize={#if($radioOptMethod!='activeSet') algorithm="interiorpoint" #end 
+        #if($multiStart!='0') multistart=1 #end
+        #if($maxiter!='128' && $maxiter!='') maxiter=$maxiter #end}
+    #end
+
+    #if($outputStat=='1') outstat={name="$statDSSASTable" caslib="%sysfunc(getlcaslib($statDSSASLib))" replace=true} #end   
+
+    #if($outputModel=='1') score={outmodel={name="$modelDSSASTable" caslib="%sysfunc(getlcaslib($modelDSSASLib))" replace=true}}#end
+    
+    #if($outputAstore=='1') store={out={caslib="%sysfunc(getlcaslib($outputAstoreName.getLibrary()))", name="$outputAstoreName.get("table")", replace="true"}}#end
+
+    #if($outputEstimate=='1' || $outputCov=='1' || $initParam=='1') 
+        learn={
+        #if($outputEstimate=='1') out={name="$estimateDSSASTable" caslib="%sysfunc(getlcaslib($estimateDSSASLib))" replace=true} #end
+        #if($outputCov=='1') outcov={name="$covDSSASTable" caslib="%sysfunc(getlcaslib($covDSSASLib))" replace=true}#if($outputCovNoEst=='1') outcovNoEst=true#end #end
+        #if($initParam=='1') in={name="$inParamDataSASTable" caslib="%sysfunc(getlcaslib($inParamDataSASLib))"}#end}
+    #end
+    
+    #if($outputForecast=='1') 
+        forecast={
+        out={name="$forecastDSSASTable" caslib="%sysfunc(getlcaslib($forecastDSSASLib))" replace=true} alpha=$alpha
+        #if($forecastPeriods!='' && $forecastPeriods!='1') lead=$forecastPeriods #end #if($forecastOnline=='1') online=true #end
+        #if($forecastOnline=='0' && $forecastHoldback!='' && $forecastHoldback!='0') back=$forecastHoldback #end}
+    #end
+    
+    #if($outputDecode=='1') decode={out={name="$decodeDSSASTable" caslib="%sysfunc(getlcaslib($decodeDSSASLib))" replace=true}}#end
+    
+    #if($outputEvaluate=='1') evaluate={out={name="$evaluateDSSASTable" caslib="%sysfunc(getlcaslib($evaluateDSSASLib))" replace=true}}#end
+    
+    #if($outputFilter=='1') filter={out={name="$filterDSSASTable" caslib="%sysfunc(getlcaslib($filterDSSASLib))" replace=true}}#end
+    
+    #if($outputSmooth=='1') smooth={out={name="$smoothDSSASTable" caslib="%sysfunc(getlcaslib($smoothDSSASLib))" replace=true}}#end
+;
+run;
+quit;
+    
+#end
+]]>
+    </CodeTemplate>
+</Task>
