@@ -1,0 +1,178 @@
+<!-- Additional task code for SAS Global Forum 2020 Paper SAS4376-2020 -->
+<!--                      Author: Brian R. Gaines                      -->
+<!-- Complete code to add the state independent parameter estimation   -->
+<!-- options to your custom Hidden Markov Models task                  -->
+ 
+
+<!-- Options elements -->
+        <Options>
+            ...
+            <Option name="stateIndependentGroup" inputType="string">State independent parameters</Option>
+            <Option name="stateIndependentIspv" inputType="checkbox" defaultValue="0" indent="0">Initial state probability vector</Option>
+            <Option name="stateIndependentTpm" inputType="checkbox" defaultValue="0" indent="0">Transition probabilities</Option>        
+            <Option name="stateIndependentGMGroup" inputType="string" indent="0">Gaussian models</Option>
+            <Option name="stateIndependentSigma" inputType="checkbox" defaultValue="0" indent="0">Covariance</Option>
+            <Option name="stateIndependentMu" inputType="checkbox" defaultValue="0" indent="0">Mean</Option>
+            <Option name="stateIndependentMcp" inputType="checkbox" defaultValue="0" indent="0">Mixture component probabilities</Option>
+            <Option name="stateIndependentRSGroup" inputType="string" indent="0">Regime-switching models</Option>
+            <Option name="stateIndependentAr" inputType="checkbox" defaultValue="0" indent="0">Autoregressive</Option>
+            <Option name="stateIndependentCov" inputType="checkbox" defaultValue="0" indent="0">Covariance of innovations</Option>
+            <Option name="stateIndependentXl" inputType="checkbox" defaultValue="0" indent="0">Exogenous variables</Option>          
+            <Option name="stateIndependentConst" inputType="checkbox" defaultValue="0" indent="0">Intercept</Option>
+            <Option name="stateIndependentLtrend" inputType="checkbox" defaultValue="0" indent="0">Linear trend</Option>
+            <Option name="stateIndependentQtrend" inputType="checkbox" defaultValue="0" indent="0">Quadratic trend</Option>
+            <Option name="stateIndependentSdummy" inputType="checkbox" defaultValue="0" indent="0">Seasonal dummies</Option>
+            ...
+        </Options>
+
+
+<!-- UI elements -->
+    <UI>
+        ...
+                <!-- Add these UI elements within the modelTab Container, below the regressorsGroup Group -->
+                <Group option="stateIndependentGroup" open="false">            
+                    <OptionItem option="stateIndependentIspv"/>
+                    <OptionItem option="stateIndependentTpm"/>
+                    <Group option="stateIndependentGMGroup" open="true">
+                        <OptionItem option="stateIndependentMu"/>
+                        <OptionItem option="stateIndependentSigma"/>                        
+                        <OptionItem option="stateIndependentMcp"/>
+                    </Group>
+                    <Group option="stateIndependentRSGroup" open="true">
+                        <OptionItem option="stateIndependentXl"/>
+                        <OptionItem option="stateIndependentConst"/>
+                        <OptionItem option="stateIndependentAr"/>
+                        <OptionItem option="stateIndependentCov"/>
+                        <OptionItem option="stateIndependentSdummy"/>                        
+                        <OptionItem option="stateIndependentLtrend"/>
+                        <OptionItem option="stateIndependentQtrend"/>
+                    </Group>
+                </Group>
+        ...
+    </UI>
+
+
+
+<!-- Dependency conditions -->
+    <Dependency>
+        ...
+        <!-- Add these Dependency conditions above the existing condition $useRandomSeed=='1' -->
+        <Dependency condition="($estimateISPV == '1')">
+            <Target option="stateIndependentIspv" conditionResult="true" action="show"/>
+            <Target option="stateIndependentIspv" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'gaussian' || $modelTypeCombo == 'gaussianmixture')">
+            <Target option="stateIndependentGMGroup" conditionResult="true" action="show"/>
+            <Target option="stateIndependentGMGroup" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'gaussian' || $modelTypeCombo == 'gaussianmixture')">
+            <Target option="stateIndependentGMGroup" conditionResult="true" action="show"/>
+            <Target option="stateIndependentGMGroup" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'gaussianmixture')">
+            <Target option="stateIndependentMcp" conditionResult="true" action="show"/>
+            <Target option="stateIndependentMcp" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar')">
+            <Target option="stateIndependentRSGroup" conditionResult="true" action="show"/>
+            <Target option="stateIndependentRSGroup" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="($modelTypeCombo == 'ar' &amp;&amp;
+                                $addYLag == '1')">
+            <Target option="stateIndependentAr" conditionResult="true" action="show"/>
+            <Target option="stateIndependentAr" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $intercept == '1')">
+            <Target option="stateIndependentConst" conditionResult="true" action="show"/>
+            <Target option="stateIndependentConst" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $independVariable.size() &gt; 0)">
+            <Target option="stateIndependentXl" conditionResult="true" action="show"/>
+            <Target option="stateIndependentXl" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $intercept == '1' &amp;&amp; $addSeasonal == '1')">
+            <Target option="stateIndependentSdummy" conditionResult="true" action="show"/>
+            <Target option="stateIndependentSdummy" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $addTrend == '1')">
+            <Target option="stateIndependentLtrend" conditionResult="true" action="show"/>
+            <Target option="stateIndependentLtrend" conditionResult="false" action="hide"/>           
+        </Dependency>
+        <Dependency condition="(($modelTypeCombo == 'reg' || $modelTypeCombo == 'ar') &amp;&amp;
+                                $addTrend == '1' &amp;&amp; $radioTrend == 'quadTrend')">
+            <Target option="stateIndependentQtrend" conditionResult="true" action="show"/>
+            <Target option="stateIndependentQtrend" conditionResult="false" action="hide"/>           
+        </Dependency>
+        ...
+    </Dependency>
+
+
+<!-- Code generation -->
+    <CodeTemplate>
+        <![CDATA[
+
+
+## Determine if state independent estimation was requested 
+## This should be placed near the top of the CodeTemplate, following the "Calculate alpha from confidence level" code
+#if($stateIndependentIspv == '1' || $stateIndependentTpm == '1' || $stateIndependentSigma == '1' || $stateIndependentMu == '1' 
+         || $stateIndependentMcp == '1' || $stateIndependentAr == '1' || $stateIndependentCov == '1' || $stateIndependentXl == '1'
+         || $stateIndependentConst == '1' || $stateIndependentLtrend == '1' || $stateIndependentQtrend == '1' || $stateIndependentSdummy == '1')
+    #set($showStateIndependent = '1')
+#end
+
+
+## Organize stateIndepdent options into list
+## This should precede PROC CAS in the CodeTemplate
+#if($showStateIndependent == '1')
+    #set($stateIndependentList = [])
+    #if($stateIndependentIspv == '1')
+        #set($temp = $stateIndependentList.add("ispv")) 
+    #end
+    #if($stateIndependentTpm == '1')
+        #set($temp = $stateIndependentList.add("tpm")) 
+    #end
+    #if($stateIndependentMu == '1')
+        #set($temp = $stateIndependentList.add("mu")) 
+    #end
+    #if($stateIndependentSigma == '1')
+        #set($temp = $stateIndependentList.add("sigma")) 
+    #end
+    #if($stateIndependentMcp == '1')
+        #set($temp = $stateIndependentList.add("mcp")) 
+    #end
+    #if($stateIndependentXl == '1')
+        #set($temp = $stateIndependentList.add("xl")) 
+    #end
+    #if($stateIndependentConst == '1')
+        #set($temp = $stateIndependentList.add("const")) 
+    #end    
+    #if($stateIndependentAr == '1')
+        #set($temp = $stateIndependentList.add("ar")) 
+    #end
+    #if($stateIndependentCov == '1')
+        #set($temp = $stateIndependentList.add("cov")) 
+    #end
+    #if($stateIndependentSdummy == '1')
+        #set($temp = $stateIndependentList.add("sdummy")) 
+    #end
+    #if($stateIndependentLtrend == '1')
+        #set($temp = $stateIndependentList.add("ltrend")) 
+    #end
+    #if($stateIndependentQtrend == '1')
+        #set($temp = $stateIndependentList.add("qtrend")) 
+    #end
+#end
+
+
+            ## This should follow the code generation for the xlag and ylag options
+            ## Note that the closing curly brace } is after the ylag code generation should be moved to after this code as shown here
+            #if($showStateIndependent == '1')
+                stateIndependent={#foreach($item in $stateIndependentList) $CTMUtil.doubleQuoteString($item)#if($foreach.hasNext),#end#end}#end}  
+
+
+]]>
+    </CodeTemplate>
