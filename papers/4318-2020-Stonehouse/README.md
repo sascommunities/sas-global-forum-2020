@@ -1,7 +1,7 @@
 # Risk Modeling on the Fast-Track: Pythonistas (and others) Harness the Power of the SAS Risk Engine
 
 This GIT repository includes the sample code to go along with the SGF Paper for this topic.
-Find the full paper online with the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).
+Find the "Risk Modeling on the Fast Track" paper online in the [SAS Global Forum proceedings](https://www.sas.com/en_us/events/sas-global-forum/program/proceedings.html).
 
 ## About riskpy
 
@@ -24,8 +24,8 @@ The riskpy package is under development.  To request a demo and get more informa
 
 ## Examples
 
-In the Examples directory, there is a Python module and Jupyter notebook that correspond to the Market Risk and Credit Risk examples in the paper.
+In the Examples directory, there are Python modules and Jupyter notebooks that correspond to the Market Risk and Credit Risk examples in the paper.
 
 ## Support contact(s)
 
-Contact the author with questions, feedback, and lavish praise.
+Contact the authors with questions and feedback. 
