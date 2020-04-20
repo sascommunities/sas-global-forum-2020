@@ -6,6 +6,10 @@ With the introduction of SAS® Viya®, the concept of SAS Stored Processes was i
 
 The agenda for this session includes the following topics: what a SAS Viya job is; how to create and register a job in SAS® Studio; how to associate a form with a job for parameter selection; incorporating HTML into your job; and creating a full-blown web application by using jobs.
 
+The full paper is at the link below.
+
+https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2020/4185-2020.pdf
+
 ## Additional information
 
 The code examples provided can be run in your enviroment with minimal modifications. Define each program as a Job in SAS Studio and specify the parameters as noted in the header for each. 
