@@ -3,7 +3,7 @@
 /********************************************************************************************/
 /* We can combine both of our previous techniques to create output that includes both 		*/	
 /* SAS PROC output and custom HTML. This requires us to toggle between output types 		*/	
-/* programmatically. In the job definition’s parameters, specify _output_type = html in 	*/
+/* programmatically. In the job definition’s parameters, specify _output_type = HTML in 	*/
 /* order to render the HTML and capture SAS PROC code that creates output within 			*/
 /* ODS HTML tags. SAS procedure output has to be explicitly captured between ODS 			*/
 /* HTML tags in order to render. This approach allows us to freely switch back and forth 	*/
@@ -30,7 +30,7 @@ data _null_;
 ;;;;
 run;
 
-ods html file=_webout;
+ods html file=_webout; /* This line opens the Output Delivery System to allow SAS Proc output streaming and close HTML */
 
 options nodate nonumber;
 
@@ -38,7 +38,7 @@ proc print data=sashelp.cars (obs=10);
 run;
 
 
-ods html close;
+ods html close; /* This line closes the Output Delivery System to end SAS Proc output streaming and resume HTML */
 
 data _null_; 
 	format infile $char256.; 

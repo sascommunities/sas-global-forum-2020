@@ -3,10 +3,11 @@
 /********************************************************************************/
 /* This code accepts the loan term parameters from the prior screen, resolves	*/
 /* them as macro variables and runs some code to determine terms of the loan	*/
-/* then displays this information with PROC PRINTS and a GPLOT.					*/	
+/* then displays this information with PROC PRINTS and a GPLOT. Since all 		*/
+/* output is SAS Proc, set _Output_Type = ODS_HTML5.							*/	
 /********************************************************************************/
 
-%let font_value = Calibri;
+%let font_value = Calibri; /* Set global Font */
 
 options nodate nonumber;
 
@@ -19,52 +20,48 @@ ods escapechar='^';
 %let years = &LoanYears;
 %let interest = &InterestRate;
 
-data work.emi_form;
-P=&loan;
-R=&interest/100;
-N=12;
-Years=&years;
-date1=today();
+data work.emi_form; /* Code to generate montly payment */
+	P=&loan;
+	R=&interest/100;
+	N=12;
+	Years=&years;
+	date1=today();
+	Balance=P;
+	ERate=R/N;
+	NPER=N*YEARS;
+	I_Rate=&interest;
 
-Balance=P;
-ERate=R/N;
-NPER=N*YEARS;
-I_Rate=&interest;
-DO i=1 to NPER;
-    PMT= (ERATE + ERATE/(((1+ERATE)**NPER) -1))*P;
-    Balance= BALANCe*(1+ERATE) - PMT;
-    Interest=BALANCE*ERATE;
-    Principal=PMT-INTEREST;
-   	 LoanRequested = PUT(p, DOllAR21.2);
-     Payment = PUT(PMT, DOllAR21.2);
-     	 InterestRate = PUT(r,percent6.2);
-NextMonth = intnx('month',date1,i);
-format NextMonth monyy7.;
-    OUTPUT;
-label i = "Payment Number";
-label Balance = "Outstanding Balance";
-label NextMonth = "Date of Payment";
+	DO i=1 to NPER;
+		PMT= (ERATE + ERATE/(((1+ERATE)**NPER) -1))*P;
+		Balance= BALANCe*(1+ERATE) - PMT;
+		Interest=BALANCE*ERATE;
+		Principal=PMT-INTEREST;
+		LoanRequested = PUT(p, DOllAR21.2);
+		Payment = PUT(PMT, DOllAR21.2);
+		InterestRate = PUT(r,percent6.2);
+		NextMonth = intnx('month',date1,i);
+		format NextMonth monyy7.;
+		OUTPUT;
+		label i = "Payment Number";
+		label Balance = "Outstanding Balance";
+		label NextMonth = "Date of Payment";
+		Format PMT BALANCE INTEREST PRINCIPAL DOllAR21.2;
+	END;
 
-END;
-
-
-Format PMT BALANCE INTEREST PRINCIPAL DOllAR21.2;
 RUN;
 
 
 proc summary data=emi_form;
-var interest PMT;
-output out=totals sum=;
+	var interest PMT;
+	output out=totals sum=;
 run;
 
 data totals;
 	set totals;
-	
-	     interest2 = PUT(interest, DOllAR21.2);
-	          PMT2 = PUT(PMT, DOllAR21.2);
-
-label PMT = "Monthly Payment";
-label _FREQ_ = "Months";
+	interest2 = PUT(interest, DOllAR21.2);
+	PMT2 = PUT(PMT, DOllAR21.2);
+	label PMT = "Monthly Payment";
+	label _FREQ_ = "Months";
 run; 
  
 
@@ -97,24 +94,21 @@ run;
 
 %global InterestPaid TotalAmountPaid ;
 %macro GetMacros2;
-%let dsid=%sysfunc(open(work.totals,i)); /* first, open the table */
-%if (&dsid = 0) %then /* If it doesn't open, abort */
-  %put %sysfunc(sysmsg());
-%else %do; /* Pull Date */
-   %let num_obs=%sysfunc(attrn(&dsid,nlobs)); /* Get number of obs */
-   %put work.nuisance_complaints Table Has &num_obs Obervations;
-   %do i=1 %to &num_obs; /* Loop One By One Thru Code to Pull Each Obs */ 
-      %let rc=%sysfunc(fetchobs(&dsid,&i)); /* Open the Obs requested at this time */
-     
-%let InterestPaid=%sysfunc(getvarc(&dsid,%sysfunc(varnum(&dsid,INTEREST2)))); /* Read each var into memory as macros */
-%let TotalAmountPaid=%sysfunc(getvarc(&dsid,%sysfunc(varnum(&dsid,PMT2)))); /* Read each var into memory as macros */
+	%let dsid=%sysfunc(open(work.totals,i)); /* first, open the table */
+	%if (&dsid = 0) %then /* If it doesn't open, abort */
+	%put %sysfunc(sysmsg());
+	%else %do; /* Pull Date */
+	%let num_obs=%sysfunc(attrn(&dsid,nlobs)); /* Get number of obs */
+	%put work.nuisance_complaints Table Has &num_obs Obervations;
+	%do i=1 %to &num_obs; /* Loop One By One Thru Code to Pull Each Obs */ 
+	%let rc=%sysfunc(fetchobs(&dsid,&i)); /* Open the Obs requested at this time */
 
-
-
-%end;
-%put Data for &CASENUM;
-%end; /* Pull Date */
-%let rc=%sysfunc(close(&dsid));
+	%let InterestPaid=%sysfunc(getvarc(&dsid,%sysfunc(varnum(&dsid,INTEREST2)))); /* Read each var into memory as macros */
+	%let TotalAmountPaid=%sysfunc(getvarc(&dsid,%sysfunc(varnum(&dsid,PMT2)))); /* Read each var into memory as macros */
+	%end;
+	%put Data for &CASENUM;
+	%end; /* Pull Date */
+	%let rc=%sysfunc(close(&dsid));
 %mend GetMacros2; /* close macro */
 %GetMacros2; /* execute macro */
 
@@ -123,22 +117,26 @@ options nodate nonumber;
 title "Your Loan Terms";
 
 data loanterms;
-LoanAmt = "&LoanAmt";
-InterestRate = "&InterestRate";
-NumPayments = "&NumPayments";
-InterestPaid = "&InterestPaid";
-TotalAmountPaid= "&TotalAmountPaid";
-MonthlyPayment = "&MonthlyPayment";
-label LoanAmt = "Sticker Price";
-label InterestRate = "Interest Rate"; 
-label NumPayments = "Number Of Payments";
-label InterestPaid = "Interest On Loan";
-label TotalAmountPaid = "Total Amount Owed";
-label MonthlyPayment = "Monthly Payment";
+	LoanAmt = "&LoanAmt";
+	InterestRate = "&InterestRate";
+	NumPayments = "&NumPayments";
+	InterestPaid = "&InterestPaid";
+	TotalAmountPaid= "&TotalAmountPaid";
+	MonthlyPayment = "&MonthlyPayment";
+	label LoanAmt = "Sticker Price";
+	label InterestRate = "Interest Rate"; 
+	label NumPayments = "Number Of Payments";
+	label InterestPaid = "Interest On Loan";
+	label TotalAmountPaid = "Total Amount Owed";
+	label MonthlyPayment = "Monthly Payment";
 run;
 
+/* This line opens the Output Delivery System to allow SAS Proc output streaming and close HTML */
+
+ods html file=_webout;
+
 proc print data=work.loanterms label noobs;
-var MonthlyPayment NumPayments InterestRate LoanAmt InterestPaid TotalAmountPaid;
+	var MonthlyPayment NumPayments InterestRate LoanAmt InterestPaid TotalAmountPaid;
 run;
 
 title "Monthly Breakdown";
@@ -154,7 +152,6 @@ run;
 
 ods graphics / reset;
 
+/* This line closes the Output Delivery System to end SAS Proc output streaming and resume HTML */
 
-proc  print data =work.emi_form label noobs;
-var i NextMonth Balance Principal Interest  ;
-run;
+ods html close;

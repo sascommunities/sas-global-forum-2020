@@ -6,7 +6,7 @@
 /* creating streaming Stored Processes, you’ll recall the need to wrap your 	*/
 /* HTML in PUT statements and single quotation marks. This is easily 			*/
 /* illustrated to display output for the classic Hello World message. Unlike 	*/
-/* the SAS PROC example, our output requires the parameter _output_type = html 	*/
+/* the SAS PROC example, our output requires the parameter _output_type = HTML 	*/
 /* in order to properly stream the results										*/
 /********************************************************************************/
 
