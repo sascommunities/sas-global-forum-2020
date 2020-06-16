@@ -20,7 +20,7 @@
 /* Setup */
 /*********/
 
-/*** Macro variabe setup ***/
+/*** Macro variable setup ***/
 /* Specify the caslib and table name for your existing image data table */
 %let imageCaslibName = casuser;
 %let imageTableName = images;
@@ -160,7 +160,7 @@ quit;
 proc cas;
     action deepLearn.dlTrain / 
                 table={caslib="&imageTrainingCaslibName", 
-					   name="&imageTrainingTableName"} 
+                       name="&imageTrainingTableName"} 
                 model='Simple_CNN' 
                 modelWeights={name='Simple_CNN_weights', 
                               replace=1}
@@ -222,19 +222,19 @@ proc cas;
 	/* Load table containing ImageNet labels */
 	/* Not used in this example but here for demonstration */
 	action table.loadTable / 
-				caslib="&modelCaslibName"
-				path='newlabel.sas7bdat'
+                caslib="&modelCaslibName"
+                path='newlabel.sas7bdat'
                 casout={caslib="&modelCaslibName", name='imagenetlabels', replace=1}
                 importoptions={filetype='basesas'};
 
-	/* Import pre-trained weights */
+	/* Import pretrained weights */
     action deepLearn.dlImportModelWeights /                        
                 modelTable={name="ResNet50"} 
                 modelWeights={name='ResNet50_weights', replace=1}
                 formatType="caffe"
                 weightFileCaslib="&modelCaslibName"
                 weightFilePath="ResNet-50-model.caffemodel.h5"
-				labelTable={caslib="&modelCaslibName", name='imagenetlabels', vars={'levid','levname'}};
+                labelTable={caslib="&modelCaslibName", name='imagenetlabels', vars={'levid','levname'}};
     run;
 quit;
 
@@ -257,7 +257,7 @@ quit;
 /*** Train model with augmented training data, initialize with pretrained ResNet50 weights ***/
 proc cas;
     action deepLearn.dlTrain / 
-				table={caslib="&imageTrainingCaslibName", name="&imageTrainingTableName"}
+                table={caslib="&imageTrainingCaslibName", name="&imageTrainingTableName"}
                 model={name="ResNet50"} 
                 initWeights={name='ResNet50_weights'}
                 modelWeights={name='ResNet50_weights_giraffe', replace=1}
