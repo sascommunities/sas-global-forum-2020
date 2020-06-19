@@ -1,5 +1,9 @@
 # Tutorial: Using SAS Macro Variable Lists to Create Dynamic Data-Driven Programs
 
+![Ari still](https://img.youtube.com/vi/fFfxPqNzNJc/0.jpg)
+
+These files support [Josh Horstman.'s video tutorial](https://www.youtube.com/watch?v=fFfxPqNzNJc) about using SAS macro variable lists.  File organization:
+
 * [exercises](./exercises) folder: 8 exercise files, ex01.sas through ex08.sas
 * [solutions](./solutions) folder: 8 solution files, ex01_solution.sas through ex08_solution.sas
 
@@ -20,6 +24,7 @@ The MSRP for an Acura MDX is 36945.
 The weight of an Acura MDX is 4451.
 
 ### EXERCISE 3
+
 ```
   Number of Students: 19
   Student List: Alfred Alice Barbara Carol Henry James Jane Janet Jeffrey John Joyce Judy Louise Mary
