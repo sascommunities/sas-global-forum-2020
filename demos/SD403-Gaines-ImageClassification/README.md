@@ -57,7 +57,7 @@ The following resources provide further information about deep learning from SAS
 * [How to Do Deep Learning with SAS](https://www.sas.com/en_us/whitepapers/deep-learning-with-sas-109610.html)
 * [SAS DLPy examples](https://github.com/sassoftware/python-dlpy/tree/master/examples)
 * [SAS Studio Task Reference Guide](https://go.documentation.sas.com/?activeCdc=webeditorcdc&cdcId=sasstudiocdc&cdcVersion=5.2&docsetId=webeditorref&docsetTarget=p0wc36sf6dy5zyn112v83e5rl5y1.htm&locale=en)
-* [SAS Visual Data Mining and Machine Learning 8.5: Deep Learning Programming Guide](https://go.documentation.sas.com/?docsetId=casdlpg&docsetTarget=n0ep2b9u60m7uzn173wx9v9t7dxp.htm&docsetVersion=8.5&locale=en)
+* [SAS Visual Data Mining and Machine Learning: Deep Learning Programming Guide](https://go.documentation.sas.com/?docsetId=casdlpg&docsetTarget=n0ep2b9u60m7uzn173wx9v9t7dxp.htm&docsetVersion=8.5&locale=en)
 
 
 The following is a list of deep learning papers and presentations from SAS Global Forum 2020:
