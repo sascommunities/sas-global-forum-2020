@@ -1,7 +1,7 @@
 # Image Classification Using SAS&reg;
 Learn how to develop SAS&reg; code for training a deep learning model for image classification. The demo shows how the new Load Images task (in SAS&reg; Viya&reg; 3.5 / SAS&reg; Studio 5.2) can jump-start the code development for training an image classifier using SAS code.  The example covers the end-to-end process, from loading your images to creating an analytic model store that you can use to put the model into production.
 
-
+A [video](https://www.youtube.com/watch?v=_9ywlGrG5fU&list=PLVV6eZFA22QyaxYBynL-1Btk-nIMKmOqY) of this super demo is available on YouTube, and a [companion article](https://communities.sas.com/t5/SAS-Communities-Library/How-to-Develop-SAS-Code-to-Train-a-Deep-Learning-Model-for-Image/ta-p/663322) is available on SAS Communities.
 
 ## Prerequisites
 To use the following materials, you need access to a SAS&reg; Cloud Analytic Services (CAS) server that has a license for [SAS&reg; Visual Data Mining & Machine Learning](https://www.sas.com/en_us/software/visual-data-mining-machine-learning.html).  For more information on free software trials of SAS Viya, visit the [SAS Trials website](https://www.sas.com/en_us/trials.html).
@@ -46,7 +46,6 @@ After you have access to SAS Visual Data Mining & Machine Learning, you need to 
 ## Additional information
 The inspiration for this demo came from a [SAS DLPy image classification example](https://github.com/sassoftware/python-dlpy/blob/master/examples/quick_start/A_Comprehensive_Image_Classification_Example.ipynb).  [DLPy](https://github.com/sassoftware/python-dlpy) is a high-level Python library for the [SAS Deep Learning](https://go.documentation.sas.com/?docsetId=casdlpg&docsetTarget=titlepage.htm&docsetVersion=8.5&locale=en) features.  
 
-After my super demo is recorded and uploaded to YouTube, I will add a link to the video.  
 
 ## Additional resources
 The following resources provide further information about deep learning from SAS:  
