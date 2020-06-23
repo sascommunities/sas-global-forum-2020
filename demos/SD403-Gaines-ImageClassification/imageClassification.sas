@@ -50,7 +50,8 @@ caslib _all_ assign;
 /**************************************************************/
 
 /* Create temporary caslib and libref for loading images */
-caslib loadImagesTempCaslib datasource=(srctype="path") path="&imagePath" subdirs notactive;
+caslib loadImagesTempCaslib datasource=(srctype="path") path="&imagePath" 
+    subdirs notactive;
 libname _loadtmp cas caslib="loadImagesTempCaslib";
 libname _tmpcas_ cas caslib="CASUSER";
 
@@ -114,28 +115,40 @@ libname _tmpcas_;
 /*** Explore images ***/
 proc cas;
     /* Summarize images */
-    action image.summarizeImages / table={caslib="&imageCaslibName", name="&imageTableName"};
+    action image.summarizeImages / 
+                table={caslib="&imageCaslibName", name="&imageTableName"};
 
     /* Label frequencies */
-    action simple.freq / table={caslib="&imageCaslibName", name="&imageTableName", vars="_label_"};   
+    action simple.freq / 
+                table={caslib="&imageCaslibName", name="&imageTableName", 
+                       vars="_label_"};   
     run;
 quit;
 
 /*** Process images ***/
 proc cas;
     /* Resize images to 224x224 */
-    action image.processImages / table={caslib="&imageCaslibName", name="&imageTableName"}
-                imageFunctions={{functionOptions={functionType='RESIZE', height=224, width=224}}}
-                casOut={caslib="&imageCaslibName", name="&imageTableName", replace=TRUE};
+    action image.processImages / 
+                table={caslib="&imageCaslibName", name="&imageTableName"}
+                imageFunctions={{functionOptions={functionType='RESIZE', 
+                                                  height=224, width=224}}}
+                casOut={caslib="&imageCaslibName", name="&imageTableName", 
+                        replace=TRUE};
 
     /* Shuffle images */
-    action table.shuffle / table={caslib="&imageCaslibName", name="&imageTableName"}
-                casOut={caslib="&imageCaslibName", name="&imageTableName", replace=TRUE};
+    action table.shuffle / 
+                table={caslib="&imageCaslibName", name="&imageTableName"}
+                casOut={caslib="&imageCaslibName", name="&imageTableName", 
+                        replace=TRUE};
 
     /* Partition images */
-    action sampling.srs / table={caslib="&imageCaslibName", name="&imageTableName"}, sampPct=50, 
-                partInd=TRUE output={casOut={caslib="&imageCaslibName", name="&imageTableName", replace=TRUE}, 
-                copyVars="ALL"};
+    action sampling.srs / 
+                table={caslib="&imageCaslibName", name="&imageTableName"}, 
+                sampPct=50, 
+                partInd=TRUE 
+                output={casOut={caslib="&imageCaslibName", 
+                                name="&imageTableName", replace=TRUE}, 
+                        copyVars="ALL"};
     run;
 quit;
 
@@ -143,20 +156,23 @@ quit;
 proc cas;
     /* Create cropped images */
     action image.augmentImages / 
-                table={caslib="&imageCaslibName", name="&imageTableName", where="_partind_=1"},
-                cropList={{
-                    x=0, 
-                    y=0, 
-                    width=200, 
-                    height=200, 
-                    stepSize=24,
-                    outputWidth=224, 
-                    outputHeight=224
-                    sweepImage=TRUE}},
-                casOut={caslib="&imageTrainingCaslibName", name="&imageTrainingTableName", replace=TRUE};
+                table={caslib="&imageCaslibName", name="&imageTableName", 
+                       where="_partind_=1"},
+                cropList={{x=0, 
+                           y=0, 
+                           width=200, 
+                           height=200, 
+                           stepSize=24,
+                           outputWidth=224, 
+                           outputHeight=224
+                           sweepImage=TRUE}},
+                casOut={caslib="&imageTrainingCaslibName", 
+                        name="&imageTrainingTableName", replace=TRUE};
 
     /* Label frequencies */
-    action simple.freq / table={caslib="&imageTrainingCaslibName", name="&imageTrainingTableName", vars="_label_"};   
+    action simple.freq / 
+                table={caslib="&imageTrainingCaslibName", 
+                       name="&imageTrainingTableName", vars="_label_"};   
     run;
 quit;
 
@@ -170,8 +186,10 @@ quit;
 proc cas;
     /* Use the channel means as offsets */
     action image.summarizeImages result=summary / 
-                table={caslib="&imageTrainingCaslibName", name="&imageTrainingTableName"};
-    offsetsTraining=summary.Summary[1, {"mean1stChannel","mean2ndChannel", "mean3rdChannel"}];
+                table={caslib="&imageTrainingCaslibName", 
+                       name="&imageTrainingTableName"};
+    offsetsTraining=summary.Summary[1, {"mean1stChannel","mean2ndChannel", 
+                                        "mean3rdChannel"}];
 
     /* Create empty deep learning model */
     action deepLearn.buildModel / 
@@ -180,12 +198,14 @@ proc cas;
     action deepLearn.addLayer / 
                 model="Simple_CNN"
                 name="data"
-                layer={type='input', nchannels=3, width=224, height=224, offsets=offsetsTraining};
+                layer={type='input', nchannels=3, width=224, height=224, 
+                       offsets=offsetsTraining};
     /* Add convolutional layer */
     action deepLearn.addLayer / 
                 model="Simple_CNN"
                 name="conv1"
-                layer={type='convo', act="relu", nFilters=8, width=7, height=7, stride=1}
+                layer={type='convo', act="relu", nFilters=8, width=7, height=7, 
+                       stride=1}
                 srcLayers={'data'};
     /* Add pooling layer */
     action deepLearn.addLayer / 
@@ -197,7 +217,8 @@ proc cas;
     action deepLearn.addLayer / 
                 model="Simple_CNN" 
                 name="conv2"
-                layer={type='convo', act="relu", nFilters=8, width=7, height=7, stride=1} 
+                layer={type='convo', act="relu", nFilters=8, width=7, height=7, 
+                       stride=1} 
                 srcLayers={'pool1'};
     /* Add pooling layer */
     action deepLearn.addLayer / 
@@ -209,7 +230,8 @@ proc cas;
     action deepLearn.addLayer / 
                 model="Simple_CNN"
                 name="fc1"
-                layer={type='fc', n=16, act='relu', init='xavier', includeBias='true'}
+                layer={type='fc', n=16, act='relu', init='xavier', 
+                       includeBias='true'}
                 srcLayers={'pool2'};
     /* Add output layer */
     action deepLearn.addLayer / 
@@ -242,10 +264,12 @@ quit;
 /*** Score validation set with trained model ***/
 proc cas;
     action deepLearn.dlScore / 
-                table={caslib="&imageCaslibName", name="&imageTableName", where="_partind_=0"} 
+                table={caslib="&imageCaslibName", name="&imageTableName", 
+                       where="_partind_=0"} 
                 model='Simple_CNN' 
                 initWeights={name='Simple_CNN_weights'}
-                casout={caslib="&imageTrainingCaslibName", name='imagesScoredSimpleCNN', replace=1}
+                casout={caslib="&imageTrainingCaslibName", 
+                        name='imagesScoredSimpleCNN', replace=1}
                 copyVars={'_label_', '_id_'};
     run;
 quit;
@@ -255,7 +279,8 @@ proc cas;
    action simple.crossTab /
                 row="_label_",
                 col="_DL_PredName_",
-                table={caslib="&imageTrainingCaslibName", name='imagesScoredSimpleCNN'};
+                table={caslib="&imageTrainingCaslibName", 
+                       name='imagesScoredSimpleCNN'};
     run;
 quit;
 
@@ -267,7 +292,8 @@ quit;
 
 /*** Setup ***/
 /* Create caslib with model files */
-caslib &modelCaslibName datasource=(srctype="path") path="&modelPath" subdirs notactive;
+caslib &modelCaslibName datasource=(srctype="path") path="&modelPath" 
+    subdirs notactive;
 
 /*** Build model architecture (using .sas file) ***/
 proc cas; 
@@ -289,7 +315,8 @@ proc cas;
 	action table.loadTable / 
                 caslib="&modelCaslibName"
                 path='newlabel.sas7bdat'
-                casout={caslib="&modelCaslibName", name='imagenetlabels', replace=1}
+                casout={caslib="&modelCaslibName", name='imagenetlabels', 
+                        replace=1}
                 importoptions={filetype='basesas'};
 
 	/* Import pretrained weights */
@@ -299,7 +326,8 @@ proc cas;
                 formatType="caffe"
                 weightFileCaslib="&modelCaslibName"
                 weightFilePath="ResNet-50-model.caffemodel.h5"
-                labelTable={caslib="&modelCaslibName", name='imagenetlabels', vars={'levid','levname'}};
+                labelTable={caslib="&modelCaslibName", name='imagenetlabels', 
+                            vars={'levid','levname'}};
     run;
 quit;
 
@@ -322,7 +350,8 @@ quit;
 /*** Train model with augmented training data, initialize with pretrained ResNet50 weights ***/
 proc cas;
     action deepLearn.dlTrain / 
-                table={caslib="&imageTrainingCaslibName", name="&imageTrainingTableName"}
+                table={caslib="&imageTrainingCaslibName", 
+                       name="&imageTrainingTableName"}
                 model={name="ResNet50"} 
                 initWeights={name='ResNet50_weights'}
                 modelWeights={name='ResNet50_weights_giraffe', replace=1}
@@ -339,10 +368,12 @@ quit;
 /*** Score validation set with trained model ***/
 proc cas;
     action deepLearn.dlScore / 
-                table={caslib="&imageCaslibName", name="&imageTableName", where="_partind_=0"} 
+                table={caslib="&imageCaslibName", name="&imageTableName", 
+                       where="_partind_=0"} 
                 model={name="ResNet50"} 
                 initWeights={name='ResNet50_weights_giraffe'}
-                casout={caslib="&imageTrainingCaslibName", name='imagesScoredResNet50', replace=1}
+                casout={caslib="&imageTrainingCaslibName", 
+                        name='imagesScoredResNet50', replace=1}
                 copyVars={'_label_', '_id_'};
     run;
 quit;
@@ -350,7 +381,8 @@ quit;
 /*** Create confusion matrix to assess performance ***/
 proc cas;
     action simple.crossTab /
-                table={caslib="&imageTrainingCaslibName", name='imagesScoredResNet50'},
+                table={caslib="&imageTrainingCaslibName", 
+                       name='imagesScoredResNet50'},
                 row="_label_",
                 col="_DL_PredName_";
     run;
