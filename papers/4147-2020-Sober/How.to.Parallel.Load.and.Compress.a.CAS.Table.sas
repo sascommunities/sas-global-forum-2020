@@ -22,7 +22,7 @@ run;
 
   index /
     table={caslib="sas7bdat" name="cars.sas7bdat" singlepass=true}
-    casout={caslib="sas7bdat" name="cars" compress=true replication=1} ; 
+    casout={caslib="sas7bdat" name="cars" blockSize=536870912 compress=true replication=0}; 
   run;
   print _status ; 
   run;
