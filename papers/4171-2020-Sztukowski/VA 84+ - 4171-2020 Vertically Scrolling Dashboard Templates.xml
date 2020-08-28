@@ -127,7 +127,7 @@
         </Text>
         <Text name="ve16" label="Text 2" selectionDisabled="true" applyDynamicBrushes="no">
             <P class="paragraph15"><Span class="span1">Compatibility and Recommended Settings</Span></P>
-            <P class="paragraph16"><Span> </Span></P>
+            <P class="paragraph16"><Span> </Span></P>
             <P><Span class="span2">Min. Resolution</Span><Span>: 1366x768</Span></P>
             <P><Span class="span3">Phone Friendly</Span><Span>: Yes</Span></P>
             <P><Span class="span4">Tablet Friendly</Span><Span>: Yes</Span></P>
@@ -142,7 +142,7 @@
             <ComboBox/>
         </Prompt>
         <Text name="ve31" label="Text 1 (1)" selectionDisabled="true" applyDynamicBrushes="no">
-            <P class="paragraph18"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
+            <P class="paragraph18"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
         </Text>
         <Text name="ve43" label="Text 3" selectionDisabled="true" applyDynamicBrushes="no">
             <P><Span>Buffer boxes, found directly below this text, are placed under section headers to help give more space to objects below. A buffer box is created by adding a single character to a default text box and changing its color to the background color.</Span></P>
@@ -382,7 +382,7 @@
                 <Property key="specifyHeightSelected">true</Property>
             </EditorProperties>
             <P class="paragraph24"><Span class="span6">Compatibility and Recommended Settings</Span></P>
-            <P><Span> </Span></P>
+            <P><Span> </Span></P>
             <P><Span class="span7">Min. Resolution</Span><Span>: 1920x1080</Span></P>
             <P><Span class="span8">Phone Friendly</Span><Span>: No</Span></P>
             <P><Span class="span9">Tablet Friendly</Span><Span>: Test on your device first</Span></P>
@@ -394,7 +394,7 @@
             <P><Span>"Shrink width if necessary" checked</Span></P>
         </Text>
         <Text name="ve114" label="Text 8" selectionDisabled="true" applyDynamicBrushes="no">
-            <P class="paragraph25"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
+            <P class="paragraph25"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
             <P class="paragraph26"><Span>This header is inside a Standard Container with 16 padding.</Span></P>
         </Text>
         <VisualContainer name="ve125" label="Container 4" selectionDisabled="true">
@@ -434,14 +434,14 @@
                 <Property key="specifyWidthSelected">true</Property>
             </EditorProperties>
             <P class="paragraph11"><Span class="span21">Introduction</Span></P>
-            <P><Span> </Span></P>
-            <P><Span>The Journal template adds buffer space to the left-and-right hand side of the screen. A text box with a white character is set to a 10% width on the left side of the screen. All other objects are set to a width of 80%, giving 10% white space to the right side of the screen. The text box on the left causes all graphs to shrink. As a result, object height must be manually set, and Shrink height if necessary must be unchecked.</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>The Journal template adds buffer space to the left-and-right hand side of the screen. A text box with a white character is set to a 10% width on the left side of the screen. All other objects are set to a width of 80%, giving 10% white space to the right side of the screen. The text box on the left causes all graphs to shrink. As a result, object height must be manually set, and Shrink height if necessary must be unchecked.</Span></P>
         </Text>
         <Text name="ve189" label="Text 8 (1)" selectionDisabled="true" applyDynamicBrushes="no">
             <EditorProperties>
                 <Property key="specifyWidthSelected">true</Property>
             </EditorProperties>
-            <P class="paragraph10"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
+            <P class="paragraph10"><Span>Section Header: Color = B0B7C2. Transparency = 75%. </Span></P>
         </Text>
         <Graph graphType="bar" supplementalVisuals="ve196" resultDefinitions="dd193" name="ve197" data="dd194" label="Bar Chart 2 (1)" applyDynamicBrushes="yes">
             <EditorProperties>
@@ -791,7 +791,7 @@
                 <Property key="specifyHeightSelected">true</Property>
             </EditorProperties>
             <P><Span>The Static Title template places a header at the top of the report that does not move. This is helpful for creating dynamic text that indicates which filters are selected, such as a location, product, or other single-selection filter.</Span></P>
-            <P><Span> </Span></P>
+            <P><Span> </Span></P>
             <P><Span>This object and all other objects are enclosed in a standard scrolling container.</Span></P>
         </Text>
         <Prompt ref="pr352" name="ve348" label="Drop-Down List 2" selectionDisabled="true" applyDynamicBrushes="promptsOnly">
@@ -816,7 +816,7 @@
                 <Property key="specifyWidthSelected">true</Property>
             </EditorProperties>
             <P class="paragraph12"><Span class="span14">Compatibility and Recommended Settings</Span></P>
-            <P><Span> </Span></P>
+            <P><Span> </Span></P>
             <P><Span class="span15">Min. Resolution</Span><Span>: 1920x1080</Span></P>
             <P><Span class="span16">Phone Friendly</Span><Span>: No</Span></P>
             <P><Span class="span17">Tablet Friendly</Span><Span>: Test on your device first</Span></P>
@@ -841,13 +841,13 @@
         </VisualContainer>
         <Text name="ve452" label="Text 19" selectionDisabled="true" applyDynamicBrushes="no">
             <P class="paragraph17"><Span class="span24">Introduction</Span></P>
-            <P><Span> </Span></P>
-            <P><Span>The Simple Template uses default settings for all objects. Simply drag and drop new objects above, below, and next to each other to create a vertically scrolling dashboard. The default settings will help ensure that the dashboard maintains high compatibility across multiple devices and screen resolutions.</Span></P>
-            <P><Span> </Span></P>
+            <P><Span> </Span></P>
+            <P><Span>The Simple Template uses default settings for all objects. Simply drag and drop new objects above, below, and next to each other to create a vertically scrolling dashboard. The default settings will help ensure that the dashboard maintains high compatibility across multiple devices and screen resolutions.</Span></P>
+            <P><Span> </Span></P>
             <P><Span>Widths and heights can be adjusted as needed. To increase scrolling space for desktop users, decrease the width of all objects by 2%.</Span></P>
         </Text>
         <Text name="ve458" label="Text 20" selectionDisabled="true" applyDynamicBrushes="no">
-            <P class="paragraph19"><Span class="span30"> For more information, see </Span></P>
+            <P class="paragraph19"><Span class="span30"> For more information, see </Span></P>
             <P class="paragraph20"><Span>SAS Global Forum paper 4171-2020: Make Beautiful Vertically Scrolling Dashboards in SAS Visual Analytics.</Span></P>
         </Text>
         <VisualContainer name="ve464" label="Layout Container 9" selectionDisabled="true">
@@ -860,8 +860,8 @@
                 <Property key="specifyWidthSelected">true</Property>
             </EditorProperties>
             <P class="paragraph21"><Span class="span25">Introduction</Span></P>
-            <P><Span> </Span></P>
-            <P><Span>The Side Filter template capitalizes on horizontal screen space, moving page controls from the top of the page to the side using a scrolling container with a width of 20%. The container to the left forces all objects to shrink. As a result, object height must be manually set, and Shrink height if necessary must be unchecked.</Span></P>
+            <P><Span> </Span></P>
+            <P><Span>The Side Filter template capitalizes on horizontal screen space, moving page controls from the top of the page to the side using a scrolling container with a width of 20%. The container to the left forces all objects to shrink. As a result, object height must be manually set, and Shrink height if necessary must be unchecked.</Span></P>
         </Text>
         <Text name="ve471" label="Text 22" selectionDisabled="true" applyDynamicBrushes="no">
             <EditorProperties>
