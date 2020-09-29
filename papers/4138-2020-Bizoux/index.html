@@ -15,15 +15,12 @@
 
 <body class="container">
     <hr>
-    <div id="question">
-        <div class="row">
+    <div class="row" id="question">
             Welcome to the SAS Data Entry application!
-        </div>
-        <div class="row">
+        <br>
             Click on the Start button to launch the quiz.
-        </div>
-    </div>  
-    <form id="quizForm" action="http://va85.gel.sas.com/SASJobExecution/" target="_SASResults">
+    </div>
+    <form id="quizForm" action="https://intviya01.race.sas.com/SASJobExecution/" target="_SASResults">
         <input type="hidden" name="_program" value="/gelcontent/Jobs/SGF/DataEntry">
         <input type="hidden" name="_action" value="execute">
         <input type="hidden" name="_output_type" value="json">
@@ -38,7 +35,6 @@
         <button id='submitBtn' type="submit" class="row btn btn-primary">Start</button>
     </form>
     <div id="summary"></div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="libs/jquery-3.4.1.min.js"></script>
