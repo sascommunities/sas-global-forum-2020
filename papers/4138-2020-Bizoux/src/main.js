@@ -32,8 +32,8 @@ $(document).ready(function () {
                 $("#hintSection").removeClass().addClass("d-block");
                 $("#submitBtn").removeClass("d-none");
             } else {
-                $("#question").html("Summary");
-                $.each(data.data, function (key, val) {
+                 $("#question").html("<div class='col-sm-8'>Summary</div>");
+                 $.each(data.data, function (key, val) {
                     var question = "";
                     if ($("#summaryQuestion" + val["ID"]).length == 0) {
                         question += "<details id='summaryQuestion" + val["ID"] + "'>";
@@ -52,7 +52,12 @@ $(document).ready(function () {
                     choice += "<label class='form-check-label' for='checkBox'" + key + ">" + val["Choices"] + "</label>";
                     choice += "</div>";
                     $("#summaryQuestion" + val["ID"]).append(choice);
-                });
+                 });
+                 var reloadButton = "<div class='col-sm-4'><button id='reloadBtn' type='submit' class='row btn btn-primary'>Start a new quiz!</button></div>";
+                 $("#question").append(reloadButton);
+                 $('#reloadBtn').click(function() {
+                    location.reload();
+                 });
             }
         });
         // Remove answers after submit
