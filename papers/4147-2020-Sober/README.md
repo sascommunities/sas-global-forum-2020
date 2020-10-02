@@ -110,3 +110,20 @@
 - How to terminate your CAS session.
 - If you forget to do this do not worry. All CAS sessions have a default time-out setting which is hit after a period of nonactivity.
 - **A good programming habit.**
+
+**sasLogParser.sas**
+- Compute Server (SPRE)
+- SAS 9 workspace server
+- This code includes sasLogParserMacros.sas and then parses SAS logs to identify which steps are canidates to be optimized by running that code in CAS.
+
+**sasLogParserMacros.sas**
+- Compute Server (SPRE)
+- SAS 9 workspace server
+- Included by the program sasLogParser.sas 
+
+**sasLogParser.sas**
+- Compute Server (SPRE)
+- SAS 9 workspace server
+- This code includes sasLogParserMacros.sas and then parses SAS logs to identify which steps are canidates to be optimized by running that code in CAS.
+
+- Compute Server (SPRE)
