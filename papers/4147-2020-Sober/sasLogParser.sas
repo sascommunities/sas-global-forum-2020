@@ -4,7 +4,7 @@
 /* Macro varialbe for the path containing the SAS Logs */
 %let path2files=C:\Users\sasss1\OneDrive - SAS\sasLogParser\logs\;
 
-%include "&sasLogParser.macros.sas";
+%include "&sasLogParser.sasLogParserMacros.sas";
 
 %check(&sasLogParser.logfiles.txt);
 
