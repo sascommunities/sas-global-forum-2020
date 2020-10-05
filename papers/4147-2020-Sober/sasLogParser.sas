@@ -23,7 +23,7 @@ data _null_;
    infile "&sasLogParser.logfiles.txt" truncover;
    file "&sasLogParser.includeCode.sas" ; 
    input line $100.;
-   if substr(line,1,2) = "C:";
+   if line =: "&path2files.";
    findLog=length(trim(line));
    findLog2=findLog - 2;
    pdfLine=line;
