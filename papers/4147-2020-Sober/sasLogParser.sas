@@ -1,13 +1,13 @@
 /* Macro variable for the path to sas log parser directory */
-%let sasLogParser=C:\Users\sasss1\OneDrive - SAS\sasLogParser\;
+%let sasLogParser=C:\Users\sasss1\Desktop\sasLogParser\;
 
 /* Macro varialbe for the path containing the SAS Logs */
-%let path2files=C:\Users\sasss1\OneDrive - SAS\sasLogParser\logs\;
+%let path2files=C:\Users\sasss1\Desktop\sasLogParser\logs\;
 
 %include "&sasLogParser.sasLogParserMacros.sas";
 
 %check(&sasLogParser.logfiles.txt);
-
+options LINESIZE=250; 
 proc printto log="&sasLogParser.logfiles.txt";
 run;
 
@@ -19,10 +19,10 @@ run;
 %check(&sasLogParser.includeCode.sas);
 
 data _null_;
-   length line pdfLine $100.;
+   length line pdfLine statement1 statement2 sasLogStatement $250.;
    infile "&sasLogParser.logfiles.txt" truncover;
    file "&sasLogParser.includeCode.sas" ; 
-   input line $100.;
+   input line $250.;
    if line =: "&path2files.";
    findLog=length(trim(line));
    findLog2=findLog - 2;
