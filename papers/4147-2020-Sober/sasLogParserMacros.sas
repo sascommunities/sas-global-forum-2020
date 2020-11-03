@@ -56,14 +56,14 @@
 %macro saslog(file=C:\temp\saslog1.log,test=test_sas);
 filename saslog "&file";
 data &test;
-   length oldline line step $80. product $25. fileName $100.;
-   informat realtime time11.2 fileName $100.;
-   format realtime cputime totaltime totalcpu time11.2 step $35. fileName $100.;
+   length oldline line step $250. product $25. fileName $250.;
+   informat realtime time11.2 fileName $250.;
+   format realtime cputime totaltime totalcpu time11.2 step $35. fileName $250.;
    retain oldline realtime totaltime;
    infile saslog truncover;
    fileName="&file";
    product="&test"; 
-   input line $80. ;
+   input line $250. ;
    arg1=scan(line,1);
    arg2=scan(line,2);
    If arg1 = 'real' then do;
