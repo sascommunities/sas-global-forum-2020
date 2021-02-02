@@ -68,4 +68,12 @@ proc print data=work.logs Label;
    var step realtime cputime totaltime totalcpu fileName;
 run;
 
+
+ods pdf file="&path2files.3.StepsFrequency.pdf"; 
+
+proc freq data=work.logs;
+   title "Steps";
+   table step;
+run;
+
 ods pdf close;
