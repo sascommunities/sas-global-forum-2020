@@ -8,7 +8,12 @@
     %put Directory &dir cannot be open or does not exist;
     %return;
   %end;
-
+  
+  %if (%upcase(%substr(&SYSSCP, 1, 3)) = WIN) %then
+     %let delm = \;
+  %else
+     %let delm = /; 
+	   	   
    %do i = 1 %to %sysfunc(dnum(&did));   
 
    %let name=%qsysfunc(dread(&did,&i));
@@ -16,8 +21,8 @@
       %if %qupcase(%qscan(&name,-1,.)) = %upcase(&ext) %then %do;
         %put &dir.&name;
       %end;
-      %else %if %qscan(&name,2,.) = %then %do;        
-        %list_files(&dir.&name,&ext)
+      %else %if %qscan(&name,2,.) = %then %do;    
+        %list_files(&dir.&name&delm.,&ext)
       %end;
 
    %end;
