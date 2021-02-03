@@ -19,10 +19,10 @@ run;
 %check(&sasLogParser.includeCode.sas);
 
 data _null_;
-   length line pdfLine statement1 statement2 sasLogStatement $250.;
+   length line pdfLine statement1 statement2 sasLogStatement $500.;
    infile "&sasLogParser.logfiles.txt" truncover;
    file "&sasLogParser.includeCode.sas" ; 
-   input line $250.;
+   input line $500.;
    if line =: "&path2files.";
    findLog=length(trim(line));
    findLog2=findLog - 2;
