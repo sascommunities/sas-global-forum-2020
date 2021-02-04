@@ -1,7 +1,9 @@
 /* Macro variable for the path to sas log parser directory */
+/* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
 %let sasLogParser=C:\Users\sasss1\Desktop\sasLogParser\;
 
 /* Macro varialbe for the path containing the SAS Logs */
+/* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
 %let path2files=C:\Users\sasss1\Desktop\sasLogParser\logs\;
 
 %include "&sasLogParser.sasLogParserMacros.sas";
@@ -46,7 +48,7 @@ run;
 ods noresults;
 %include "&sasLogParser.includeCode.sas";
 
-ods pdf file="&path2files.1.descendingRealTime.pdf"; 
+ods pdf file="&sasLogParser.1.descendingRealTime.pdf"; 
 
 proc sort data=work.logs;
    by descending realtime;
@@ -56,8 +58,16 @@ proc print data=work.logs label;
    title "Descending Clock Time";
    var step realtime cputime totaltime totalcpu fileName;
 run;
+ods pdf close;
 
-ods pdf file="&path2files.2.descendingCPUTime.pdf"; 
+ods excel file="&sasLogParser.1.descendingRealTime.xlsx" ;
+proc print data=work.logs label;
+   title "Descending Clock Time";
+   var step realtime cputime totaltime totalcpu fileName;
+run;
+ods excel close;
+
+ods pdf file="&sasLogParser.2.descendingCPUTime.pdf"; 
 
 proc sort data=work.logs;
    by descending cputime;
@@ -67,13 +77,25 @@ proc print data=work.logs Label;
    title "Descending CPU Time";
    var step realtime cputime totaltime totalcpu fileName;
 run;
+ods pdf close;
 
+ods excel file="&sasLogParser.2.descendingCPUTime.xlsx" ;
+proc print data=work.logs Label;
+   title "Descending CPU Time";
+   var step realtime cputime totaltime totalcpu fileName;
+run;
+ods excel close;
 
-ods pdf file="&path2files.3.StepsFrequency.pdf"; 
-
+ods pdf file="&sasLogParser.3.StepsFrequency.pdf"; 
 proc freq data=work.logs;
    title "Steps";
    table step;
 run;
-
 ods pdf close;
+
+ods excel file="&sasLogParser.3.StepsFrequency.xlsx"; 
+proc freq data=work.logs;
+   title "Steps";
+   table step;
+run;
+ods excel close;
