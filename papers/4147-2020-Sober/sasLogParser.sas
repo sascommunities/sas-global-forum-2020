@@ -1,10 +1,10 @@
 /* Macro variable for the path to sas log parser directory */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let sasLogParser=C:\Users\sasss1\Desktop\sasLogParser\;
+%let sasLogParser=C:\path\to\sasLogParser\;
 
 /* Macro varialbe for the path containing the SAS Logs */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let path2files=C:\Users\sasss1\Desktop\sasLogParser\logs\;
+%let path2files=C:\path\to\sasLogParser\logs\;
 
 %include "&sasLogParser.sasLogParserMacros.sas";
 
