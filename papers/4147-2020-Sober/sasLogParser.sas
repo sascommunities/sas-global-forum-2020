@@ -67,6 +67,37 @@ proc print data=work.logs label;
 run;
 ods excel close;
 
+data seconds;
+   set logs;
+   realTimeSeconds = second(realtime);
+   realTimeMinutes = minute(realtime);
+   realTimeHours = hour(realtime);
+   realTimeTotalSeconds = realTimeSeconds + (realTimeMinutes * 60) + (realTimeHours * 3600);
+   cpuTimeSeconds = second(cputime);
+   cpuTimeMinutes = minute(cputime);
+   cpuTimeHours = hour(cputime);
+   cpuTimeTotalSeconds = cpuTimeSeconds + (cpuTimeMinutes * 60) + (cpuTimeHours * 3600);
+   totalTimeSeconds = second(totalTime);
+   totalTimeMinutes = minute(totalTime);
+   totalTimeHours = hour(totalTime);
+   totalTimeTotalSeconds = totalTimeSeconds + (totalTimeMinutes * 60) + (totalTimeHours * 3600);
+   totalCPUSeconds = second(totalcpu);
+   totalCPUMinutes = minute(totalcpu);
+   totalCPUHours = hour(totalcpu);
+   totalCPUtotalSeconds = totalCPUseconds + (totalCPUminutes * 60) + (totalCPUhours * 3600);
+run;
+
+ods excel file="&sasLogParser.4.totalseconds.xlsx" ;
+proc print data=seconds;
+   var step realtime cputime  totaltime totalcpu fileName  
+	   realTimeTotalSeconds realTimeHours realTimeMinutes realTimeSeconds
+       cpuTimeTotalSeconds cpuTimeHours cpuTimeMinutes cpuTimeSeconds
+       totalTimeTotalSeconds totalTimeHours totalTimeMinutes totalTimeSeconds
+       totalCPUtotalSeconds totalCPUhours totalCPUminutes totalCPUseconds
+   ;
+run;
+ods excel close;
+
 ods pdf file="&sasLogParser.2.descendingCPUTime.pdf"; 
 
 proc sort data=work.logs;
