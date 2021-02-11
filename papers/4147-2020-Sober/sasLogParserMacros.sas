@@ -1,33 +1,86 @@
+/* delete the report directory if it exists */
+%macro deleteFolder(folderToDelete=&sasLogParser.reports);
+%if %sysfunc(fileexist(&sasLogParser.reports)) %then %do;
+data work.FilesToDelete;
+   length Name $ 100;
+   keep Name;
+   call symput('reports',1);
+   rc = filename("folder", "&folderToDelete.");
+   
+   dirId = dopen("folder");
+   do i = 1 to dnum(dirID);
+      Name = dread(dirId, i);
+      output;
+   end;
+
+   rc = dclose(dirId);
+run;
+data _null_;
+   set work.FilesToDelete end=lastDeleted;
+
+/*   put "Deleting " Name;*/
+
+   rc = filename("delfile", cats("&folderToDelete./", Name));
+   rc = fdelete("delfile");
+/*   put "del file " rc=;*/
+   rc = filename("delfile");
+
+   if lastDeleted then do;
+/*      put "Deleting the folder '&folderToDelete.'";*/
+      rc = filename("folder", "&folderToDelete.");
+      rc = fdelete("folder");
+/*      put "del folder " rc=;*/
+      rc = filename("folder");
+   end;
+run;
+%end;
+%else %do;
+  %put The directory &sasLogParser.reports does not exist.;   
+%end;
+%mend;
+
+/* create the report directory */
+%macro mkdir;
+  /* Create the reports directory */
+  options DLCREATEDIR;
+  libname reports "&sasLogParser.reports";
+  libname reports clear;
+%mend mkdir;
+
 /* List all files with a given extention to the SAS Log */
 %macro list_files(dir,ext);
-  %local filrf rc did memcnt name i;
+  %local filrf rc did memcnt i;
+  %global name delm;
   %let rc=%sysfunc(filename(filrf,&dir));
   %let did=%sysfunc(dopen(&filrf));      
 
-   %if &did eq 0 %then %do; 
+/* Set the delimiter based on operating system */
+  %if (%upcase(%substr(&SYSSCP, 1, 3)) = WIN) %then %do;
+     %let delm = \;
+  %end;
+  %else %do;
+     %let delm = /; 
+  %end;
+
+  %if &did eq 0 %then %do; 
     %put Directory &dir cannot be open or does not exist;
     %return;
   %end;
-  
-  %if (%upcase(%substr(&SYSSCP, 1, 3)) = WIN) %then
-     %let delm = \;
-  %else
-     %let delm = /; 
-	   	   
-   %do i = 1 %to %sysfunc(dnum(&did));   
+     	   
+  %do i = 1 %to %sysfunc(dnum(&did));   
 
-   %let name=%qsysfunc(dread(&did,&i));
-
-      %if %qupcase(%qscan(&name,-1,.)) = %upcase(&ext) %then %do;
-        %put &dir.&name;
-      %end;
-      %else %if %qscan(&name,2,.) = %then %do;    
+     %let name=%qsysfunc(dread(&did,&i));  
+    
+     %if %qupcase(%qscan(&name,-1,.)) = %upcase(&ext) %then %do;
+        %put &dir.&name; 
+     %end;
+     %else %if %qscan(&name,2,.) = %then %do;    
         %list_files(&dir.&name&delm.,&ext)
-      %end;
+     %end;
+  %end;
 
-   %end;
-   %let rc=%sysfunc(dclose(&did));
-   %let rc=%sysfunc(filename(filrf));     
+  %let rc=%sysfunc(dclose(&did));
+  %let rc=%sysfunc(filename(filrf));     
 
 %mend list_files;
 
@@ -58,17 +111,17 @@
 *       Attr:  Modifiable, Required
 * _________________________________________________________;
 
-%macro saslog(file=C:\temp\saslog1.log,test=test_sas);
+%macro saslog(file=C:\temp\saslog1.log,test=test_sas); 
 filename saslog "&file";
 data &test;
-   length oldline line step $250. product $25. fileName $250.;
-   informat realtime time11.2 fileName $250.;
-   format realtime cputime totaltime totalcpu time11.2 step $35. fileName $250.;
+   length oldline line step $500. product $25. fileName $500.;
+   informat realtime time11.2 fileName $500.;
+   format realtime cputime totaltime totalcpu time11.2 step $35. fileName $500.;
    retain oldline realtime totaltime;
    infile saslog truncover;
    fileName="&file";
    product="&test"; 
-   input line $250. ;
+   input line $500. ;
    arg1=scan(line,1);
    arg2=scan(line,2);
    If arg1 = 'real' then do;
