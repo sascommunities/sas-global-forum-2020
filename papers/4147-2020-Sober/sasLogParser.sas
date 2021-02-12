@@ -4,7 +4,7 @@
 
 /* Macro varialbe for the path containing the SAS Logs */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let path2files=C:\path\to\sasLogParser\logs\;
+%let path2files=C:\path\to\sasLogParser\logs\; 
 
 %include "&sasLogParser.sasLogParserMacros.sas";
 
@@ -12,32 +12,49 @@
 options LINESIZE=250; 
 proc printto log="&sasLogParser.logfiles.txt";
 run;
-
 %list_files(&path2files.,log);
-
 proc printto;
 run;
 
 %check(&sasLogParser.includeCode.sas);
+ 
+%deleteFolder(folderToDelete=&sasLogParser.reports);
+
+%mkdir;
 
 data _null_;
-   length line pdfLine statement1 statement2 sasLogStatement $500.;
+   length line pdfLine statement1 statement2 sasLogStatement odsStatement name reportPath $500.;
    infile "&sasLogParser.logfiles.txt" truncover;
    file "&sasLogParser.includeCode.sas" ; 
    input line $500.;
+
    if line =: "&path2files.";
+ 
    findLog=length(trim(line));
-   findLog2=findLog - 2;
-   pdfLine=line;
-   substr(pdfLine,findLog2,3)='pdf;';
-   odsStatement="ods pdf file=";
+   pathLength=length(line);
+   do i = 1 to pathLength;
+      if substr(line,i,1) = "&delm." then
+	     lastDelm=i+1;
+   end;
+   name = substr(line,lastDelm,pathLength);
+   nameLength=length(trim(name));
+   n=nameLength-2;
+   substr(name,n,5)='pdf";';
+
+   odsStatement1="ods pdf file=";
+   odsStatement2="&sasLogParser.reports&delm." || name;
+   odsStatement=odsStatement1 || '"' || odsStatement2; 
+   
    letStatement="%" || "let log1=";
    sasLogStatement="%" || "saslog(file=" || "&" || "log1,test=" || "&" || "test1);";
-   statement1=odsStatement || '"' || trim(pdfLine) || '";';
+   statement1=odsStatement;
    statement2=letStatement || trim(line) || ';';
-   put statement1;
+   pdsClose='ods pdf close;';
+
+   put odsStatement;
    put statement2;
    put sasLogStatement;
+   put pdsClose;
 run;
 
 proc delete data=work.logs;
@@ -48,7 +65,7 @@ run;
 ods noresults;
 %include "&sasLogParser.includeCode.sas";
 
-ods pdf file="&sasLogParser.1.descendingRealTime.pdf"; 
+ods pdf file="&sasLogParser.reports&delm.1.descendingRealTime.pdf"; 
 
 proc sort data=work.logs;
    by descending realtime;
@@ -60,7 +77,7 @@ proc print data=work.logs label;
 run;
 ods pdf close;
 
-ods excel file="&sasLogParser.1.descendingRealTime.xlsx" ;
+ods excel file="&sasLogParser.reports&delm.1.descendingRealTime.xlsx" ;
 proc print data=work.logs label;
    title "Descending Clock Time";
    var step realtime cputime totaltime totalcpu fileName;
@@ -68,6 +85,7 @@ run;
 ods excel close;
 
 data seconds;
+   length proc $40.;
    set logs;
    realTimeSeconds = second(realtime);
    realTimeMinutes = minute(realtime);
@@ -85,20 +103,25 @@ data seconds;
    totalCPUMinutes = minute(totalcpu);
    totalCPUHours = hour(totalcpu);
    totalCPUtotalSeconds = totalCPUseconds + (totalCPUminutes * 60) + (totalCPUhours * 3600);
+   proc = scan(step,3);
+   if proc = 'initialization' then proc = ' ';
+      else if proc = 'statement' then proc = 'DATA statement';
+	  else proc = 'PROC ' || proc;
 run;
 
-ods excel file="&sasLogParser.4.totalseconds.xlsx" ;
+ods excel file="&sasLogParser.reports&delm.4.totalseconds.xlsx" ;
 proc print data=seconds;
    var step realtime cputime  totaltime totalcpu fileName  
 	   realTimeTotalSeconds realTimeHours realTimeMinutes realTimeSeconds
        cpuTimeTotalSeconds cpuTimeHours cpuTimeMinutes cpuTimeSeconds
        totalTimeTotalSeconds totalTimeHours totalTimeMinutes totalTimeSeconds
        totalCPUtotalSeconds totalCPUhours totalCPUminutes totalCPUseconds
+	   proc
    ;
 run;
 ods excel close;
 
-ods pdf file="&sasLogParser.2.descendingCPUTime.pdf"; 
+ods pdf file="&sasLogParser.reports&delm.2.descendingCPUTime.pdf"; 
 
 proc sort data=work.logs;
    by descending cputime;
@@ -110,21 +133,21 @@ proc print data=work.logs Label;
 run;
 ods pdf close;
 
-ods excel file="&sasLogParser.2.descendingCPUTime.xlsx" ;
+ods excel file="&sasLogParser.reports&delm.2.descendingCPUTime.xlsx" ;
 proc print data=work.logs Label;
    title "Descending CPU Time";
    var step realtime cputime totaltime totalcpu fileName;
 run;
 ods excel close;
 
-ods pdf file="&sasLogParser.3.StepsFrequency.pdf"; 
+ods pdf file="&sasLogParser.reports&delm.3.StepsFrequency.pdf"; 
 proc freq data=work.logs;
    title "Steps";
    table step;
 run;
 ods pdf close;
 
-ods excel file="&sasLogParser.3.StepsFrequency.xlsx"; 
+ods excel file="&sasLogParser.reports&delm.3.StepsFrequency.xlsx"; 
 proc freq data=work.logs;
    title "Steps";
    table step;
