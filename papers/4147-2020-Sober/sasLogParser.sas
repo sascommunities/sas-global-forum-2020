@@ -1,4 +1,4 @@
-/* sasLogParser.sas version 3.14 23Feb2021:13:33 */
+/* sasLogParser.sas version 3.14 23Feb2021:16:17 */
 /* Macro variable for the path to sas log parser directory */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
 %let sasLogParser=C:\path\to\sasLogParser\;
@@ -65,6 +65,13 @@ run;
 
 ods noresults;
 %include "&sasLogParser.includeCode.sas";
+
+ods excel file="&sasLogParser.reports&delm.1.descendingRealTime.xlsx" ;
+proc print data=work.logs Label;
+   title "Descending Real Time";
+   var step realtime cputime totaltime totalcpu fileName;
+run;
+ods excel close;
 
 ods pdf file="&sasLogParser.reports&delm.2.descendingCPUTime.pdf"; 
 
