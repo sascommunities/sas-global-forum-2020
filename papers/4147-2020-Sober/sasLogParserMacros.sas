@@ -1,4 +1,4 @@
-/* sasLogParserMacros.sas version 3.14 23Feb2021:13:33 */
+/* sasLogParserMacros.sas version 3.14 24Feb2021:11:48 */
 /* Delete the report directory */
 %macro deleteFolder(folderToDelete=&sasLogParser.reports);
 %if %sysfunc(fileexist(&sasLogParser.reports)) %then %do;
@@ -224,7 +224,7 @@ run;
 proc append base=work.logs data=&test;
 run;
 
-/* Start: create 1.descendingRealTime.pdf 1.descendingRealTime.xlsx and reports.logs sas7bdat after processing each log */
+/* Start: create 1.descendingRealTime.pdf 4.totalSeconds.xlsx and reports.logs sas7bdat after processing each log */
 ods pdf file="&sasLogParser.reports&delm.1.descendingRealTime.pdf"; 
 
 proc sort data=work.logs;
@@ -267,7 +267,7 @@ data seconds;
 	  else proc = 'PROC ' || proc;
 run;
 
-ods excel file="&sasLogParser.reports&delm.4.totalseconds.xlsx" ;
+ods excel file="&sasLogParser.reports&delm.4.totalSeconds.xlsx" ;
 proc print data=seconds;
    var step realtime cputime  totaltime totalcpu fileName  
 	   realTimeTotalSeconds realTimeHours realTimeMinutes realTimeSeconds
@@ -278,5 +278,5 @@ proc print data=seconds;
    ;
 run;
 ods excel close;
-/* Stop: create 1.descendingRealTime.pdf 1.descendingRealTime.xlsx and reports.logs sas7bdat after processing each log */
+/* Stop: create 1.descendingRealTime.pdf 4.totalSeconds.xlsx and reports.logs sas7bdat after processing each log */
 %mend saslog;
