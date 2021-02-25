@@ -1,4 +1,4 @@
-/* sasLogParserMacros.sas version 3.14 24Feb2021:11:48 */
+%put sasLogParserMacros.sas version 3.14 24Feb2021:11:48;
 /* Delete the report directory */
 %macro deleteFolder(folderToDelete=&sasLogParser.reports);
 %if %sysfunc(fileexist(&sasLogParser.reports)) %then %do;
