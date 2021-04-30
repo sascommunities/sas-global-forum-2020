@@ -120,3 +120,14 @@
 - Compute Server (SPRE)
 - SAS 9 workspace server
 - Included by the program sasLogParser.sas 
+
+**sasLogParserTurboCharged.sas**
+- Compute Server (SPRE)
+- SAS 9 workspace server
+- This code includes sasLogParserMacros.sas and then parses SAS logs to identify which steps are canidates to be optimized by running that code in CAS.
+
+**sasLogParserMacrosTurboCharged.sas**
+- Compute Server (SPRE)
+- SAS 9 workspace server
+- Included by the program sasLogParserTurboCharged.sas.
+- Note, when saving this file to disk ensure you name it sasLogParserMacros.sas.
