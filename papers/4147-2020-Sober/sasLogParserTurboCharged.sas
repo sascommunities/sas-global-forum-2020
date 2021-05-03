@@ -1,11 +1,11 @@
-/* sasLogParser.sas version 3.14 23Feb2021:16:17 */
+/* sasLogParser.sas version 3.14 03May2021:10:00 */
 /* Macro variable for the path to sas log parser directory */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let sasLogParser=C:\Users\sasss1\Desktop\sasLogParser\playpen\SANOFI\;
+%let sasLogParser=C:\path\to\utility\;
 
 /* Macro varialbe for the path containing the SAS Logs */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let path2files=C:\Users\sasss1\Desktop\sasLogParser\playpen\SANOFI\logs\; 
+%let path2files=C:\path\to\logs\; 
 
 /* options mprint source2; */
 
