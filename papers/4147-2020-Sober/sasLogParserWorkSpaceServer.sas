@@ -5,7 +5,7 @@
 
 /* Macro varialbe for the path containing the SAS Logs */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let path2files=C:\path\to\\logs\; 
+%let path2files=C:\path\to\logs\; 
 
 /* options mprint source2; */
 
