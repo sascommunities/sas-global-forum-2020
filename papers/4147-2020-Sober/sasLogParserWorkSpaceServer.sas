@@ -1,7 +1,7 @@
-/* sasLogParser.sas version 3.14 18Jun2021:14:33 */
+/* sasLogParserWorkSpaceServer.sas version 3.14 24Jun2021:11:49 */
 /* Macro variable for the path to sas log parser directory */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
-%let sasLogParser=C:\path\to\sasLogParser\;
+%let sasLogParser=C:\path\to\utility\;
 
 /* Macro varialbe for the path containing the SAS Logs */
 /* Note: Ensure the path ends with the delimiter \ for Windows or / for Linux */
@@ -9,7 +9,7 @@
 
 /* options mprint source2; */
 
-%include "&sasLogParser.sasLogParserMacros.sas";
+%include "&sasLogParser.sasLogParserMacrosWorkSpaceServer.sas";
 
 %check(&sasLogParser.logfiles.txt);
 options LINESIZE=250; 
@@ -68,7 +68,13 @@ run;
 ods noresults;
 %include "&sasLogParser.includeCode.sas";
 
-/* Start: create descendingRealTime.xlsx and stepFrequency.xlsx reports */ 
+data logs;
+   set logs;
+   where
+      step contains 'NOTE: DATA '
+      or step contains 'NOTE: PROCEDURE ';
+run;
+
 proc sort data=work.logs;
    by descending realtime;
 run;
@@ -77,24 +83,49 @@ data reports.logs (compress=char);
    set work.logs;
 run;
 
-/*ods pdf file="&sasLogParser.reports&delm.descendingRealTime.pdf"; */
-/*proc print data=work.logs label;*/
-/*   title "Descending Clock Time";*/
-/*   var step realtime cputime totaltime totalcpu fileName;*/
-/*run;*/
-/*ods pdf close;*/
-
-ods excel file="&sasLogParser.reports&delm.descendingRealTime.xlsx" ;
-proc print data=work.logs Label;
+ods html5 file="&sasLogParser.reports&delm.descendingRealTime.html" ;
+proc print data=logs Label;
    title "Descending Real Time";
-   var step realtime cputime totaltime totalcpu fileName;
+   var step realtime cputime fileName;
 run;
-ods excel close;
+ods html5 close;
 
 ods excel file="&sasLogParser.reports&delm.stepsFrequency.xlsx"; 
-proc freq data=work.logs;
+proc freq data=logs;
    title "Steps";
-   table step;
+   table step; 
 run;
 ods excel close;
-/* Stop: create descendingRealTime.xlsx and stepFrequency.xlsx reports */
+
+data seconds;
+   length proc $40.;
+   set logs;
+   realTimeSeconds = second(realtime);
+   realTimeMinutes = minute(realtime);
+   realTimeHours = hour(realtime);
+   realTimeTotalSeconds = realTimeSeconds + (realTimeMinutes * 60) + (realTimeHours * 3600);
+   cpuTimeSeconds = second(cputime);
+   cpuTimeMinutes = minute(cputime);
+   cpuTimeHours = hour(cputime);
+   cpuTimeTotalSeconds = cpuTimeSeconds + (cpuTimeMinutes * 60) + (cpuTimeHours * 3600);
+   proc = scan(step,3);
+run;
+
+ods excel file="&sasLogParser.reports&delm.totalSeconds.xlsx" ;
+proc print data=seconds;
+   var step realtime cputime  totaltime totalcpu fileName  
+	   realTimeTotalSeconds 
+       cpuTimeTotalSeconds 
+   ;
+run;
+ods excel close;
+
+ods excel file="&sasLogParser.reports&delm.descendingRealTime.xlsx" ;
+proc print data=logs Label;
+   title "Descending Real Time";
+   var step realtime cputime fileName;
+run;
+ods excel close;
+
+/* Stop: create reports */
+
