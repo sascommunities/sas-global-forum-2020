@@ -1,3 +1,5 @@
+# This repository has moved to [a sassoftware GitHub repository](https://github.com/sassoftware/converting-sas-code-to-leverage-cas). This repository in sascommunities will no longer be maintained.
+
 # SAS4147-2020
 ##  Best Practices for Converting SAS Code to Leverage CAS
 ### Coding examples can be run **as is** with SAS Viya 3.5+.
