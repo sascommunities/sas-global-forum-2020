@@ -1,7 +1,7 @@
 /* Define macro variables for the parameters defined in the URL */
 %global id maxid answer01 answer02 answer03 answer04 answer05;
 /* Define CAS server connection, session and CAS libraries */
-options cashost="intcas01.race.sas.com" casport=5570;
+options cashost="server.demo.sas.com" casport=5570;
 cas mySession sessopts=(caslib="casuser");
 libname visual cas caslib="visual";
 libname casuser cas caslib="casuser";
